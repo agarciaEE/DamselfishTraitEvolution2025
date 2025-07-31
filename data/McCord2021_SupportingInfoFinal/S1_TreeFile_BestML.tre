@@ -1,0 +1,442 @@
+#NEXUS
+begin taxa;
+	dimensions ntax=350;
+	taxlabels
+	zPtychochromis_oligacanthus
+	zAmphistichus_argenteus
+	zCymatogaster_aggregata
+	zEmbiotoca_jacksoni
+	Mecaenichthys_immaculatus
+	Parma_mccullochi
+	Parma_victoriae
+	Parma_oligolepis
+	Parma_occidentalis
+	Parma_alboscapularis
+	Parma_microlepis
+	Microspathodon_bairdii
+	Microspathodon_chrysurus
+	Microspathodon_dorsalis
+	Nexilosus_latifrons
+	Hypsypops_rubicundus
+	Similiparma_hermani
+	Similiparma_lurida
+	Plectroglyphidodon_imparipennis
+	Plectroglyphidodon_sagmarius
+	Plectroglyphidodon_leucozonus
+	Plectroglyphidodon_randalli
+	Plectroglyphidodon_dickii
+	Plectroglyphidodon_johnstonianus
+	Plectroglyphidodon_phoenixensis
+	Plectroglyphidodon_insularis
+	Plectroglyphidodon_altus
+	Plectroglyphidodon_apicalis
+	Plectroglyphidodon_obreptus
+	Plectroglyphidodon_fasciolatus
+	Plectroglyphidodon_luteobrunneus
+	Plectroglyphidodon_gascoynei
+	Plectroglyphidodon_emeryi
+	Plectroglyphidodon_aureus
+	Plectroglyphidodon_marginatus
+	Lepidozygus_tapeinosoma
+	Stegastes_lacrymatus
+	Stegastes_pelicieri
+	Stegastes_lividus
+	Stegastes_punctatus
+	Stegastes_nigricans
+	Stegastes_albifasciatus
+	Stegastes_limbatus
+	Stegastes_arcifrons
+	Stegastes_fuscus
+	Stegastes_imbricatus
+	Stegastes_planifrons
+	Stegastes_acapulcoensis
+	Stegastes_rectifraenum
+	Stegastes_rocasensis
+	Stegastes_sanctipauli
+	Stegastes_partitus
+	Stegastes_pictus
+	Stegastes_otophorus
+	Stegastes_baldwini
+	Stegastes_beebei
+	Stegastes_flavilatus
+	Stegastes_adustus
+	Stegastes_diencaeus
+	Stegastes_leucostictus
+	Stegastes_variabilis
+	Stegastes_xanthurus
+	Chromis_atripectoralis
+	Chromis_viridis
+	Chromis_flavaxilla
+	Chromis_ternatensis
+	Chromis_klunzingeri
+	Azurina_cyanea
+	Azurina_brevirostris
+	Azurina_elerae
+	Azurina_lepidolepis
+	Azurina_multilineata
+	Azurina_atrilobata
+	Azurina_hirundo
+	Dascyllus_melanurus
+	Dascyllus_abudafur
+	Dascyllus_aruanus
+	Dascyllus_marginatus
+	Dascyllus_flavicaudus
+	Dascyllus_reticulatus
+	Dascyllus_carneus
+	Dascyllus_albisella
+	Dascyllus_strasburgi
+	Dascyllus_trimaculatus
+	Pycnochromis_acares
+	Pycnochromis_nigrurus
+	Pycnochromis_lineata
+	Pycnochromis_vanderbilti
+	Pycnochromis_delta
+	Pycnochromis_atripes
+	Pycnochromis_alleni
+	Pycnochromis_dimidiatus
+	Pycnochromis_abruptus
+	Pycnochromis_margaritifer
+	Pycnochromis_fieldi
+	Pycnochromis_hanui
+	Pycnochromis_pacifica
+	Pycnochromis_leucurus
+	Pycnochromis_retrofasciatus
+	Pycnochromis_iomelas
+	Pycnochromis_bami
+	Pycnochromis_ovatiformis
+	Pycnochromis_amboinensis
+	Pycnochromis_howsoni
+	Pycnochromis_caudalis
+	Pycnochromis_fatuhivae
+	Chromis_fumea
+	Chromis_nitida
+	Chromis_pamae
+	Chromis_randalli
+	Chromis_notata
+	Chromis_ovalis
+	Chromis_kennensis
+	Chromis_yamakawai
+	Chromis_dispila
+	Chromis_hypsilepis
+	Chromis_chrysura
+	Chromis_mirationis
+	Chromis_pelloura
+	Chromis_abyssicola
+	Chromis_mamatapara
+	Chromis_okamurai
+	Chromis_tingting
+	Chromis_albomaculata
+	Chromis_abyssus
+	Chromis_circumaurea
+	Chromis_lubbocki
+	Chromis_limbata
+	Chromis_chromis
+	Chromis_cadenati
+	Chromis_sanctahelenae
+	Chromis_crusma
+	Chromis_punctipinnis
+	Chromis_alta
+	Chromis_limbaughi
+	Chromis_enchrysura
+	Chromis_vanbebberae
+	Chromis_insolata
+	Chromis_scotti
+	Chromis_alpha
+	Chromis_degruyi
+	Chromis_bowesi
+	Chromis_earina
+	Chromis_katoi
+	Chromis_verater
+	Chromis_opercularis
+	Chromis_anadema
+	Chromis_xanthura
+	Chromis_woodsi
+	Chromis_albicauda
+	Chromis_analis
+	Chromis_flavapicis
+	Chromis_hangganan
+	Chromis_pembae
+	Chromis_gunting
+	Chromis_cinerascens
+	Chromis_scotochiloptera
+	Chromis_xanthochira
+	Chromis_weberi
+	Chromis_xanthopterygia
+	Abudefduf_declivifrons
+	Abudefduf_concolor
+	Abudefduf_taurus
+	Abudefduf_septemfasciatus
+	Abudefduf_notatus
+	Abudefduf_sordidus
+	Abudefduf_whitleyi
+	Abudefduf_bengalensis
+	Abudefduf_nigrimargo
+	Abudefduf_sparoides
+	Abudefduf_margariteus
+	Abudefduf_natalensis
+	Abudefduf_caudobimaculatus
+	Abudefduf_vaigiensis
+	Abudefduf_conformis
+	Abudefduf_sexfasciatus
+	Abudefduf_abdominalis
+	Abudefduf_troschelii
+	Abudefduf_saxatilis
+	Abudefduf_hoefleri
+	Abudefduf_lorenzi
+	Chrysiptera_galba
+	Chrysiptera_rapanui
+	Chrysiptera_starcki
+	Chrysiptera_biocellata
+	Chrysiptera_brownriggii
+	Chrysiptera_leucopoma
+	Chrysiptera_glauca
+	Chrysiptera_caeruleolineata
+	Chrysiptera_unimaculata
+	Pomachromis_fuscidorsalis
+	Pomachromis_richardsoni
+	Dischistodus_melanotus
+	Dischistodus_pseudochrysopoecilus
+	Dischistodus_chrysopoecilus
+	Dischistodus_perspicillatus
+	Dischistodus_prosopotaenia
+	Cheiloprion_labiatus
+	Chrysiptera_caesifrons
+	Chrysiptera_chrysocephala
+	Chrysiptera_rex
+	Chrysiptera_cyanea
+	Chrysiptera_taupou
+	Chrysiptera_rollandi
+	Chrysiptera_talboti
+	Chrysiptera_flavipinnis
+	Chrysiptera_traceyi
+	Chrysiptera_giti
+	Chrysiptera_hemicyanea
+	Chrysiptera_parasema
+	Chrysiptera_springeri
+	Chrysiptera_ellenae
+	Chrysiptera_oxycephala
+	Chrysiptera_uswanasi
+	Chrysiptera_burtjonesi
+	Chrysiptera_sinclairi
+	Chrysiptera_maurinae
+	Chrysiptera_papuensis
+	Hemiglyphidodon_plagiometopon
+	Acanthochromis_polyacanthus
+	Altrichthys_curatus
+	Altrichthys_alelia
+	Altrichthys_azurelineatus
+	Neoglyphidodon_oxyodon
+	Neoglyphidodon_polyacanthus
+	Neoglyphidodon_bonang
+	Neoglyphidodon_melas
+	Neoglyphidodon_carlsoni
+	Neoglyphidodon_nigroris
+	Neoglyphidodon_thoracotaeniatus
+	Amblyglyphidodon_ternatensis
+	Amblyglyphidodon_batunaorum
+	Amblyglyphidodon_aureus
+	Amblyglyphidodon_flavopurpureus
+	Amblyglyphidodon_flavilatus
+	Amblyglyphidodon_curacao
+	Amblyglyphidodon_indicus
+	Amblyglyphidodon_orbicularis
+	Amblyglyphidodon_melanopterus
+	Amblyglyphidodon_leucogaster
+	Amblyglyphidodon_silolona
+	Pristotis_obtusirostris
+	Teixeirichthys_jordani
+	Neopomacentrus_fuliginosus
+	Neopomacentrus_xanthurus
+	Neopomacentrus_miryae
+	Neopomacentrus_sindensis
+	Neopomacentrus_cyanomos
+	Neopomacentrus_nemurus
+	Neopomacentrus_metallicus
+	Neopomacentrus_azysron
+	Neopomacentrus_sororius
+	Neopomacentrus_aquadulcis
+	Neopomacentrus_anabatoides
+	Neopomacentrus_violascens
+	Neopomacentrus_aktites
+	Neopomacentrus_filamentosus
+	Neopomacentrus_bankieri
+	Neopomacentrus_taeniurus
+	Amphiprion_biaculeatus
+	Amphiprion_ocellaris
+	Amphiprion_percula
+	Amphiprion_latezonatus
+	Amphiprion_clarkii
+	Amphiprion_tricinctus
+	Amphiprion_akallopisos
+	Amphiprion_perideraion
+	Amphiprion_pacificus
+	Amphiprion_sandaracinos
+	Amphiprion_chrysopterus
+	Amphiprion_leucokranos
+	Amphiprion_bicinctus
+	Amphiprion_omanensis
+	Amphiprion_chagosensis
+	Amphiprion_nigripes
+	Amphiprion_chrysogaster
+	Amphiprion_allardi
+	Amphiprion_latifasciatus
+	Amphiprion_polymnus
+	Amphiprion_sebae
+	Amphiprion_akindynos
+	Amphiprion_mccullochi
+	Amphiprion_ephippium
+	Amphiprion_barberi
+	Amphiprion_frenatus
+	Amphiprion_melanopus
+	Amphiprion_rubrocinctus
+	Amblypomacentrus_annulatus
+	Amblypomacentrus_breviceps
+	Amblypomacentrus_clarus
+	Amblypomacentrus_kuiteri
+	Amblypomacentrus_tricinctus
+	Pomacentrus_xanthosternus
+	Pomacentrus_leptus
+	Pomacentrus_pavo
+	Pomacentrus_micronesicus
+	Pomacentrus_auriventris
+	Pomacentrus_coelestis
+	Pomacentrus_similis
+	Pomacentrus_caeruleus
+	Pomacentrus_alleni
+	Pomacentrus_caeruleopunctatus
+	Pomacentrus_burroughi
+	Pomacentrus_grammorhynchus
+	Pomacentrus_albicaudatus
+	Pomacentrus_sulfureus
+	Pomacentrus_trichrourus
+	Pomacentrus_vatosoa
+	Pomacentrus_aquilus
+	Pomacentrus_arabicus
+	Pomacentrus_baenschi
+	Pomacentrus_trilineatus
+	Pomacentrus_melanochir
+	Pomacentrus_bangladeshius
+	Pomacentrus_taeniometopon
+	Pomacentrus_tripunctatus
+	Pomacentrus_adelus
+	Pomacentrus_geminospilus
+	Pomacentrus_littoralis
+	Pomacentrus_maafu
+	Pomacentrus_amboinensis
+	Pomacentrus_moluccensis
+	Pomacentrus_spilotoceps
+	Pomacentrus_armillatus
+	Pomacentrus_bankanensis
+	Pomacentrus_vaiuli
+	Pomacentrus_wardi
+	Pomacentrus_australis
+	Pomacentrus_philippinus
+	Pomacentrus_nigriradiatus
+	Pomacentrus_flavoaxillaris
+	Pomacentrus_magniseptus
+	Pomacentrus_flavioculus
+	Pomacentrus_imitator
+	Pomacentrus_albiaxillaris
+	Pomacentrus_alexanderae
+	Pomacentrus_nigromarginatus
+	Pomacentrus_aurifrons
+	Pomacentrus_smithi
+	Pomacentrus_brachialis
+	Pomacentrus_nigromanus
+	Pomacentrus_callainus
+	Pomacentrus_lepidogenys
+	Pomacentrus_reidi
+	Pomacentrus_stigma
+	Pomacentrus_microspilus
+	Pomacentrus_milleri
+	Pomacentrus_chrysurus
+	Pomacentrus_nagasakiensis
+	zThorichthys_meeki
+;
+end;
+
+begin trees;
+	tree bestREP3 = [&U] (zPtychochromis_oligacanthus:0.13760402,((zAmphistichus_argenteus:0.05949503,(zCymatogaster_aggregata:0.07474101,zEmbiotoca_jacksoni:0.06018064):0.03368858):0.21670653,(((Mecaenichthys_immaculatus:0.07571954,((Parma_mccullochi:0.00809363,Parma_victoriae:0.00718632):0.01499897,(Parma_oligolepis:0.05118569,(Parma_occidentalis:1.0E-8,(Parma_alboscapularis:0.01800225,Parma_microlepis:0.02068327):0.00181983):0.00464782):0.00693422):0.0444964):0.01518345,((((Microspathodon_bairdii:0.04504852,(Microspathodon_chrysurus:0.01966632,Microspathodon_dorsalis:0.02387527):0.0134067):0.05015328,(Nexilosus_latifrons:0.03854076,(Hypsypops_rubicundus:0.04247649,(Similiparma_hermani:0.02831186,Similiparma_lurida:0.05811148):0.01881341):0.01869891):0.01817523):0.0150151,(((Plectroglyphidodon_imparipennis:0.0132045,Plectroglyphidodon_sagmarius:0.01005637):0.05565607,(Plectroglyphidodon_leucozonus:0.03561253,Plectroglyphidodon_randalli:0.03169187):0.01935727):0.03059313,((Plectroglyphidodon_dickii:0.08600575,(Plectroglyphidodon_johnstonianus:0.08034255,Plectroglyphidodon_phoenixensis:0.05528828):0.00885848):0.02032949,(Plectroglyphidodon_insularis:0.00671983,((Plectroglyphidodon_altus:1.0E-8,(Plectroglyphidodon_apicalis:0.00371691,Plectroglyphidodon_obreptus:5.9863E-4):0.03487324):0.01526422,((Plectroglyphidodon_fasciolatus:0.00371974,Plectroglyphidodon_luteobrunneus:0.0116336):0.00842185,(Plectroglyphidodon_gascoynei:0.01855232,(Plectroglyphidodon_emeryi:0.01989793,(Plectroglyphidodon_aureus:0.0318974,Plectroglyphidodon_marginatus:0.01623898):0.00370892):0.00702379):0.00873971):0.01953358):0.00765866):0.02017788):0.0073292):0.02458334):0.01672049,(Lepidozygus_tapeinosoma:0.32213572,((Stegastes_lacrymatus:0.02388916,Stegastes_pelicieri:0.0376553):0.09972965,(((Stegastes_lividus:1.0E-8,Stegastes_punctatus:0.0011429):0.08240219,(Stegastes_nigricans:0.04080905,(Stegastes_albifasciatus:0.02786869,Stegastes_limbatus:0.01459435):0.0232902):0.0254892):0.04331266,((Stegastes_arcifrons:0.04196825,((Stegastes_fuscus:0.01590631,Stegastes_imbricatus:0.0151171):0.02027681,(Stegastes_planifrons:0.03703523,((Stegastes_acapulcoensis:0.00129887,Stegastes_rectifraenum:0.00888945):0.0171771,(Stegastes_rocasensis:1.0E-8,Stegastes_sanctipauli:1.0E-8):0.03217612):0.00716386):0.00606724):0.0129147):0.02286306,((Stegastes_partitus:0.04142825,Stegastes_pictus:0.04631315):0.06349938,(Stegastes_otophorus:0.07469284,((Stegastes_baldwini:0.01818615,Stegastes_beebei:0.01411833):0.03211843,(Stegastes_flavilatus:0.08612281,((Stegastes_adustus:0.01466557,Stegastes_diencaeus:0.01149516):0.01344242,(Stegastes_leucostictus:0.04234042,(Stegastes_variabilis:0.00839969,Stegastes_xanthurus:0.00527357):0.02560396):0.0073087):0.01503377):0.02582257):0.01562187):0.00615046):0.01263209):0.13474746):0.01123334):0.01697915):0.01578458):0.03405793):0.01758983,((((Chromis_atripectoralis:0.02431953,Chromis_viridis:0.02790857):0.05356523,(Chromis_flavaxilla:0.03455598,Chromis_ternatensis:0.03404277):0.04651069):0.04327533,Chromis_klunzingeri:0.0209926,((((Azurina_cyanea:0.08006446,(Azurina_brevirostris:0.0609395,(Azurina_elerae:0.09756038,Azurina_lepidolepis:0.09367904):0.1935755):0.02734182):0.01447453,(Azurina_multilineata:0.04045805,(Azurina_atrilobata:0.06210651,Azurina_hirundo:0.07441486):0.02542414):0.03906923):0.01772948,(((Dascyllus_melanurus:0.0344154,(Dascyllus_abudafur:0.00149887,Dascyllus_aruanus:0.0030151):0.03254968):0.02715132,(Dascyllus_marginatus:0.03556518,((Dascyllus_flavicaudus:0.02981283,Dascyllus_reticulatus:0.00790503):0.0110602,(Dascyllus_carneus:0.01875928,(Dascyllus_albisella:0.00304412,(Dascyllus_strasburgi:0.00389849,Dascyllus_trimaculatus:0.00349613):4.4319E-4):0.01545162):0.01208932):0.01538326):0.03165056):0.07148916,((Pycnochromis_acares:0.04311308,(Pycnochromis_nigrurus:0.01864682,(Pycnochromis_lineata:0.02442192,Pycnochromis_vanderbilti:0.01059962):0.01101338):0.04260735):0.07966968,(Pycnochromis_delta:0.02596552,(Pycnochromis_atripes:0.03228529,(((Pycnochromis_alleni:0.11919431,(Pycnochromis_dimidiatus:0.00273561,(Pycnochromis_abruptus:1.0E-8,Pycnochromis_margaritifer:7.5176E-4):0.00129271):9.776E-4):4.1456E-4,Pycnochromis_fieldi:0.00222318):0.03914669,((((Pycnochromis_hanui:0.07175485,Pycnochromis_pacifica:0.0209783):0.01015962,(Pycnochromis_leucurus:0.02285903,Pycnochromis_retrofasciatus:0.03239717):0.00910111):0.0025932,Pycnochromis_iomelas:0.03923276):0.00290322,(Pycnochromis_bami:0.03524701,(Pycnochromis_ovatiformis:0.00828836,((Pycnochromis_amboinensis:4.6614E-4,Pycnochromis_howsoni:0.00391056):0.01056559,(Pycnochromis_caudalis:0.00151191,Pycnochromis_fatuhivae:0.00224565):0.0301727):8.4349E-4):0.01651211):0.00300271):0.00416085):0.00446515):0.03086625):0.02824151):0.08011223):0.0291102):0.00889973,(((((Chromis_fumea:0.00692764,Chromis_nitida:0.02658021):0.06695861,(Chromis_pamae:0.00335039,Chromis_randalli:0.00927861):0.0417827):0.00893943,(Chromis_notata:0.02479992,(Chromis_ovalis:0.04550408,(Chromis_kennensis:1.0E-8,Chromis_yamakawai:1.0E-8):0.0290194):0.01298103):0.01612368):0.00539033,((Chromis_dispila:0.02285601,Chromis_hypsilepis:0.02067285):0.02353656,((Chromis_chrysura:0.03004674,(Chromis_mirationis:0.0104403,Chromis_pelloura:0.01438229):0.00907434):0.00470125,((Chromis_abyssicola:0.00363708,Chromis_mamatapara:0.00982382):0.00591516,(Chromis_okamurai:1.0E-8,Chromis_tingting:1.0E-8):0.00973033):0.02035719):0.00536341):0.00722347):0.02764955,((Chromis_albomaculata:0.0421966,(Chromis_abyssus:0.00183257,Chromis_circumaurea:0.00152601):0.02659347):0.01995851,((Chromis_lubbocki:0.02787439,(Chromis_limbata:0.025102,(Chromis_chromis:0.00963683,(Chromis_cadenati:0.0112691,Chromis_sanctahelenae:0.00559279):0.00909072):0.00461554):0.02097618):0.01467508,(((Chromis_crusma:0.02937005,Chromis_punctipinnis:0.06060971):0.00357341,((Chromis_alta:0.0210842,Chromis_limbaughi:0.01969083):0.00692744,((Chromis_enchrysura:0.01405718,Chromis_vanbebberae:0.0105512):0.00922709,(Chromis_insolata:0.01724609,Chromis_scotti:0.01467235):0.00602455):0.00548914):0.0121888):0.01173397,(((Chromis_alpha:1.0E-8,Chromis_degruyi:1.0E-8):0.01279089,(Chromis_bowesi:8.9441E-4,Chromis_earina:0.00333335):0.01907886):0.02191831,((Chromis_katoi:0.01361019,(Chromis_verater:0.07121506,(Chromis_opercularis:0.01775372,(Chromis_anadema:0.01220909,Chromis_xanthura:0.00848205):0.01711381):0.02261102):0.0068445):0.00745018,((Chromis_woodsi:0.02848438,((Chromis_albicauda:0.03606958,Chromis_analis:0.01994759):0.01892894,(Chromis_flavapicis:0.03399851,(Chromis_hangganan:0.0099108,Chromis_pembae:0.01245094):0.01913407):0.00966196):0.00574624):0.00146825,((Chromis_gunting:0.01866469,(Chromis_cinerascens:0.01957208,Chromis_scotochiloptera:0.01337697):0.0131618):0.00930296,(Chromis_xanthochira:0.03127474,(Chromis_weberi:0.01820426,Chromis_xanthopterygia:0.01830591):0.00947518):0.01616168):0.01360035):0.0175285):0.0069346):0.00619061):0.00204103):0.0081878):0.02100241):0.01092701):0.00339908):0.04857092,(((Abudefduf_declivifrons:0.02681954,(Abudefduf_concolor:0.00820711,Abudefduf_taurus:0.0065538):0.02284249):0.06125551,((Abudefduf_septemfasciatus:0.02459211,(Abudefduf_notatus:0.03519007,Abudefduf_sordidus:0.02278921):0.01361932):0.0327851,(Abudefduf_whitleyi:0.03019447,((Abudefduf_bengalensis:0.02485046,Abudefduf_nigrimargo:0.03627709):0.00269674,(Abudefduf_sparoides:0.04587668,(Abudefduf_margariteus:0.02210307,(Abudefduf_natalensis:0.02627525,((Abudefduf_caudobimaculatus:1.0E-8,Abudefduf_vaigiensis:5.6203E-4):0.03177909,((Abudefduf_conformis:0.02585777,Abudefduf_sexfasciatus:0.00477217):0.00683403,(Abudefduf_abdominalis:0.01751254,(Abudefduf_troschelii:0.02271232,(Abudefduf_saxatilis:0.01717981,(Abudefduf_hoefleri:0.01172522,Abudefduf_lorenzi:0.01189404):0.00453504):9.5556E-4):0.00364358):0.00516969):0.00804728):0.00589561):0.00604331):0.00218515):0.00453761):0.0075906):0.02778134):0.02803248):0.03672447,((((Chrysiptera_galba:0.0345334,(Chrysiptera_rapanui:0.00244795,Chrysiptera_starcki:0.02595396):0.0243551):0.07966733,((Chrysiptera_biocellata:0.06762682,(Chrysiptera_brownriggii:0.0209745,Chrysiptera_leucopoma:0.02040886):0.04588208):0.02332543,(Chrysiptera_glauca:0.06112369,(Chrysiptera_caeruleolineata:0.00649432,Chrysiptera_unimaculata:0.00182747):0.03575459):0.0073613):0.07459301):0.0104238,(((Pomachromis_fuscidorsalis:0.06276133,Pomachromis_richardsoni:0.03542431):0.13073031,(Dischistodus_melanotus:0.07078233,(Dischistodus_pseudochrysopoecilus:0.06786586,(Dischistodus_chrysopoecilus:0.03323192,(Dischistodus_perspicillatus:0.01673629,Dischistodus_prosopotaenia:0.01969347):0.02395388):0.00692181):0.012492):0.04231831):0.00979564,(Cheiloprion_labiatus:0.10240905,(((((Chrysiptera_caesifrons:0.01514658,Chrysiptera_chrysocephala:0.00234253):0.01765694,Chrysiptera_rex:0.02763497):0.06326359,(Chrysiptera_cyanea:0.03264979,Chrysiptera_taupou:0.03470217):0.03007706):0.0467992,(Chrysiptera_rollandi:0.05024122,(Chrysiptera_talboti:0.01804315,(Chrysiptera_flavipinnis:0.11671799,Chrysiptera_traceyi:0.01184683):0.0022932):0.04700988):0.03087455):0.00788366,((Chrysiptera_giti:0.0235707,(Chrysiptera_hemicyanea:0.00445324,Chrysiptera_parasema:0.00145972):0.01366278):0.02112188,(Chrysiptera_springeri:0.03074303,(Chrysiptera_ellenae:0.01429726,((Chrysiptera_oxycephala:0.01189933,Chrysiptera_uswanasi:0.0222981):0.00699627,(Chrysiptera_burtjonesi:0.01396896,(Chrysiptera_sinclairi:0.00469621,(Chrysiptera_maurinae:0.00506435,Chrysiptera_papuensis:0.02318364):0.00352638):0.00444465):0.00288107):0.00315542):0.01534875):0.00534666):0.03430575):0.03726474):0.02352977):0.01143153):0.01518143,((Hemiglyphidodon_plagiometopon:0.05574799,(((Acanthochromis_polyacanthus:0.04240585,(Altrichthys_curatus:0.0416622,(Altrichthys_alelia:0.00502913,Altrichthys_azurelineatus:0.0095055):0.02003103):0.02082325):0.06002009,(Neoglyphidodon_oxyodon:0.07991036,(Neoglyphidodon_polyacanthus:0.05357356,((Neoglyphidodon_bonang:0.14707366,Neoglyphidodon_melas:0.04437315):0.00476762,(Neoglyphidodon_carlsoni:0.03451854,(Neoglyphidodon_nigroris:0.02127996,Neoglyphidodon_thoracotaeniatus:0.02039318):0.00336913):0.01329102):0.00949564):0.01089065):0.0119946):0.00353354,(Amblyglyphidodon_ternatensis:0.05438522,(Amblyglyphidodon_batunaorum:0.05904609,((Amblyglyphidodon_aureus:0.02724457,Amblyglyphidodon_flavopurpureus:0.03248136):0.01224813,((Amblyglyphidodon_flavilatus:0.02915628,(Amblyglyphidodon_curacao:0.00595167,Amblyglyphidodon_indicus:0.00929235):0.01396528):0.00272726,(Amblyglyphidodon_orbicularis:0.01707954,(Amblyglyphidodon_melanopterus:0.00893245,(Amblyglyphidodon_leucogaster:0.0176545,Amblyglyphidodon_silolona:0.03617374):0.0074399):0.01270836):0.00972785):0.01810093):0.02202448):0.00430845):0.03163401):0.00549041):0.02055848,((((Pristotis_obtusirostris:0.0913746,Teixeirichthys_jordani:0.09705896):0.19492701,(((Neopomacentrus_fuliginosus:0.09462506,Neopomacentrus_xanthurus:0.08633446):0.02133123,(Neopomacentrus_miryae:0.04556133,Neopomacentrus_sindensis:0.0456797):0.04891069):0.00933107,((Neopomacentrus_cyanomos:0.067021,(Neopomacentrus_nemurus:0.05224919,(Neopomacentrus_metallicus:0.01323132,(Neopomacentrus_azysron:0.00544026,Neopomacentrus_sororius:0.00768263):0.00711854):0.0202341):0.02521137):0.04784802,(Neopomacentrus_aquadulcis:0.03696954,(Neopomacentrus_anabatoides:0.02718095,(Neopomacentrus_violascens:0.0488515,((Neopomacentrus_aktites:0.00406771,Neopomacentrus_filamentosus:0.00755355):0.01762022,(Neopomacentrus_bankieri:0.02478449,Neopomacentrus_taeniurus:0.04429931):0.00781569):0.01608307):0.01663432):0.06021778):0.02671474):0.02000186):0.07168561):0.02018184,((Amphiprion_biaculeatus:0.05016407,(Amphiprion_ocellaris:0.0188935,Amphiprion_percula:0.02250626):0.03873074):0.00937521,(Amphiprion_latezonatus:0.06616876,((Amphiprion_clarkii:0.00549964,Amphiprion_tricinctus:0.01112716):0.01749466,((Amphiprion_akallopisos:0.0161625,(Amphiprion_perideraion:0.00571236,(Amphiprion_pacificus:0.00306349,Amphiprion_sandaracinos:9.5777E-4):0.00726531):0.00285911):0.00910005,((Amphiprion_chrysopterus:0.0107315,Amphiprion_leucokranos:0.00363495):0.0164037,(((Amphiprion_bicinctus:0.00196753,Amphiprion_omanensis:0.00124382):0.01718732,((Amphiprion_chagosensis:0.00777979,Amphiprion_nigripes:0.01355887):0.01143319,(Amphiprion_chrysogaster:0.01667057,(Amphiprion_allardi:0.00365648,Amphiprion_latifasciatus:0.00456674):0.01260995):0.0015686):4.6843E-4):0.00232005,((Amphiprion_polymnus:0.01073058,Amphiprion_sebae:0.01461511):0.00983877,((Amphiprion_akindynos:6.3449E-4,Amphiprion_mccullochi:0.00244875):0.01478867,(Amphiprion_ephippium:0.00927663,((Amphiprion_barberi:0.00649259,Amphiprion_frenatus:0.00766033):0.00215859,(Amphiprion_melanopus:0.00330084,Amphiprion_rubrocinctus:0.0037335):0.00507688):0.00476921):0.00633488):0.00114499):0.00126926):0.00233834):0.00263509):0.00602951):0.01837438):0.01187086):0.04265092):0.00532967,((Amblypomacentrus_annulatus:0.17036609,((Amblypomacentrus_breviceps:1.0E-8,Amblypomacentrus_clarus:1.0E-8):0.09881621,(Amblypomacentrus_kuiteri:1.0E-8,Amblypomacentrus_tricinctus:5.7034E-4):0.05685014):0.06664695):0.01839403,(Pomacentrus_xanthosternus:0.04711842,(((Pomacentrus_leptus:0.07116648,Pomacentrus_pavo:0.05751225):0.01030498,((Pomacentrus_micronesicus:0.01292882,(Pomacentrus_auriventris:0.01290858,Pomacentrus_coelestis:0.01445868):0.00452839):0.00575943,(Pomacentrus_similis:0.01494695,(Pomacentrus_caeruleus:0.00365938,(Pomacentrus_alleni:0.00776019,Pomacentrus_caeruleopunctatus:0.00407863):9.2126E-4):0.00932719):0.00522305):0.01620629):0.03645157,(((Pomacentrus_burroughi:0.00674819,Pomacentrus_grammorhynchus:0.00826205):0.03459638,(((Pomacentrus_albicaudatus:0.04998264,Pomacentrus_sulfureus:0.04412262):0.01282739,((Pomacentrus_trichrourus:0.02721279,Pomacentrus_vatosoa:0.0427794):0.00809715,((Pomacentrus_aquilus:4.8036E-4,Pomacentrus_arabicus:4.9199E-4):0.04097025,(Pomacentrus_baenschi:0.03297247,Pomacentrus_trilineatus:0.03844273):0.00775325):0.00125473):0.01720743):0.00413353,((Pomacentrus_melanochir:0.03603454,(Pomacentrus_bangladeshius:0.02549144,(Pomacentrus_taeniometopon:0.07753975,Pomacentrus_tripunctatus:0.02365817):0.01621562):0.006798):0.01160056,((Pomacentrus_adelus:0.03547742,(Pomacentrus_geminospilus:0.00230024,Pomacentrus_littoralis:1.0E-8):0.03867818):0.00896069,(Pomacentrus_maafu:0.01374893,(Pomacentrus_amboinensis:0.00887694,Pomacentrus_moluccensis:0.00119604):0.01333349):0.02622138):0.00816413):0.0108336):0.00351836):0.00383368,((Pomacentrus_spilotoceps:0.03928768,((Pomacentrus_armillatus:1.0E-8,Pomacentrus_bankanensis:1.0E-8):0.04377025,(Pomacentrus_vaiuli:0.02617853,Pomacentrus_wardi:0.0370245):0.00472148):0.00874):0.01055522,(Pomacentrus_australis:0.05336772,(Pomacentrus_philippinus:0.0344953,((Pomacentrus_nigriradiatus:0.01867694,(Pomacentrus_flavoaxillaris:0.01802002,(Pomacentrus_magniseptus:0.00428107,(Pomacentrus_flavioculus:0.0154809,Pomacentrus_imitator:0.0014692):0.01923244):0.00623953):0.00279797):0.00687331,((Pomacentrus_albiaxillaris:0.00528572,(Pomacentrus_alexanderae:0.00334164,Pomacentrus_nigromarginatus:0.00910954):0.0038182):0.00768344,(((Pomacentrus_aurifrons:1.0E-8,Pomacentrus_smithi:1.0E-8):0.0536519,(Pomacentrus_brachialis:0.02277056,Pomacentrus_nigromanus:0.01916153):0.01125911):0.00443386,((Pomacentrus_callainus:0.01243099,Pomacentrus_lepidogenys:0.0105997):0.0233604,((Pomacentrus_reidi:0.01627426,Pomacentrus_stigma:0.00978449):0.00795995,(Pomacentrus_microspilus:0.02147772,(Pomacentrus_milleri:0.01493364,(Pomacentrus_chrysurus:0.03883439,Pomacentrus_nagasakiensis:0.0068445):0.00778093):0.02134362):0.0038696):0.00673055):0.0028345):0.01118096):0.00522954):0.01105687):0.01545667):0.00674528):0.00649381):0.00881429):0.02353921):0.02243475):0.00877894):0.00974026):0.01302946):0.09004121):0.00956248):0.02104123):0.12247745):0.17065232,zThorichthys_meeki:0.24130394);
+end;
+
+begin figtree;
+	set appearance.backgroundColorAttribute="Default";
+	set appearance.backgroundColour=#-1;
+	set appearance.branchColorAttribute="User selection";
+	set appearance.branchLineWidth=1.0;
+	set appearance.branchMinLineWidth=0.0;
+	set appearance.branchWidthAttribute="Fixed";
+	set appearance.foregroundColour=#-16777216;
+	set appearance.selectionColour=#-2144520576;
+	set branchLabels.colorAttribute="User selection";
+	set branchLabels.displayAttribute="Branch times";
+	set branchLabels.fontName="sansserif";
+	set branchLabels.fontSize=8;
+	set branchLabels.fontStyle=0;
+	set branchLabels.isShown=false;
+	set branchLabels.significantDigits=4;
+	set layout.expansion=228;
+	set layout.layoutType="RECTILINEAR";
+	set layout.zoom=89;
+	set legend.attribute=null;
+	set legend.fontSize=10.0;
+	set legend.isShown=false;
+	set legend.significantDigits=4;
+	set nodeBars.barWidth=4.0;
+	set nodeBars.displayAttribute=null;
+	set nodeBars.isShown=false;
+	set nodeLabels.colorAttribute="User selection";
+	set nodeLabels.displayAttribute="Node ages";
+	set nodeLabels.fontName="sansserif";
+	set nodeLabels.fontSize=8;
+	set nodeLabels.fontStyle=0;
+	set nodeLabels.isShown=false;
+	set nodeLabels.significantDigits=4;
+	set nodeShape.colourAttribute=null;
+	set nodeShape.isShown=false;
+	set nodeShape.minSize=10.0;
+	set nodeShape.scaleType=Width;
+	set nodeShape.shapeType=Circle;
+	set nodeShape.size=4.0;
+	set nodeShape.sizeAttribute=null;
+	set polarLayout.alignTipLabels=false;
+	set polarLayout.angularRange=0;
+	set polarLayout.rootAngle=0;
+	set polarLayout.rootLength=100;
+	set polarLayout.showRoot=true;
+	set radialLayout.spread=0.0;
+	set rectilinearLayout.alignTipLabels=false;
+	set rectilinearLayout.curvature=0;
+	set rectilinearLayout.rootLength=100;
+	set scale.offsetAge=0.0;
+	set scale.rootAge=1.0;
+	set scale.scaleFactor=1.0;
+	set scale.scaleRoot=false;
+	set scaleAxis.automaticScale=true;
+	set scaleAxis.fontSize=8.0;
+	set scaleAxis.isShown=false;
+	set scaleAxis.lineWidth=1.0;
+	set scaleAxis.majorTicks=1.0;
+	set scaleAxis.origin=0.0;
+	set scaleAxis.reverseAxis=false;
+	set scaleAxis.showGrid=true;
+	set scaleBar.automaticScale=true;
+	set scaleBar.fontSize=10.0;
+	set scaleBar.isShown=true;
+	set scaleBar.lineWidth=1.0;
+	set scaleBar.scaleRange=0.0;
+	set tipLabels.colorAttribute="User selection";
+	set tipLabels.displayAttribute="Names";
+	set tipLabels.fontName="sansserif";
+	set tipLabels.fontSize=10;
+	set tipLabels.fontStyle=0;
+	set tipLabels.isShown=true;
+	set tipLabels.significantDigits=4;
+	set trees.order=true;
+	set trees.orderType="increasing";
+	set trees.rooting=true;
+	set trees.rootingType="User Selection";
+	set trees.transform=false;
+	set trees.transformType="cladogram";
+end;
+
