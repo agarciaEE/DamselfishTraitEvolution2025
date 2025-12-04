@@ -10,10 +10,13 @@ library(vegan)
 library(phytools)
 library(expm)
 library(ape)
+library(phyloch)
+
+data(strat2012)
 
 # copy of Patternize function of the same name but removing the crs assignment
 makeList <- function (IDlist, type, prepath = NULL, extension = NULL, format = "imageJ", 
-                      tpsFile = NULL, skipLandmark = NULL) 
+                      tpsFile = NULL, skipLandmark = NULL, layers = "all", flip = NULL, mask = NULL) 
 {
   objectList <- list()
   if (!is.null(skipLandmark)) {
@@ -53,6 +56,20 @@ makeList <- function (IDlist, type, prepath = NULL, extension = NULL, format = "
         suppressWarnings(image <- raster::stack(paste(prepath, 
                                                       "/", IDlist[n], extension, sep = "")))
         #crs(image) <- sp::CRS("+init=EPSG:4326")
+      }
+      if (is.numeric(layers)) {
+        image <- image[[layers]]
+      } else {
+        warning("'layer' argument omited because it is not a numeric vector. All layers were kept.")
+      }
+      if ("y" %in% flip) { 
+        image <- raster::flip(image, "y")
+      }
+      if ("x" %in% flip) { 
+        image <- raster::flip(image, "x")
+      }
+      if (!is.null(mask)) {
+        image <- raster::mask(image, Rmask)
       }
       objectList[[IDlist[n]]] <- image
     }
@@ -1652,11 +1669,11 @@ imageTransformation <- function (sampleList, landList, adjustCoords = F, transfo
 plotImages <- function(x, y, images, width = 0.1, height = NULL, interpolate = FALSE,
                        names = NULL, cex = 1, pos = 1, adj = 1,
                        cols  = c("red", "grey90", "blue"), angle = NULL, flip = TRUE, ...){
-  
+
   cols = grDevices::colorRampPalette(cols)(n=100)
   stopifnot(length(x) == length(y))
   if (is.null(height)) {
-    asp <- sapply(images, function(i) abs(diff(extent(i)[1:2])/diff(extent(i)[3:4])))
+    asp <- sapply(1:length(images), function(i) abs(diff(raster::extent(images[[i]])[1:2])/diff(raster::extent(images[[i]])[3:4])))
     height <- width / asp
   }
   if (!is.null(angle)) {
@@ -2623,10 +2640,131 @@ plot.imgPCA <- function(imgPCA_object, pcs = NULL, group_vector = NULL, group_im
   
 }
 
-show_extreme_shape <- function(pc_axis = 1, scores, coords, sp_names, flip = NULL, 
-                               plot = c("min", "max"), title = TRUE, image_names = NULL, ...) {
+colpc_legend_images <- function(imgPCA,
+                             pcs = 1:8,
+                             show.contributions = TRUE,
+                             show.outline = TRUE,
+                             paint_bg = FALSE,
+                             bg_col = c(165, 165, 165),
+                             bg_alpha = 0.1,
+                             out_dir = "pc_legends",
+                             width_px = 1800,
+                             height_px = 600,
+                             dpi = 150, 
+                             cex_text = 1.5,
+                             cex_main = 2, ...) {
+  if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
   
-  plot <- match.arg(plot)
+  plot_legend <- function(x, outline = NULL) {
+    ext <- c(0, dim(rxn)[2], 0, dim(rxn)[1])
+    plot(NULL, type="n", xlim=ext[1:2], ylim=ext[3:4], xlab="", ylab="", bty="n", axes = FALSE)
+    if (!is.null(outline)) lines(outline, ...)
+    rasterImage(x, ext[1], ext[3], ext[2], ext[4], interpolate = TRUE)
+  }
+  
+  for (pc in pcs) {
+    pcmin <- paste0("PC", pc, "min")
+    pcmax <- paste0("PC", pc, "max")
+    
+    if (is.null(imgPCA$ras[[pcmin]]) || is.null(imgPCA$ras[[pcmax]])) {
+      warning(sprintf("Skipping PC%d: missing %s or %s in imgPCA$ras.", pc, pcmin, pcmax))
+      next
+    }
+    
+    if (show.outline) {
+      r_temp <- imgPCA$ras$center$R
+      r_temp[!is.na(r_temp)]=1
+      r_pol <- terra::as.polygons(terra::rast(r_temp))
+      r_pol <- smoothr::smooth(sf::st_as_sf(r_pol), method = "ksmooth", smoothness = 5)
+      outline <- sf::st_coordinates(r_pol)[,1:2]
+    } else {
+      outline <- NULL
+    }
+    
+    if (show.contributions) {
+      pix_contr_pcx <- reconstruct_pixel_contributions(imgPCA, 
+                                                       pc = paste0("PC", pc), 
+                                                       scale = TRUE, 
+                                                       average = TRUE)
+      
+      rxn_cont <- pix_contr_pcx$negative 
+      rxn_cont <- rxn_cont / cellStats(rxn_cont, "max", na.rm = TRUE)
+      rxn_idx <- which(rxn_cont[]==0)
+      rxn_cont[is.na(rxn_cont)] = 0
+      
+      rxp_cont <- pix_contr_pcx$positive 
+      rxp_cont <- rxp_cont / cellStats(rxp_cont, "max", na.rm = TRUE)
+      rxp_idx <- which(rxp_cont[]==0)
+      rxp_cont[is.na(rxp_cont)] = 0
+      
+    } else {
+      # Make a white "R" channel used in your reconstructions
+      r_temp <- imgPCA$ras$center$R
+      r_temp[] <- 1
+      rxn_cont <- rxp_cont <- r_temp
+      paint_bg = FALSE
+    }
+
+    # Build negative / positive arrays as you do
+    rxn_img <- imgPCA$ras[[pcmin]]
+    rxp_img <- imgPCA$ras[[pcmax]]
+  
+    if (paint_bg) {
+      rxp_img[rxp_idx] = bg_col
+      rxp_cont[rxp_idx] = bg_alpha
+    }
+
+    rxn <- as.array(stack(rxn_img / 255, rxn_cont))
+    rxn[is.na(rxn)] <- 1
+    
+    rxp <- as.array(stack(rxp_img / 255, rxp_cont))
+    rxp[is.na(rxp)] <- 1
+
+    # File
+    outfile <- file.path(out_dir, sprintf("colorPC%d_legend.png", pc))
+    png(outfile, width = width_px, height = height_px, res = dpi)
+    
+    # Layout: 3 columns (neg | arrow | pos)
+    # Wider for images, narrow center for arrow
+    layout(matrix(c(1,2,3), nrow = 1), widths = c(1.1, 0.6, 1.1))
+    # Outer margins for the title and bottom labels
+    op <- par(oma = c(2, 2, 2, 2), mar = c(0, 0, 0, 0), xaxs = "i", yaxs = "i")
+
+    ## Left: negative image
+    plot_legend(rxn, outline)
+    # mtext("Negative (min score)", side = 1, line = 2.2, cex = 1.1)
+    
+    ## Middle: arrow / indicator
+    par(mar = c(0, 0, 0, 0))
+    plot.new()
+    # Set up a simple full-plot coordinate system
+    plot.window(xlim = c(0, 1), ylim = c(0, 1))
+    # Horizontal axis line
+    segments(x0 = 0.08, y0 = 0.5, x1 = 0.92, y1 = 0.5, lwd = 6)
+    # Arrow head to the right
+    arrows(x0 = 0.08, y0 = 0.5, x1 = 0.92, y1 = 0.5, length = 0.12, lwd = 6)
+    arrows(x0 = 0.92, y0 = 0.5, x1 = 0.08, y1 = 0.5, length = 0.12, lwd = 6)
+    # Labels
+    text(0.1, 0.7, "-", adj = c(0.25, 0.5), cex = cex_text)
+    text(0.9, 0.7, "+", adj = c(0.75, 0.5), cex = cex_text)
+    # text(0.5, 0.35, paste0("PC", pc), cex = cex_main)
+    
+    ## Right: positive image
+    plot_legend(rxp, outline)
+    # mtext("Positive (max score)", side = 1, line = 2.2, cex = 1.1)
+    
+    on.exit(par(op), add = TRUE)
+    dev.off()
+  }
+  
+  message(sprintf("Saved %d PC legend image(s) to: %s", length(pcs), normalizePath(out_dir)))
+}
+
+show_extreme_shape <- function(pc_axis = 1, scores, coords, sp_names, flip = NULL, 
+                               show.outline = TRUE, show.points = TRUE, show.grid = TRUE,
+                               side = c("min", "max"), title = TRUE, image_names = NULL, ...) {
+  
+  side <- match.arg(side)
   
   # species representing min and max PC
   min_idx <- which.min(scores[, pc_axis])
@@ -2656,19 +2794,200 @@ show_extreme_shape <- function(pc_axis = 1, scores, coords, sp_names, flip = NUL
   # averaged min max shapes
   avg_min_shape <- apply(shape_min, c(1, 2), mean)
   avg_max_shape <- apply(shape_max, c(1, 2), mean)
-  
+
+  if (!show.points){
+    gridPars = geomorph::gridPar(
+      pt.size     = 0,     # reference points
+      tar.pt.size = 0,     # target points
+      pt.bg       = NA,
+      tar.pt.bg   = NA,
+      txt.cex     = 0      # no labels
+    )
+  } else {
+    gridPars =  geomorph::gridPar(
+      pt.size     = 1.5,     # reference points
+      tar.pt.size = 1.25,     # target points
+      pt.bg       = "gray",
+      tar.pt.bg   = "#FFC08A",
+      txt.cex     = 0      # no labels
+    )
+  }
+
   # Check which plot to display
-  if ("min" %in% plot) {
-    geomorph::plotRefToTarget(shape_mean, avg_min_shape, method = "TPS", ...)
+  if ("min" %in% side) {
+    if (show.grid) {
+      geomorph::plotRefToTarget(shape_mean, avg_min_shape, method = "TPS", gridPars = gridPars)
+    } else {
+      ext = as.vector(apply(rbind(avg_min_shape,avg_max_shape), 2, range))
+      ext <- abs(ext) * (c(-0.25,0.25,-0.1,0.1) * sign(ext) + 1) * sign(ext)
+      plot(NULL, type="n", xlim=ext[1:2], ylim=ext[3:4], xlab="", ylab="", bty="n", axes = FALSE)
+    }
+    if (show.outline) plot_fish_shapes(avg_min_shape, add = TRUE, ...)
     if (title) title(paste("Min PC", pc_axis, if (!is.null(image_names)) paste0("(", image_names[min_idx], ")")))
     return(Morpho::tps3d(shape_mean, avg_min_shape, shape_mean))
   }
-  
-  if ("max" %in% plot) {
-    geomorph::plotRefToTarget(shape_mean, avg_max_shape, method = "TPS", ...)
+  if ("max" %in% side) {
+    if (show.grid) {
+      geomorph::plotRefToTarget(shape_mean, avg_max_shape, method = "TPS", gridPars = gridPars, ...) 
+    } else {
+      ext = as.vector(apply(rbind(avg_min_shape,avg_max_shape), 2, range))
+      ext <- abs(ext) * (c(-0.25,0.25,-0.1,0.1) * sign(ext) + 1) * sign(ext)
+      plot(NULL, type="n", xlim=ext[1:2], ylim=ext[3:4], xlab="", ylab="", bty="n", axes = FALSE)
+    }
+  if (show.outline) plot_fish_shapes(avg_max_shape, add = TRUE, ...)
     if (title) title(paste("Max PC", pc_axis, if (!is.null(image_names)) paste0("(", image_names[max_idx], ")")))
     return(Morpho::tps3d(shape_mean, avg_max_shape, shape_mean))
   }
+}
+
+plot_fish_shapes <- function(
+    shape_mat,
+    outline_idx = c(9:13, 25, 14:17, 26, 18:24),
+    eye_idx     = c(1,3,2,4),
+    preop_idx   = c(5, 6, 23),
+    opercle_idx = c(7, 8, 21),
+    smooth_refinements = 3,
+    col_body    = "black",
+    col_eye     = "black",
+    col_preop   = "black",
+    col_opercle = "black",
+    lwd_body    = 3,
+    lwd_eye     = 2,
+    lwd_bone    = 2,
+    fill_body   = NA,    # body fill (e.g. "grey90")
+    fill_eye    = NA,    # eye fill (e.g. "white")
+    eye_as_hole = FALSE, # if TRUE, punch eye hole in body fill
+    add         = FALSE,
+    asp         = 1
+) {
+  stopifnot(is.matrix(shape_mat) || is.data.frame(shape_mat), ncol(shape_mat) >= 2)
+  x <- shape_mat[,1]; y <- shape_mat[,2]
+  
+  in_range <- function(idx) all(idx %in% seq_along(x))
+  if (!in_range(outline_idx)) stop("Some outline_idx are out of range.")
+  if (!in_range(eye_idx))     stop("Some eye_idx are out of range.")
+  if (!in_range(preop_idx))   warning("Some preop_idx are out of range; skipping those.")
+  if (!in_range(opercle_idx)) warning("Some opercle_idx are out of range; skipping those.")
+  
+  # --- body polygon ---
+  outline_coords <- cbind(x[outline_idx], y[outline_idx])
+  outline_coords <- rbind(outline_coords, outline_coords[1, , drop = FALSE])  # close ring
+  out_poly <- sf::st_sfc(sf::st_polygon(list(outline_coords)))
+  out_sm   <- smoothr::smooth(out_poly, method = "chaikin", refinements = smooth_refinements)
+  out_sm   <- sf::st_make_valid(out_sm)
+  out_sm   <- sf::st_buffer(out_sm, 0) # fix tiny self-intersections if any
+  
+  # --- eye polygon ---
+  eye_coords <- cbind(x[eye_idx], y[eye_idx])
+  eye_coords <- rbind(eye_coords, eye_coords[1, , drop = FALSE])
+  eye_poly <- sf::st_sfc(sf::st_polygon(list(eye_coords)))
+  eye_sm   <- smoothr::smooth(eye_poly, method = "chaikin", refinements = smooth_refinements)
+  eye_sm   <- sf::st_make_valid(eye_sm)
+  eye_sm   <- sf::st_buffer(eye_sm, 0)
+  
+  # Optional: punch eye hole in body fill
+  body_geom_to_draw <- out_sm
+  if (isTRUE(eye_as_hole)) {
+    # Only subtract if they intersect
+    if (suppressWarnings(sf::st_intersects(out_sm, eye_sm, sparse = FALSE))[1,1]) {
+      body_geom_to_draw <- suppressWarnings(sf::st_difference(out_sm, eye_sm))
+      body_geom_to_draw <- sf::st_make_valid(body_geom_to_draw)
+    }
+  }
+  
+  # --- helper to build smoothed LINESTRING from indices (open curve) ---
+  make_smooth_line <- function(idx) {
+    idx <- idx[idx %in% seq_along(x)]
+    if (length(idx) < 2) return(NULL)
+    M  <- cbind(x[idx], y[idx])
+    ln <- sf::st_sfc(sf::st_linestring(M))
+    smoothr::smooth(ln, method = "chaikin", refinements = smooth_refinements)
+  }
+  
+  preop_sm   <- make_smooth_line(preop_idx)
+  opercle_sm <- make_smooth_line(opercle_idx)
+  
+  # --- plotting ---
+  # First draw: respect asp if not adding
+  if (!add) {
+    plot(sf::st_geometry(body_geom_to_draw),
+             col = fill_body, border = col_body, lwd = lwd_body,
+             axes = FALSE, xlab = "", ylab = "", main = "", asp = asp)
+  } else {
+    plot(sf::st_geometry(body_geom_to_draw),
+             col = fill_body, border = col_body, lwd = lwd_body,
+             add = TRUE)
+  }
+  
+  # Bones (curves)
+  if (!is.null(preop_sm)) {
+    plot(sf::st_geometry(preop_sm), add = TRUE, col = col_preop, lwd = lwd_bone)
+  }
+  if (!is.null(opercle_sm)) {
+    plot(sf::st_geometry(opercle_sm), add = TRUE, col = col_opercle, lwd = lwd_bone)
+  }
+  
+  # Eye (on top) — filled or just outline
+  plot(sf::st_geometry(eye_sm),
+           add = TRUE, col = fill_eye, border = col_eye, lwd = lwd_eye)
+  
+  invisible(list(body = out_sm, eye = eye_sm, preop = preop_sm, opercle = opercle_sm))
+}
+
+morphopc_legend_images <- function(pcdata, coords, sp_names,
+                                pcs = 1:8,
+                                out_dir = "pc_legends",
+                                width_px = 1800,
+                                height_px = 600,
+                                dpi = 300, 
+                                cex_text = 1.5,
+                                cex_main = 2,...) {
+  if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
+  
+  for (pc in pcs) {
+
+    # File
+    outfile <- file.path(out_dir, sprintf("morphoPC%d_legend.png", pc))
+    png(outfile, width = width_px, height = height_px, res = dpi)
+    
+    # Layout: 3 columns (neg | arrow | pos)
+    # Wider for images, narrow center for arrow
+    layout(matrix(c(1,2,3), nrow = 1), widths = c(1.1, 0.9, 1.1))
+    # Outer margins for the title and bottom labels
+    op <- par(oma = c(2, 2, 2, 2), mar = c(0, 0, 0, 0), xaxs = "i", yaxs = "i")
+    
+    ## Left: negative shape
+    par(mar = c(0, 0, 0, 0))
+    show_extreme_shape(pc_axis = pc, pcdata, coords,
+                       sp_names, flip = "y", side = "min", title = FALSE, ...)
+    # mtext("Negative (min score)", side = 1, line = 2.2, cex = 1.1)
+    
+    ## Middle: arrow / indicator
+    par(mar = c(0, 0, 0, 0))
+    plot.new()
+    # Set up a simple full-plot coordinate system
+    plot.window(xlim = c(0, 1), ylim = c(0, 1))
+    # Horizontal axis line
+    segments(x0 = 0.08, y0 = 0.5, x1 = 0.92, y1 = 0.5, lwd = 2)
+    # Arrow head to the right
+    arrows(x0 = 0.08, y0 = 0.5, x1 = 0.92, y1 = 0.5, length = 0.05, lwd = 3)
+    arrows(x0 = 0.92, y0 = 0.5, x1 = 0.08, y1 = 0.5, length = 0.05, lwd = 3)
+    # Labels
+    text(0.1, 0.75, "-", adj = c(0.25, 0.5), cex = cex_text)
+    text(0.9, 0.75, "+", adj = c(0.75, 0.5), cex = cex_text)
+    # text(0.5, 0.35, paste0("PC", pc), cex = cex_main)
+    
+    ## Right: positive image
+    par(mar = c(0, 0, 0, 0))
+    show_extreme_shape(pc_axis = pc, pcdata, morpho_gpa$coords,
+                       sp_names, flip = "y", side = "max", title = FALSE, ...)
+    # mtext("Positive (max score)", side = 1, line = 2.2, cex = 1.1)
+    
+    on.exit(par(op), add = TRUE)
+    dev.off()
+  }
+  
+  message(sprintf("Saved %d PC legend shapes(s) to: %s", length(pcs), normalizePath(out_dir)))
 }
 
 draw_labels_with_boxes <- function(names, xlim = c(-1, 1), ylim = c(-1, 1), label_font = 2, label_size = 0.8, padding = 0.05) {
@@ -2712,7 +3031,7 @@ shadowtext <- function(x, y=NULL, labels, col='white', bg='black',
 
 plot_morphoPCA <- function(morphoPCA, morpho_gpa, sp_names,
                            genus_cols, imglist_nobg,
-                           pcx = 1, pcy = 2,
+                           pcx = 1, pcy = 2, show.points = TRUE, show.outline = TRUE,
                            display = "images", cex.labels = 1.5, ...) {
   
   require(scales)  # for alpha()
@@ -2753,7 +3072,7 @@ plot_morphoPCA <- function(morphoPCA, morpho_gpa, sp_names,
   ), ncol = 4, nrow = 4, byrow = TRUE)
   
   layout(layout_matrix, widths = c(2.5, 3, 2.5, 2), heights = c(1, 2, 3, 2))
-  
+
   par(mar = c(10,10,0,0), mgp = c(5, 1.5, 0))
   plot(NULL,
        xlim = xlim,
@@ -2768,10 +3087,13 @@ plot_morphoPCA <- function(morphoPCA, morpho_gpa, sp_names,
            bg = alpha(genus_cols[rownames(pcdata)], 0.9),
            pch = 21, cex = 2)
   }
-  
+
   if (display == "images") {
-    plotImages(pcdata[, pcx], pcdata[, pcy],
-               imglist_nobg[rownames(pcdata)],
+    imgList <- imglist_nobg[names(imglist_nobg) %in% rownames(pcdata)]
+    idx <- which(rownames(pcdata) %in% names(imglist_nobg))
+    imgList <- imgList[rownames(pcdata)]
+    plotImages(pcdata[idx, pcx], pcdata[idx, pcy],
+               imgList[idx],
                interpolate = TRUE, width = 0.1)
   }
   
@@ -2788,27 +3110,31 @@ plot_morphoPCA <- function(morphoPCA, morpho_gpa, sp_names,
   # Text with border
   shadowtext(eigen[,1], eigen[,2], labels = names, pos = pos,
              col = "#FFB499", bg = "#4B0000", cex = cex.labels, ...)
-  
+
   # Extreme shapes
   par(mar = c(0,8,0,0))
   show_extreme_shape(pc_axis = pcx, pcdata, morpho_gpa$coords,
-                     sp_names, flip = "y", plot = "min", mag = 1,
-                     useRefPts = FALSE, title = FALSE)
+                     sp_names, flip = "y", side = "min", mag = 1,
+                     useRefPts = FALSE, title = FALSE, 
+                     show.outline = show.outline, show.points = show.points)
   
   par(mar = c(0,8,0,0))
   show_extreme_shape(pc_axis = pcx, pcdata, morpho_gpa$coords,
-                     sp_names, flip = "y", plot = "max", mag = 1,
-                     useRefPts = FALSE, title = FALSE)
+                     sp_names, flip = "y", side = "max", mag = 1,
+                     useRefPts = FALSE, title = FALSE, 
+                     show.outline = show.outline, show.points = show.points)
   
   par(mar = c(10,0,0,5))
   show_extreme_shape(pc_axis = pcy, pcdata, morpho_gpa$coords,
-                     sp_names, flip = "y", plot = "min", mag = 1,
-                     useRefPts = FALSE, title = FALSE)
+                     sp_names, flip = "y", side = "min", mag = 1,
+                     useRefPts = FALSE, title = FALSE, 
+                     show.outline = show.outline, show.points = show.points)
   
   par(mar = c(10,0,0,5))
   show_extreme_shape(pc_axis = pcy, pcdata, morpho_gpa$coords,
-                     sp_names, flip = "y", plot = "max", mag = 1,
-                     useRefPts = FALSE, title = FALSE)
+                     sp_names, flip = "y", side = "max", mag = 1,
+                     useRefPts = FALSE, title = FALSE, 
+                     show.outline = show.outline, show.points = show.points)
   
 }
   
@@ -2913,17 +3239,19 @@ plot_shift_optima <- function(fit,
   
   # Extract and prepare shift configurations
   sc <- fit$shift.configuration
-  regimes <- names(sc)
+  if (length(sc) > 0) {
+    regimes <- if (length(sc) > 1) names(sc) else "1"
+    
+    if (convergent.only) {
+      is_convergent <- duplicated(regimes) | duplicated(regimes, fromLast = TRUE)
+      sc <- sc[is_convergent] 
+      regimes <- regimes[is_convergent]
+    } else {
+      is_convergent <- rep(TRUE, length(sc))
+    }
+  } else { regimes <-  NULL; is_convergent = NULL}
   
-  if (convergent.only) {
-    is_convergent <- duplicated(regimes) | duplicated(regimes, fromLast = TRUE)
-    sc <- sc[is_convergent] 
-    regimes <- regimes[is_convergent]
-  } else {
-    is_convergent <- rep(TRUE, length(sc))
-  }
-  
-  nEdges <- Nedge(fit$tree)
+  nEdges <- ape::Nedge(fit$tree)
   ew <- rep(edge.width,nEdges) # to set default edge width of 1
   ew[sc] <- shift.edge.width # to widen edges with a shift
   
@@ -2940,18 +3268,22 @@ plot_shift_optima <- function(fit,
   
   # Apply scaling or normalization if requested
   if (scale) {
-    sv <- log(abs(sv)) * sv / abs(sv) # Log-transform preserving sign
+    sv <- log10(abs(sv)) * sign(sv) # Log-transform preserving sign
     title <- sprintf("Log-scaled\n%s", title)
   } else if (normalize) {
     sv <- scale(sv, center = FALSE) / sqrt(sum(scale(sv, center = FALSE)^2))
     title <- sprintf("Normalized\n%s", title)
   } 
-
+  
   # Compute optimum values
   optimum.values <- convert_shifts2regions(fit$tree, sc, sv) + root.value
   
-  regime.values <- setNames(optimum.values[sc], regimes)
-  
+  if (multivariate) {
+    regime.values <- setNames(optimum.values[sc[,1]], regimes)
+  } else {
+    regime.values <- setNames(optimum.values[sc], regimes)
+  }
+
   if (color.by == "value") {
     
     # Continuous coloring by trait value
@@ -2964,7 +3296,7 @@ plot_shift_optima <- function(fit,
                                 palette = color.palette)
     # add shift values
     if (length(regime.values) > 0) {
-      ape::edgelabels(text = regime.values, edge = sc,
+      ape::edgelabels(text = round(regime.values, 3), edge = sc,
                       bg = "white", frame = "none", adj = c(0.5, -0.5), cex = cex.value)
     }
     color.bar(legend.position, cols = color.palette(n=100), xlims = xlims, size = c(4, 4), title = title, direction = "rightwards")
@@ -2972,13 +3304,18 @@ plot_shift_optima <- function(fit,
   } else if (color.by == "regime") {
     
     unique.regimes <- sort(unique(regimes))
+    # remove shifts that come back to the baseline (regime 0)
+    unique.regimes <- unique.regimes[unique.regimes != "0"]
+    
     n.regimes <- length(unique.regimes)
     
     # Discrete coloring by regime ID
     regime.IDs <- rep(0, nEdges)
-    for (i in 1:length(regime.values)) {
-      idx <- optimum.values == regime.values[i]
-      regime.IDs[idx] = regimes[i]
+    if (length(regime.values) > 0){
+      for (i in 1:length(regime.values)) {
+        idx <- optimum.values == regime.values[i]
+        regime.IDs[idx] = regimes[i]
+      }
     }
 
     if (is.null(regime.palette)) {
@@ -3009,13 +3346,13 @@ plot_shift_optima <- function(fit,
     edge.colors <- regime.colors[as.character(regime.IDs)]  # match regime of each edge
     
     plot(fit$tree, show.tip.label = show.tip.label, edge.color = edge.colors, 
-         edge.width = ew, main = title, cex = cex.legend)
+         edge.width = ew, main = title, ...)
 
     # add shift values
     if (length(regime.values) > 0) {
       ape::edgelabels(text = round(regime.values, 2), edge = sc,
                       bg = "white", frame = "none", adj = c(0.5, -0.5), cex = cex.value)
-      legend.text <- c("Baseline", paste0("Regime ", unique.regimes))
+      legend.text <- c("Baseline", paste0("Regime ", sort(as.numeric(unique.regimes))))
     } else {
       legend.text <- "Baseline"
     }
@@ -3025,10 +3362,449 @@ plot_shift_optima <- function(fit,
            col = regime.palette, 
            lwd = shift.edge.width, 
            cex = cex.legend,
+           border = "transparent",
+           bty = "n", 
+           box.lty = 0,
            box.lwd = 0,
-           bg = "white",
+           bg = "transparent",
            title = "Shift Regimes")
   }
+}
+
+plot_shift_optima_bs <- function(
+    fit,
+    scale = FALSE,
+    normalize = FALSE,
+    color.by = c("value", "regime"),
+    convergent.only = TRUE,
+    edge.width = 2,
+    shift.edge.width = 3,
+    shift.label.adj = c(0.5, -0.5),
+    root.value = 0,
+    # bootstrap inputs
+    show.bootstrap.support = c("none", "text", "circle", "pie"),
+    bs.min = NULL,                 # numeric in [0,1]; drop shifts with bs < bs.min
+    bs.values = NULL,              # named numeric vector in [0,1], names = edge numbers
+    bs.thresholds = c(0.5, 0.7, 0.9, 0.95),
+    bs.col.palette = grey.colors(length(bs.thresholds) + 1, start = 0.9, end = 0.2),
+    bs.label.adj = c(1.2, 0.5),
+    bs.label.pos = 1.05,
+    bs.label.cex = 1.2,
+    bs.legend.position = "bottomleft",
+    bs.legend.horiz = TRUE,
+    bs.pie.border = "transparent",
+    bs.pie.bg = "transparent",
+    # plotting
+    color.palette = grDevices::colorRampPalette(c("red", "grey85", "blue")),
+    regime.palette = NULL,
+    bg_tree = "grey85",
+    show.tip.label = FALSE,
+    cex.value = 1.2,
+    title = "Shift values",
+    legend.position = "topleft",
+    cex.legend = 1.2,
+    x.lim = NULL,
+    ...
+) {
+  color.by <- match.arg(color.by)
+  show.bootstrap.support <- match.arg(show.bootstrap.support)
+  if (!inherits(fit, "l1ou")) stop("fit must be a 'l1ou' object.")
+  
+  .use_unicode <- function() {
+    isTRUE(l10n_info()[["UTF-8"]]) &&
+      (grepl("cairo|quartz", names(dev.cur()), ignore.case = TRUE) ||
+         grepl("pdf", names(dev.cur()), ignore.case = TRUE))
+  }
+  ge_sym <- if (.use_unicode()) "\u2265" else ">="
+  lt_sym <- if (.use_unicode()) "\u003C" else "<"
+  
+  multivariate <- is.matrix(fit$shift.values) && ncol(fit$shift.values) > 1
+  
+  # --- Extract shift configuration ---
+  sc <- fit$shift.configuration
+  if (length(sc) > 0) {
+    regimes <- if (length(sc) > 1) names(sc) else "1"
+    if (convergent.only) {
+      is_convergent <- duplicated(regimes) | duplicated(regimes, fromLast = TRUE)
+      sc <- sc[is_convergent]
+      regimes <- regimes[is_convergent]
+    } else {
+      is_convergent <- rep(TRUE, length(sc))
+    }
+  } else { regimes <- NULL; is_convergent <- NULL }
+  
+  nEdges <- ape::Nedge(fit$tree)
+  
+  # --- Prepare shift values (before bootstrap filtering, so we can subset by names) ---
+  if (multivariate) {
+    sv <- fit$shift.values[is_convergent, , drop = FALSE]
+    rownames(sv) <- sc
+  } else {
+    sv <- fit$shift.values[is_convergent]
+    names(sv) <- sc
+  }
+  
+  # --- Filter shifts by bootstrap support threshold (bs.min) ---
+  if (!is.null(bs.min)) {
+    if (is.null(bs.values) || is.null(names(bs.values))) {
+      warning("`bs.min` provided but `bs.values` is missing or unnamed; skipping bootstrap filtering.")
+    } else if (length(sc) > 0) {
+      edge_ids <- as.character(sc)
+      if (!all(edge_ids %in% names(bs.values))) {
+        missing_edges <- edge_ids[!(edge_ids %in% names(bs.values))]
+        if (length(missing_edges))
+          warning(sprintf("No bootstrap value for shift edges: %s", paste(missing_edges, collapse = ", ")))
+      }
+      bs_vec <- as.numeric(bs.values[edge_ids])
+      keep <- !is.na(bs_vec) & (bs_vec >= bs.min)
+      
+      # subset everything to kept edges
+      sc <- sc[keep]
+      regimes <- regimes[keep]
+      if (multivariate) {
+        if (length(sc) > 0) sv <- sv[as.character(sc), , drop = FALSE] else sv <- sv[FALSE, , drop = FALSE]
+      } else {
+        if (length(sc) > 0) sv <- sv[as.character(sc)] else sv <- sv[FALSE]
+      }
+    }
+  }
+  
+  # --- Reindex regimes to contiguous IDs 1..k (after any filtering) ---
+  .reindex_regimes <- function(regimes_chr) {
+    if (length(regimes_chr) == 0) return(regimes_chr)
+    # Make sure we treat them as character but sort numerically if possible
+    old <- as.character(regimes_chr)
+    # unique in numeric order when possible
+    uniq_num <- suppressWarnings(as.numeric(unique(old)))
+    if (all(!is.na(uniq_num))) {
+      uniq <- as.character(sort(uniq_num))
+    } else {
+      uniq <- sort(unique(old))
+    }
+    if ("0" %in% uniq){ # if shift to baseline present
+      map <- setNames(as.character(0:(length(uniq)-1)), uniq)  # "old" -> "0..k-1"
+    } else {
+      map <- setNames(as.character(seq_along(uniq)), uniq)  # "old" -> "1..k"
+    }
+    unname(map[old])
+  }
+
+  if (!is.null(regimes) && length(regimes) > 0) {
+    regimes <- .reindex_regimes(regimes)
+    
+    # If multivariate, and you've turned 'sc' into a matrix elsewhere, keep 'regimes'
+    # aligned with the rows (one entry per kept shift edge).
+    # Here 'sc' is still a vector of shift edges aligned to 'regimes'.
+  }
+  # --- Edge widths (shifts emphasized) ---
+  ew <- rep(edge.width, nEdges)
+  if (length(sc)) ew[sc] <- shift.edge.width
+  
+  # --- Optional scaling/normalization of shift values ---
+  if (scale) {
+    s <- as.numeric(sv)
+    sv <- log(abs(s)) * s / pmax(abs(s), .Machine$double.eps)
+    if (multivariate) sv <- matrix(sv, nrow = length(sc))
+    title <- sprintf("Log-scaled\n%s", title)
+  } else if (normalize) {
+    v <- as.numeric(sv)
+    v <- v / sqrt(sum(v^2))
+    if (multivariate) sv[] <- v else sv <- v
+    title <- sprintf("Normalized\n%s", title)
+  }
+  
+  # --- Compute edge optimum values (baseline if no shifts) ---
+  optimum.values <- if (length(sc) > 0) {
+    convert_shifts2regions(fit$tree, sc, sv) + root.value
+  } else {
+    rep(root.value, nEdges)
+  }
+  
+  # Regime values mapped to shift edges
+  if (multivariate) {
+    regime.values <- if (length(sc) > 0) setNames(optimum.values[sc[, 1]], regimes) else numeric(0)
+  } else {
+    regime.values <- if (length(sc) > 0) setNames(optimum.values[sc], regimes) else numeric(0)
+  }
+  
+  # --- x limits ---
+  if (is.null(x.lim)) {
+    depth <- max(ape::branching.times(fit$tree))
+    x.lim <- c(0, depth * 1.10)
+  }
+  
+  if (color.by == "value") {
+    xlims <- max(abs(optimum.values)) * c(-1, 1)
+    if (all(xlims == 0)) xlims <- c(-1, 1)
+    phytools::plotBranchbyTrait(fit$tree, optimum.values, mode = "edges",
+                                edge.width = ew, xlims = xlims,
+                                show.tip.label = FALSE,
+                                title = title, legend = FALSE,
+                                palette = color.palette, ...)
+    if (length(regime.values) > 0) {
+      ape::edgelabels(text = round(regime.values, 3), edge = sc,
+                      bg = "white", frame = "none", adj = shift.label.adj, cex = cex.value)
+    }
+    color.bar(legend.position, cols = color.palette(n = 100), xlims = xlims,
+              size = c(4, 4), title = title, direction = "rightwards")
+    
+  } else { # color.by == "regime"
+    # map each edge to a regime ID (0 = baseline)
+    unique.regimes <- sort(unique(regimes))
+    # remove shifts that come back to the baseline (regime 0)
+    unique.regimes <- unique.regimes[unique.regimes != "0"]
+    
+    n.regimes <- length(unique.regimes)
+    
+    # Discrete coloring by regime ID
+    regime.IDs <- rep(0, nEdges)
+    if (length(regime.values) > 0){
+      for (i in 1:length(regime.values)) {
+        idx <- optimum.values == regime.values[i]
+        regime.IDs[idx] = regimes[i]
+      }
+    }
+    
+    if (is.null(regime.palette)) {
+      custom_palette <- c(
+        "#E69F00","#0072B2","#009E73","#FFD700",
+        "#87CEEB","#32CD32","#CC79A7","#8A2BE2"
+      )
+      if (n.regimes <= 8) {
+        regime.palette <- c(bg_tree, custom_palette[1:n.regimes])
+      } else {
+        regime.palette <- c(bg_tree, grDevices::rainbow(n.regimes))
+      }
+    } else {
+      if (length(regime.palette) < n.regimes)
+        stop(paste0("Provided regime.palette is too short. Need at least ", n.regimes, " colors (excluding background)."))
+      regime.palette <- c(bg_tree, regime.palette[1:n.regimes])
+    }
+    
+    # Map regimes to colors
+    regime.colors <- setNames(regime.palette, c(0, unique.regimes))
+    edge.colors <- regime.colors[as.character(regime.IDs)]  # match regime of each edge
+
+    plot(fit$tree, show.tip.label = show.tip.label,
+         edge.color = edge.colors, edge.width = ew,
+         main = title, x.lim = x.lim, ...)
+    
+    if (length(regime.values) > 0) {
+      ape::edgelabels(text = round(regime.values, 2), edge = sc,
+                      bg = "white", frame = "none", adj = shift.label.adj, cex = cex.value)
+      legend.text <- c("Baseline", paste0("Regime ", sort(as.numeric(unique.regimes))))
+    } else {
+      legend.text <- "Baseline"
+    }
+    
+    legend(legend.position,
+           legend = legend.text,
+           col = regime.palette,
+           lwd = shift.edge.width,
+           cex = cex.legend,
+           bty = "n",
+           box.lty = 0,
+           border = "transparent",
+           box.lwd = 0,
+           bg = "transparent",
+           title = "Shift Regimes")
+  }
+  
+  # ---------- bootstrap support overlays (on kept shifts only) ----------
+  if (show.bootstrap.support != "none" && length(sc) > 0) {
+    
+    if (is.null(bs.values) || is.null(names(bs.values))) {
+      warning("`bs.values` must be a named numeric vector (names = edge numbers). Skipping bootstrap overlays.")
+    } else {
+      edge_ids <- as.character(sc)
+      if (!all(edge_ids %in% names(bs.values))) {
+        missing_edges <- edge_ids[!(edge_ids %in% names(bs.values))]
+        if (length(missing_edges))
+          warning(sprintf("No bootstrap value for shift edges: %s", paste(missing_edges, collapse = ", ")))
+      }
+      bs_vec <- as.numeric(bs.values[edge_ids])
+      
+      lp <- get("last_plot.phylo", envir = .PlotPhyloEnv)
+      E  <- fit$tree$edge
+      x0 <- lp$xx[E[, 1]]; y0 <- lp$yy[E[, 1]]
+      x1 <- lp$xx[E[, 2]]; y1 <- lp$yy[E[, 2]]
+      
+      frac <- bs.label.pos
+      xs <- x0[sc] + frac * (x1[sc] - x0[sc])
+      ys <- y0[sc] + frac * (y1[sc] - y0[sc])
+      
+      if (show.bootstrap.support == "text") {
+        labs <- ifelse(is.na(bs_vec), "", paste0(round(bs_vec * 100, 1), "%"))
+        graphics::text(xs, ys, labels = labs, cex = bs.label.cex,
+                       adj = bs.label.adj, xpd = NA)
+        
+      } else if (show.bootstrap.support == "circle") {
+        # Expect a palette with length = length(thresholds)+1 (m+1 bins)
+        if (length(bs.col.palette) != length(bs.thresholds) + 1)
+          stop("`bs.col.palette` length must equal length(`bs.thresholds`) + 1.")
+        
+        # --- build m+1 bins with explicit -Inf/Inf breaks ---
+        breaks <- c(-Inf, bs.thresholds, Inf)             # length m+2
+        # returns 1..(m+1)
+        idx <- findInterval(bs_vec, breaks, rightmost.closed = TRUE)
+        
+        # colors per point (NA -> transparent)
+        cols <- bs.col.palette[idx]
+        cols[is.na(bs_vec)] <- grDevices::adjustcolor("transparent", alpha.f = 0)
+        
+        # --- nudge positions by a fraction of user ranges (use the nudged coords) ---
+        usr <- par("usr")
+        dx  <- (bs.label.adj[1]) * 0.01 * diff(usr[1:2])
+        dy  <- (bs.label.adj[2]) * 0.01 * diff(usr[3:4])
+        xsa <- xs + dx
+        ysa <- ys + dy
+        
+        # draw circles only for non-NA values
+        ok  <- !is.na(bs_vec)
+        graphics::points(xsa[ok], ysa[ok], pch = 21, bg = cols[ok], col = "black",
+                         cex = bs.label.cex, lwd = 0.7, xpd = NA)
+        
+      } else if (show.bootstrap.support == "pie") {
+        if (!requireNamespace("plotrix", quietly = TRUE))
+          stop("Package 'plotrix' is required for pie bootstrap support.")
+        r <- bs.label.cex * (diff(par("usr")[1:2]) / 100)
+        usr <- par("usr")
+        dx  <- (bs.label.adj[1]) * 0.01 * diff(usr[1:2])
+        dy  <- (bs.label.adj[2]) * 0.01 * diff(usr[3:4])
+        
+        bs.pie.border <- rep(bs.pie.border, length(bs.thresholds))[1:length(bs.thresholds)]
+        idx  <- findInterval(bs_vec, vec = bs.thresholds,
+                             rightmost.closed = TRUE, all.inside = TRUE)
+        for (i in seq_along(bs_vec)) {
+          val <- bs_vec[i]
+          vcol <- bs.col.palette[idx[i]]
+          bdr_col <- bs.pie.border[idx[i]]
+          if (!is.na(val)) {
+            plotrix::floating.pie(xpos = xs[i] + dx, ypos = ys[i] + dy,
+                                  x = c(val, 1 - val), border = bdr_col,
+                                  col = c(vcol, bs.pie.bg), radius = r)
+          }
+        }
+      }
+      
+      if (!is.null(bs.legend.position)) {
+        # --- legend consistent with bins (m+1 entries) ---
+        thr_labels <- c(
+          paste0(lt_sym, bs.thresholds[1]),
+          paste0("[", bs.thresholds[-length(bs.thresholds)], ", ",
+                 bs.thresholds[-1], ")"),
+          paste0(ge_sym, bs.thresholds[length(bs.thresholds)])
+        )
+        graphics::legend(bs.legend.position,
+                         legend  = thr_labels,
+                         horiz   = isTRUE(bs.legend.horiz),
+                         pt.bg   = bs.col.palette,   # one swatch per bin
+                         pch     = 21,
+                         pt.cex  = 1.2,
+                         col     = "black",
+                         cex     = cex.legend,
+                         bty     = "n",
+                         x.intersp = 1.2, y.intersp = 1,
+                         title   = "Bootstrap support")
+      }
+    }
+  }
+}
+
+l1ou_extract_shift_tips <- function(fit) {
+  # --- checks ---
+  if (!inherits(fit, "l1ou"))
+    stop("`fit` must be an l1ou object.")
+  if (is.null(fit$tree) || !inherits(fit$tree, "phylo"))
+    stop("`fit$tree` must be an ape::phylo object.")
+  if (is.null(fit$shift.configuration))
+    stop("`fit$shift.configuration` not found in `fit`.")
+  if (is.null(fit$shift.values))
+    stop("`fit$shift.values` not found in `fit`.")
+  
+  tree <- fit$tree
+  sc   <- fit$shift.configuration              # integer vector (edges or nodes)
+  regimes <- names(sc)                         # regime IDs (names), may repeat
+  if (is.null(regimes)) regimes <- 1:length(sc)
+  
+  # shift values: 1-column matrix or vector; align by position
+  sv <- fit$shift.values
+  if (is.matrix(sv)) {
+    if (ncol(sv) != 1L)
+      stop("`fit$shift.values` must be univariate (1-column) for this extractor.")
+    sv <- as.numeric(sv[, 1])
+  } else {
+    sv <- as.numeric(sv)
+  }
+  if (length(sv) != length(sc))
+    stop("Lengths of `shift.values` and `shift.configuration` do not match.")
+  
+  # helpers
+  nedge <- nrow(tree$edge)
+  ntip  <- length(tree$tip.label)
+  
+  # Determine whether shift.configuration indexes EDGES or NODES
+  # Case A: all entries are valid edge indices -> treat as edges
+  # Case B: otherwise assume they are node IDs
+  is_edge_index <- all(sc %in% seq_len(nedge))
+  
+  # For each shift, determine the child node to define the clade
+  if (is_edge_index) {
+    child_nodes <- tree$edge[sc, 2]
+    shift_edge  <- sc
+    shift_node  <- child_nodes
+  } else {
+    child_nodes <- sc
+    shift_edge  <- rep(NA_integer_, length(sc))
+    shift_node  <- sc
+  }
+  
+  # Extract descendant tip labels for each child node
+  # Using ape::extract.clade for simplicity/robustness
+  out_list <- vector("list", length(sc))
+  for (k in seq_along(sc)) {
+    node_k <- child_nodes[k]
+    # extract.clade requires an internal node (>= ntip + 1); if a tip is passed,
+    # treat the clade as that single tip.
+    tip_labels_k <- if (node_k <= ntip) {
+      tree$tip.label[node_k]
+    } else {
+      cl <- try(ape::extract.clade(tree, node_k), silent = TRUE)
+      if (inherits(cl, "try-error") || is.null(cl$tip.label)) {
+        # fallback: compute descendants via edge matrix
+        desc_tips <- tree$tip.label[
+          which(ape::descendants(tree, node_k, type = "tips")[[1]])
+        ]
+        desc_tips
+      } else {
+        cl$tip.label
+      }
+    }
+    
+    if (length(tip_labels_k) == 0L) next
+    
+    out_list[[k]] <- data.frame(
+      tip         = tip_labels_k,
+      shift_value = rep(sv[k], length(tip_labels_k)),
+      regime      = rep(regimes[k], length(tip_labels_k)),
+      shift_node  = rep(shift_node[k], length(tip_labels_k)),
+      shift_edge  = rep(shift_edge[k], length(tip_labels_k)),
+      stringsAsFactors = FALSE
+    )
+  }
+  
+  out <- do.call(rbind, out_list)
+  if (is.null(out)) {
+    out <- data.frame(
+      tip = character(), shift_value = numeric(), regime = character(),
+      shift_node = integer(), shift_edge = integer(), stringsAsFactors = FALSE
+    )
+  } else {
+    rownames(out) <- NULL
+    # optional tidy ordering
+    out <- out[order(out$regime, out$tip), ]
+  }
+  out
 }
 
 # convert l1ou detected regimes into a simmap object
@@ -3227,8 +4003,8 @@ plot.dtt <- function(dttRes, CI = 0.95, phy = NULL, cex.lab = 1.5,
     # Add secondary y-axis
     axis(4, at = seq(0, max.y, length.out = 5),
          labels = seq(0, 1, by = 0.25),
-         col.axis = "black", cex.axis = 1.2)
-    mtext("Proportion of lineages", side = 4, line = 3, cex = cex.lab * 0.75)
+         col.axis = "black", ...)
+    mtext("Proportion of lineages", side = 4, line = 3, cex = cex.lab*0.65)
   }
   
   lines(ltt, dtt.data, type = "l", lwd = 2)
@@ -3245,6 +4021,166 @@ plot.dtt <- function(dttRes, CI = 0.95, phy = NULL, cex.lab = 1.5,
   } else {
     text(0, ylim[2], label = MDI, adj = 0, font = 3, ...)
   }
+}
+
+plot.multidtt <- function(
+    dttRes, 
+    CI = 0.95, 
+    phy = NULL, 
+    cex.lab = 1.2,
+    cex.legend = 0.9,
+    xlab = "Relative time from origin", 
+    ylab = "Relative disparity",
+    col = NULL,                 # optional vector of colors for multiple DTTs
+    lwd = 2,                    # line width for observed curves
+    legend_pos = "topleft",     # legend position or c(x,y)
+    show_p = TRUE,              # include p-values in legend
+    smooth_median = FALSE,      # LOESS on simulated median (visual nicety)
+    time_axis = c("relative", "absolute"),
+    ...
+) {
+  time_axis <- match.arg(time_axis)
+  
+  # ---- coerce input to a list of DTT objects ----
+  is_single <- !is.list(dttRes) || (!is.null(dttRes$times) && !is.null(dttRes$dtt))
+  if (is_single) dttRes <- list(dttRes)
+  n <- length(dttRes)
+  if (is.null(names(dttRes))) names(dttRes) <- paste0("DTT_", seq_len(n))
+  
+  # ---- helpers ----
+  get_pval <- function(x) {
+    # accepts $MDIpVal or $MDIpval or $MDIpvalue
+    for (nm in c("MDIpVal","MDIpval","MDIpvalue","MDI.p","MDIp")) {
+      if (!is.null(x[[nm]])) return(x[[nm]])
+    }
+    NULL
+  }
+  format_p <- function(p) {
+    if (is.null(p)) return(NA_character_)
+    if (p < 0.001) "p < 0.001"
+    else if (p < 0.01) "p < 0.01"
+    else paste0("p = ", format(p, digits = 3))
+  }
+  adj_col <- function(clr, alpha = 0.2) grDevices::adjustcolor(clr, alpha.f = alpha)
+  
+  # ---- base grid taken from the first DTT object ----
+  base <- dttRes[[1]]
+  if (is.null(base$times) || is.null(base$dtt))
+    stop("Each dttRes element must have $times and $dtt.")
+  times0 <- base$times  # usually 0–1 (relative)
+  
+  # ---- if absolute time is requested, rescale times ----
+  if (time_axis == "absolute") {
+    if (is.null(phy)) {
+      stop("time_axis = 'absolute' requires a 'phy' tree with branch lengths in absolute units.")
+    }
+    tree_height <- max(ape::node.depth.edgelength(phy))
+    times_plot <- times0 * tree_height
+  } else {
+    times_plot <- times0
+  }
+  
+  # ---- background simulations (from the first element) ----
+  sim_mat <- base$sim
+  has_sims <- !is.null(sim_mat) && is.matrix(sim_mat)
+  if (has_sims) {
+    q <- (1 - CI) / 2
+    ci_lo <- apply(sim_mat, 1, stats::quantile, probs = q, na.rm = TRUE)
+    ci_hi <- apply(sim_mat, 1, stats::quantile, probs = 1 - q, na.rm = TRUE)
+    sim_med <- apply(sim_mat, 1, stats::median, na.rm = TRUE)
+    if (isTRUE(smooth_median) && length(times0) >= 7) {
+      sim_med <- stats::predict(stats::loess(sim_med ~ times0, span = 0.15))
+    }
+  }
+  
+  # ---- gather observed curves; interpolate to base times if needed ----
+  obs_list <- vector("list", n)
+  labels <- character(n)
+  all_vals <- c()
+  for (i in seq_len(n)) {
+    obj <- dttRes[[i]]
+    nm  <- names(dttRes)[i]
+    tt  <- obj$times
+    yy  <- obj$dtt
+    if (length(tt) != length(times0) || !all(is.finite(tt)) || !all(tt == times0)) {
+      # realign by interpolation on *relative* time grid
+      yy <- stats::approx(x = tt, y = yy, xout = times0, rule = 2)$y
+    }
+    obs_list[[i]] <- yy
+    all_vals <- c(all_vals, yy)
+    mdi <- obj$MDI
+    pv  <- get_pval(obj)
+    lab <- paste0(
+      nm, " (MDI=", round(mdi, 2),
+      if (isTRUE(show_p) && !is.null(pv)) paste0(", ", format_p(pv)) else "",
+      ")"
+    )
+    labels[i] <- lab
+  }
+  
+  # include background sims in y-limits if present
+  if (has_sims) all_vals <- c(all_vals, as.numeric(sim_mat))
+  ylim <- range(all_vals, na.rm = TRUE)
+  ylim <- c(min(0, ylim[1]), max(1, ylim[2])) 
+  
+  # ---- setup colors for multiple curves ----
+  if (is.null(col)) {
+    # default palette
+    if (n <= 8) col <- RColorBrewer::brewer.pal(max(3, n), "Dark2")[seq_len(n)]
+    else col <- grDevices::rainbow(n)
+  } else if (length(col) < n) {
+    col <- rep(col, length.out = n)
+  }
+  
+  # ---- base plot (no data) ----
+  graphics::plot(
+    times_plot, obs_list[[1]],
+    type = "n", bty = "n",
+    xlab = xlab, ylab = ylab, cex.lab = cex.lab,
+    ylim = ylim, ...
+  )
+  
+  # ---- background CI ribbon + median (once) ----
+  if (has_sims) {
+    xx <- c(times_plot, rev(times_plot))
+    yy <- c(ci_lo,      rev(ci_hi))
+    graphics::polygon(xx, yy, col = adj_col("#2c3e50", 0.12), border = NA)
+    graphics::lines(times_plot, sim_med, lty = 2, lwd = 1.5, col = adj_col("#2c3e50", 0.7))
+  }
+  
+  # ---- LTT overlay (once), scaled to the DTT y-range ----
+  if (!is.null(phy)) {
+    LTT <- phytools::ltt(phy, plot = FALSE)
+    max_y <- ylim[2]
+    
+    if (time_axis == "absolute") {
+      ltt_t <- LTT$times   # already in absolute units
+    } else {
+      ltt_t <- LTT$times / max(LTT$times)  # relative 0–1
+    }
+    
+    ltt_y <- LTT$ltt / max(LTT$ltt) * max_y
+    graphics::lines(ltt_t, ltt_y, type = "s", lwd = 6, col = "grey40")
+    graphics::lines(ltt_t, ltt_y, type = "s", lwd = 4, col = "white")
+    graphics::axis(
+      4,
+      at     = seq(0, max_y, length.out = 5),
+      labels = seq(0, 1, by = 0.25)
+    )
+    graphics::mtext("Proportion of lineages", side = 4, line = 3, cex = cex.lab)
+  }
+  
+  # ---- observed DTT curves (each with its own color) ----
+  for (i in seq_len(n)) {
+    graphics::lines(times_plot, obs_list[[i]], col = col[i], lwd = lwd)
+  }
+  
+  # ---- legend with names + MDI (+ p) ----
+  graphics::legend(
+    legend_pos, legend = labels, lwd = lwd, col = col, bty = "n", cex = cex.legend
+  )
+  
+  invisible(list(times = times_plot, obs = obs_list, ylim = ylim))
 }
 
 # compute Morphological Disparity Index p-value
@@ -3308,11 +4244,14 @@ make_Q_matrix <- function(model = c("ER", "SYM", "ARD", "DIR1", "DIR2", "DIR3"),
       Q[i, i + 1] <- if (random) runif(1, 0.1, 1) else rate_id
       rate_id <- rate_id + 1
     }
+    Q[n_states, 1] <- if (random) runif(1, 0.1, 1) else rate_id
+    
   } else if (model == "DIR2") {
     for (i in 2:n_states) {
       Q[i, i - 1] <- if (random) runif(1, 0.1, 1) else rate_id
       rate_id <- rate_id + 1
     }
+    Q[1, n_states] <- if (random) runif(1, 0.1, 1) else rate_id
   } else if (model == "DIR3") {
     for (i in 1:(n_states - 1)) {
       rate <- if (random) runif(1, 0.1, 1) else rate_id
@@ -3320,6 +4259,8 @@ make_Q_matrix <- function(model = c("ER", "SYM", "ARD", "DIR1", "DIR2", "DIR3"),
       Q[i + 1, i] <- rate
       rate_id <- rate_id + 1
     }
+    Q[1, n_states] <- if (random) runif(1, 0.1, 1) else rate_id
+    Q[n_states, 1] <- if (random) runif(1, 0.1, 1) else rate_id
   }
   
   # Set diagonals so each row sums to zero
@@ -3879,3 +4820,97 @@ plot.MI <- function(MI, ci_level = 0.95, cex = 1, title = "Null Distribution of 
   
 }
 
+fmt_p <- function(pvalue) {
+  # Ensure numeric
+  pvalue <- as.numeric(pvalue)
+  
+  # Vectorized output template
+  out <- ifelse(is.na(pvalue), "",
+                ifelse(pvalue < 0.001,
+                       sprintf("$%.2e$", pvalue),
+                       sprintf("$%.3f$", pvalue))
+  )
+  
+  # Format scientific notation to LaTeX form
+  out <- gsub("e(-?\\d+)", "\\\\times 10^{\\1}", out)
+  return(out)
+}
+
+make_model_selection_table <- function(fit_list, n_obs = NULL, sort = TRUE) {
+  # Extract model info safely
+  extract_info <- function(fit, name) {
+    if (is.null(fit)) return(NULL)
+    
+    # Helper to safely extract value from multiple possible slots
+    safe_extract <- function(obj, fields) {
+      for (f in fields) {
+        val <- tryCatch(eval(parse(text = paste0("obj$", f))), error = function(e) NULL)
+        if (!is.null(val) && !is.na(val)) return(val)
+      }
+      return(NA)
+    }
+    
+    # --- Try all possible log-likelihood sources ---
+    logLik <- safe_extract(fit, c("opt$lnL", "loglik", "lnL", "LH", "LogLik", "logLik", "LL"))
+    # --- Parameter count ---
+    k <- safe_extract(fit, c("opt$k", "param.count", "k", "nparam", "npars", "np", "free.parameters"))
+    # --- AIC ---
+    aic <- safe_extract(fit, c("opt$aic", "AIC", "aic"))
+    # --- AICc ---    
+    aicc <- safe_extract(fit, c("opt$aicc", "AICc", "aicc", "opt$AICc"))
+    
+    # Compute missing AIC if possible
+    if (is.na(aic) && !is.na(logLik) && !is.na(k)) {
+      aic <- -2 * logLik + 2 * k
+    }
+    
+    # Compute missing AICc if possible
+    # if (is.na(aicc) && !is.na(aic) && !is.na(k)) {
+    #   aicc <- aic + (2 * k * (k + 1)) / (n_obs - k - 1)
+    # }
+    data.frame(Model = name, logLik = logLik, k = k, AIC = aic, AICc = aicc)
+  }
+  
+  # Collect information from all fits
+  df <- do.call(rbind, lapply(names(fit_list), function(nm) extract_info(fit_list[[nm]], nm)))
+  
+  # Compute AICc if missing or NA
+  if (any(is.na(df$AICc))) {
+    if (is.null(n_obs)) {
+      stop("AICc values are missing and 'n_obs' was not provided. 
+          Please specify the number of observations (e.g., number of species) 
+          to compute AICc.")
+    }
+    
+    # Identify missing AICc entries
+    idx <- which(is.na(df$AICc) & !is.na(df$AIC))
+    
+    if (length(idx) > 0) {
+      k_vals <- df$k[idx]
+      valid_idx <- which((n_obs - k_vals - 1) > 0)
+      
+      if (length(valid_idx) < length(idx)) {
+        warning("Some models have too many parameters relative to sample size; 
+               AICc cannot be computed for them.")
+      }
+      
+      df$AICc[idx[valid_idx]] <- df$AIC[idx[valid_idx]] +
+        (2 * k_vals[valid_idx] * (k_vals[valid_idx] + 1)) /
+        (n_obs - k_vals[valid_idx] - 1)
+    }
+  }
+  
+  # ΔAICc and weights
+  df$DeltaAICc <- df$AICc - min(df$AICc, na.rm = TRUE)
+  df$Weight <- exp(-0.5 * df$DeltaAICc)
+  df$Weight <- df$Weight / sum(df$Weight, na.rm = TRUE)
+  
+  # Rank and ordering
+  df <- df[order(df$AICc), ]
+  df$Rank <- seq_len(nrow(df))
+  
+  if (sort) df <- df[order(df$AICc), ]
+  
+  rownames(df) <- NULL
+  return(df)
+}

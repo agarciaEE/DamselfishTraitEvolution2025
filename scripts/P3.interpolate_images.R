@@ -10,7 +10,7 @@ path = args[2]
 library(raster)
 library(sp)
 
-source("./Rscripts/custom_functions.R")
+source("./scripts/custom_functions.R")
 
 # image
 img <- raster::stack(file.path(path, file))

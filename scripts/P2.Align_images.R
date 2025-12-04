@@ -48,11 +48,11 @@ library(fasterize)
 library(ColorAR)
 
 ## set workfolder
-path = "~/Unil/Research/5_Damselfish_evo/"
+path = "~/Unil/Research/5_Damselfish_evo/DamselTraitEvol2025/"
 setwd(path) ###########
 
 # load custom functions
-source("./Rscripts/custom_functions.R")
+source("./scripts/custom_functions.R")
 
 ################################################################################
 ##### -------------------------------------------------------------------- #####
@@ -150,14 +150,14 @@ imageTransformation(sampleList = imageList, landList = landmarkList, adjustCoord
                          crop = FALSE, cropOffset = c(0, 0, 0, 0), res = 300, keep.ASP  = T, aspect.ratio = mean(asp),
                          removebg.by = "landmarks", smooth = 1, rescale = FALSE,
                          transformType = "tps", focal = F, sigma = 3, interpolate =  5,
-                         plot = FALSE, save = TRUE, dir = "images/new_Transformed_images", overwrite = FALSE)
-plotRGB(stack("./images/new_Transformed_images/Abudefduf septemfasciatus_5.tif"))
+                         plot = FALSE, save = TRUE, dir = "images/Transformed_images", overwrite = FALSE)
+plotRGB(stack("./images/Transformed_images/Abudefduf septemfasciatus_5.tif"))
 
 img_filenames <- file.path("images/new_Transformed_images/", list.files("images/new_Transformed_images/"))
 img_names <- sub("\\.[a-z]*$", "", basename(img_filenames))
 length(img_names)
 
-imgTrans.list_res300 <- makeList(img_names, 'image', prepath = "images/new_Transformed_images", extension = ".tif")
+imgTrans.list_res300 <- makeList(img_names, 'image', prepath = "images/Transformed_images", extension = ".tif")
 
 mask <- raster::raster("images/damsel_mask.tif")
 crs(mask) = NA
@@ -165,7 +165,7 @@ crs(mask) = NA
 # write as PNG
 for (i in names(imgTrans.list_res300)) {
   img <- raster:mask(imgTransInt.list_res300[[i]], mask)
-  raster::writeRaster(img, filename = file.path("images/new_Transformed_images", 
+  raster::writeRaster(img, filename = file.path("images/Transformed_images", 
                                                            sub(".png", ".tif", i)), overwrite = TRUE)
   
   png(filename = paste0("images/TransIntImgPNG/", i, ".png"), width = 467, height = 300, bg = "transparent")

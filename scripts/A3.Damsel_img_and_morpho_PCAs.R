@@ -233,12 +233,12 @@ morpho_traits <- colnames(morpho_data)[is_continuous]
 sp_morpho <- eco_traits_subset[tree_species,morpho_traits]
 
 # Run phylogenetic PCA
-morphoPCA <- phytools::phyl.pca(damsel_tree_subset, sp_morpho, method = "lambda", mode = "corr")
+morphoPCA_scaled <- phytools::phyl.pca(damsel_tree_subset, apply(sp_morpho, 2, scale), method = "lambda", mode = "corr")
 
 # Convert to prcomp-like object (optional, if you need consistency with other workflows)
-morphoPCA <- phytools::as.prcomp(morphoPCA)
+morphoPCA_scaled <- phytools::as.prcomp(morphoPCA_scaled)
 
-saveRDS(morphoPCA, "./rdata/morpho_phyPCA.rds")
+saveRDS(morphoPCA_scaled, "./rdata/morpho_phyPCA_scaled.rds")
 
 # Extract PC scores
 morphoPCs <- morphoPCA$x
@@ -247,7 +247,7 @@ for (pc in c(1, 3, 5, 7)) {
   pcx <- pc
   pcy <- pc+1
   
-  pdf(paste0("./morphoPCA_", pcx, pcy, ".pdf"), width = 14, height = 11)
+  pdf(paste0("./morphoPCA_", pcx, pcy, "no_allardi.pdf"), width = 14, height = 11)
   plot_morphoPCA(morphoPCA, morpho_gpa, sp_names, genus_cols, imglist_nobg,
                  pcx = pcx, pcy = pcy, display = "images", cex.labels = 1.5, r = 0.5) 
   dev.off()

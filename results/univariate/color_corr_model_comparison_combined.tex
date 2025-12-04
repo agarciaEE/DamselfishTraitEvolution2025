@@ -1,0 +1,58 @@
+\begin{table}[!h]
+\centering
+\caption{\label{tab:tab:color_corr_model_comparison_combined}Univariate PGLS correlation structure model comparison across colour PCs. Param is $\lambda$ for Pagel and $\alpha$ for OU; BM has no parameter. Bold indicates the best (lowest AICc) model within each PC.}
+\centering
+\begin{tabular}[t]{lllccrrr}
+\toprule
+PC & Predictor & Correlation & Param & df & AICc & $\Delta$AICc & Weight\\
+\midrule
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.185} & 3 & \textbf{973.737} & \textbf{0.000} & \textbf{0.976}\\
+
+ & NULL & OU ($\alpha$) & 2.523 & 3 & 981.120 & 7.383 & 0.024\\
+
+\multirow{-3}{*}{\raggedright\arraybackslash PC1} & NULL & BM & --- & 2 & 1305.905 & 332.168 & 0.000\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.266} & 3 & \textbf{951.838} & \textbf{0.000} & \textbf{1.000}\\
+
+ & NULL & OU ($\alpha$) & 1.579 & 3 & 979.488 & 27.650 & 0.000\\
+
+\multirow{-3}{*}{\raggedright\arraybackslash PC2} & NULL & BM & --- & 2 & 1286.788 & 334.951 & 0.000\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.079} & 3 & \textbf{979.552} & \textbf{0.000} & \textbf{0.615}\\
+
+ & NULL & OU ($\alpha$) & 4.795 & 3 & 980.486 & 0.934 & 0.385\\
+
+\multirow{-3}{*}{\raggedright\arraybackslash PC3} & NULL & BM & --- & 2 & 1427.964 & 448.412 & 0.000\\
+\cmidrule{1-8}
+ & \textbf{Habitat+Diet} & \textbf{Pagel ($\lambda$)} & \textbf{-0.080} & 9 & \textbf{960.421} & \textbf{0.000} & \textbf{1.000}\\
+
+ & Habitat+Diet & OU ($\alpha$) & 15.992 & 9 & 990.832 & 30.411 & 0.000\\
+
+\multirow{-3}{*}{\raggedright\arraybackslash PC4} & Habitat+Diet & BM & --- & 8 & 1391.199 & 430.778 & 0.000\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{OU ($\alpha$)} & \textbf{1.044} & 3 & \textbf{976.725} & \textbf{0.000} & \textbf{0.504}\\
+
+ & NULL & Pagel ($\lambda$) & 0.159 & 3 & 976.754 & 0.029 & 0.496\\
+
+\multirow{-3}{*}{\raggedright\arraybackslash PC5} & NULL & BM & --- & 2 & 1249.585 & 272.861 & 0.000\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.236} & 3 & \textbf{952.397} & \textbf{0.000} & \textbf{1.000}\\
+
+ & NULL & OU ($\alpha$) & 2.042 & 3 & 980.192 & 27.795 & 0.000\\
+
+\multirow{-3}{*}{\raggedright\arraybackslash PC6} & NULL & BM & --- & 2 & 1281.880 & 329.483 & 0.000\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.368} & 3 & \textbf{952.955} & \textbf{0.000} & \textbf{1.000}\\
+
+ & NULL & OU ($\alpha$) & 2.482 & 3 & 981.421 & 28.466 & 0.000\\
+
+\multirow{-3}{*}{\raggedright\arraybackslash PC7} & NULL & BM & --- & 2 & 1292.468 & 339.513 & 0.000\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.179} & 3 & \textbf{980.473} & \textbf{0.000} & \textbf{0.540}\\
+
+ & NULL & OU ($\alpha$) & 3.317 & 3 & 980.792 & 0.320 & 0.460\\
+
+\multirow{-3}{*}{\raggedright\arraybackslash PC8} & NULL & BM & --- & 2 & 1348.282 & 367.809 & 0.000\\
+\bottomrule
+\end{tabular}
+\end{table}

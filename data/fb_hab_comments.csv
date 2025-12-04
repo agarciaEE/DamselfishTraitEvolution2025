@@ -1,0 +1,669 @@
+"","habitat1","habitat2","habitat3","habitat4","behavior","type1","type2","source","link"
+"Abudefduf abdominalis","rocky-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Abudefduf-abdominalis.html","source"
+"Abudefduf bengalensis","lagoon","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-bengalensis.html","source"
+"Abudefduf concolor","rocky-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-concolor.html","source"
+"Abudefduf conformis","rocky-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-conformis.html","source"
+"Abudefduf declivifrons","rocky-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-declivifrons.html","source"
+"Abudefduf hoefleri","rocky-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-hoefleri.html","source"
+"Abudefduf lorenzi","coral-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-lorenzi.html","source"
+"Abudefduf margariteus","rocky-reef","","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Abudefduf-margariteus.html","source"
+"Abudefduf natalensis","rocky-reef","","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Abudefduf-natalensis.html","source"
+"Abudefduf nigrimargo","rocky-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-nigrimargo.html","source"
+"Abudefduf notatus","rocky-reef","lagoon","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-notatus.html","source"
+"Abudefduf saxatilis","rocky-reef","sandy-bottom","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-saxatilis.html","source"
+"Abudefduf septemfasciatus","lagoon","coral-reef","","","site-attached","inshore-reef","inshore-reef","https://www.fishbase.se/summary/Abudefduf-septemfasciatus.html","source"
+"Abudefduf sexfasciatus","rocky-reef","coral-reef","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Abudefduf-sexfasciatus.html","source"
+"Abudefduf sordidus","rocky-reef","lagoon","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-sordidus.html","source"
+"Abudefduf sparoides","rocky-reef","coral-reef","","","free-swimming","inshore-reef","inshore-reef","https://www.fishbase.se/summary/Abudefduf-sparoides.html","source"
+"Abudefduf taurus","rocky-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-taurus.html","source"
+"Abudefduf troschelii","coral-reef","rocky-reef","sandy-bottom","tide-pool","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-troschelii.html","source"
+"Abudefduf vaigiensis","coral-reef","rocky-reef","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Abudefduf-vaigiensis.html","source"
+"Abudefduf whitleyi","coral-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Abudefduf-whitleyi.html","source"
+"Acanthochromis polyacanthus","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Acanthochromis-polyacanthus.html","source"
+"Altrichthys curatus","branching-coral","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Altrichthys-curatus.html","source"
+"Altrichthys alelia","branching-coral","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Altrichthys-alelia.html","source"
+"Altrichthys azurelineatus","branching-coral","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Altrichthys-azurelineatus.html","source"
+"Amblyglyphidodon aureus","lagoon","soft-coral","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amblyglyphidodon-aureus.html","source"
+"Amblyglyphidodon batunaorum","lagoon","branching-coral","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amblyglyphidodon-batunaorum.html","source"
+"Amblyglyphidodon curacao","branching-coral","lagoon","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amblyglyphidodon-curacao.html","source"
+"Amblyglyphidodon flavilatus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amblyglyphidodon-flavilatus.html","source"
+"Amblyglyphidodon flavopurpureus","soft-coral","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Amblyglyphidodon-flavopurpureus.html","source"
+"Amblyglyphidodon indicus","branching-coral","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amblyglyphidodon-indicus.html","source"
+"Amblyglyphidodon leucogaster","lagoon","coral-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amblyglyphidodon-leucogaster.html","source"
+"Amblyglyphidodon melanopterus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amblyglyphidodon-melanopterus.html","source"
+"Amblyglyphidodon orbicularis","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amblyglyphidodon-orbicularis.html","source"
+"Amblyglyphidodon silolona","branching-coral","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amblyglyphidodon-silolona.html","source"
+"Amblyglyphidodon ternatensis","branching-coral","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amblyglyphidodon-ternatensis.html","source"
+"Amblypomacentrus breviceps","lagoon","sandy-bottom","rocky-reef","sea anemone","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amblypomacentrus-breviceps.html","source"
+"Amblypomacentrus clarus","lagoon","sandy-bottom","rocky-reef","sea anemone","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amblypomacentrus-clarus.html","source"
+"Amblypomacentrus kuiteri","coral-reef","sandy-bottom","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Amblypomacentrus-kuiteri.html","source"
+"Amphiprion akallopisos","sea anemone","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-akallopisos.html","source"
+"Amphiprion akindynos","sea anemone","lagoon","","","site-attached","inshore-reef","offshore-reef","https://www.fishbase.se/summary/Amphiprion-akindynos.html","source"
+"Amphiprion allardi","sea anemone","lagoon","","","site-attached","inshore-reef","offshore-reef","https://www.fishbase.se/summary/Amphiprion-allardi.html","source"
+"Amphiprion barberi","sea anemone","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-barberi.html","source"
+"Amphiprion biaculeatus","sea anemone","lagoon","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-biaculeatus.html","source"
+"Amphiprion bicinctus","sea anemone","lagoon","","","site-attached","inshore-reef","offshore-reef","https://www.fishbase.se/summary/Amphiprion-bicinctus.html","source"
+"Amphiprion chagosensis","sea anemone","coral-reef","lagoon","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amphiprion-chagosensis.html","source"
+"Amphiprion chrysogaster","sea anemone","lagoon","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amphiprion-chrysogaster.html","source"
+"Amphiprion chrysopterus","sea anemone","coral-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Amphiprion-chrysopterus.html","source"
+"Amphiprion clarkii","sea anemone","lagoon","coral-reef","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amphiprion-clarkii.html","source"
+"Amphiprion ephippium","sea anemone","lagoon","coral-reef","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-ephippium.html","source"
+"Amphiprion frenatus","sea anemone","coral-reef","lagoon","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amphiprion-frenatus.html","source"
+"Amphiprion latezonatus","sea anemone","rocky-reef","coral-reef","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amphiprion-latezonatus.html","source"
+"Amphiprion latifasciatus","sea anemone","lagoon","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amphiprion-latifasciatus.html","source"
+"Amphiprion leucokranos","sea anemone","lagoon","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amphiprion-leucokranos.html","source"
+"Amphiprion mccullochi","sea anemone","rocky-reef","lagoon","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Amphiprion-mccullochi.html","source"
+"Amphiprion melanopus","sea anemone","coral-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Amphiprion-melanopus.html","source"
+"Amphiprion nigripes","sea anemone","rocky-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Amphiprion-nigripes.html","source"
+"Amphiprion ocellaris","sea anemone","lagoon","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-ocellaris.html","source"
+"Amphiprion omanensis","sea anemone","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-omanensis.html","source"
+"Amphiprion pacificus","sea anemone","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-pacificus.html","source"
+"Amphiprion percula","sea anemone","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-percula.html","source"
+"Amphiprion perideraion","sea anemone","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-perideraion.html","source"
+"Amphiprion polymnus","sea anemone","lagoon","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-polymnus.html","source"
+"Amphiprion rubrocinctus","sea anemone","lagoon","coral-reef","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-rubrocinctus.html","source"
+"Amphiprion sandaracinos","sea anemone","lagoon","","","site-attached","inshore-reef","offshore-reef","https://www.fishbase.se/summary/Amphiprion-sandaracinos.html","source"
+"Amphiprion sebae","sea anemone","lagoon","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Amphiprion-sebae.html","source"
+"Amphiprion tricinctus","sea anemone","lagoon","","","site-attached","inshore-reef","offshore-reef","https://www.fishbase.se/summary/Amphiprion-tricinctus.html","source"
+"Azurina atrilobata","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Azurina-atrilobata.html","source"
+"Azurina brevirostris","rocky-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Azurina-brevirostris.html","source"
+"Azurina cyanea","rocky-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Azurina-cyanea.html","source"
+"Azurina elerae","crevice","soft-coral","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Azurina-elerae.html","source"
+"Azurina hirundo","rocky-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Azurina-hirundo.html","source"
+"Azurina lepidolepis","branching-coral","lagoon","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Azurina-lepidolepis.html","source"
+"Azurina multilineata","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Azurina-multilineata.html","source"
+"Cheiloprion labiatus","branching-coral","lagoon","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Cheiloprion-labiatus.html","source"
+"Chromis abyssicola","coral-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-abyssicola.html","source"
+"Chrysiptera rapanui","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Chrysiptera-rapanui.html","source"
+"Chrysiptera rex","coral-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chrysiptera-rex.html","source"
+"Chrysiptera rollandi","lagoon","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Chrysiptera-rollandi.html","source"
+"Chrysiptera sinclairi","lagoon","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Chrysiptera-sinclairi.html","source"
+"Chrysiptera springeri","lagoon","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Chrysiptera-springeri.html","source"
+"Chrysiptera starcki","rocky-reef","crevice","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chrysiptera-starcki.html","source"
+"Chrysiptera talboti","lagoon","coral-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chrysiptera-talboti.html","source"
+"Chrysiptera taupou","lagoon","coral-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chrysiptera-taupou.html","source"
+"Chrysiptera traceyi","lagoon","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chrysiptera-traceyi.html","source"
+"Chrysiptera unimaculata","algal-reefs","rubble","rocky-reef","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Chrysiptera-unimaculata.html","source"
+"Chrysiptera uswanasi","lagoon","branching-coral","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chrysiptera-uswanasi.html","source"
+"Chromis abyssus","sandy-bottom","rubble","rocky-reef","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-abyssus.html","source"
+"Chromis albicauda","rocky-reef","coral-reef","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Chromis-albicauda.html","source"
+"Chromis albomaculata","rocky-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-albomaculata.html","source"
+"Chromis alpha","lagoon","branching-coral","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-alpha.html","source"
+"Chromis alta","rocky-reef","coral-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-alta.html","source"
+"Chromis analis","rocky-reef","branching-coral","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-analis.html","source"
+"Chromis atripectoralis","lagoon","branching-coral","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-atripectoralis.html","source"
+"Chromis bowesi","rocky-reef","coral-reef","","",NA,"offshore-reef","","https://www.fishbase.se/summary/Chromis-bowesi.html","source"
+"Chromis cadenati","rocky-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-cadenati.html","source"
+"Chromis chromis","rocky-reef","seagrass","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-chromis.html","source"
+"Chromis chrysura","rocky-reef","coral-reef","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-chrysura.html","source"
+"Chromis cinerascens","coral-reef","","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-cinerascens.html","source"
+"Chromis circumaurea","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-circumaurea.html","source"
+"Chromis crusma","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-crusma.html","source"
+"Chromis degruyi","rocky-reef","crevice","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-degruyi.html","source"
+"Chromis dispila","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-dispila.html","source"
+"Chromis earina","rocky-reef","crevice","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-earina.html","source"
+"Chromis flavapicis","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-flavapicis.html","source"
+"Chromis flavaxilla","branching-coral","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-flavaxilla.html","source"
+"Chromis fumea","rocky-reef","lagoon","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-fumea.html","source"
+"Chromis gunting","rocky-reef","coral-reef","","",NA,"offshore-reef","","https://www.fishbase.se/summary/Chromis-gunting.html","source"
+"Chromis hangganan","rocky-reef","coral-reef","","",NA,"offshore-reef","","https://www.fishbase.se/summary/Chromis-hangganan.html","source"
+"Chromis hypsilepis","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-hypsilepis.html","source"
+"Chromis insolata","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-insolata.html","source"
+"Chromis kennensis","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-kennensis.html","source"
+"Chromis klunzingeri","coral-reef","","","",NA,"offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-klunzingeri.html","source"
+"Chromis limbata","rocky-reef","seagrass","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-limbata.html","source"
+"Chromis limbaughi","rocky-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-limbaughi.html","source"
+"Chromis lubbocki","rocky-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Chromis-lubbocki.html","source"
+"Chromis mamatapara","rocky-reef","sandy-bottom","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-mamatapara.html","source"
+"Chromis mirationis","rocky-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-mirationis.html","source"
+"Chromis nitida","coral-reef","rocky-reef","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-nitida.html","source"
+"Chromis notata","coral-reef","rocky-reef","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-notata.html","source"
+"Chromis okamurai","coral-reef","rocky-reef","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-okamurai.html","source"
+"Chromis opercularis","lagoon","","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-opercularis.html","source"
+"Chromis ovalis","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-ovalis.html","source"
+"Chromis pamae","rocky-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-pamae.html","source"
+"Chromis pelloura","coral-reef","crevice","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-pelloura.html","source"
+"Chromis pembae","coral-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-pembae.html","source"
+"Chromis punctipinnis","rocky-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-punctipinnis.html","source"
+"Chromis randalli","rocky-reef","","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-randalli.html","source"
+"Chromis sanctaehelenae","rocky-reef","rubble","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-sanctaehelenae.html","source"
+"Chromis scotochiloptera","crevice","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-scotochiloptera.html","source"
+"Chromis scotti","coral-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-scotti.html","source"
+"Chromis ternatensis","branching-coral","lagoon","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-ternatensis.html","source"
+"Chromis tingting","rocky-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-tingting.html","source"
+"Chromis vanbebberae","rocky-reef","coral-reef","crevice","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-vanbebberae.html","source"
+"Chromis verater","rocky-reef","coral-reef","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-verater.html","source"
+"Chromis viridis","branching-coral","lagoon","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chromis-viridis.html","source"
+"Chromis weberi","rocky-reef","coral-reef","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-weberi.html","source"
+"Chromis woodsi","coral-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chromis-woodsi.html","source"
+"Chromis xanthochira","rocky-reef","coral-reef","","","free-swimming","offshore-reef","offshore-reef","https://www.fishbase.se/summary/Chromis-xanthochira.html","source"
+"Chromis xanthopterygia","rocky-reef","coral-reef","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-xanthopterygia.html","source"
+"Chromis xanthura","rocky-reef","coral-reef","","","free-swimming","inshore-reef","offshore-reef","https://www.fishbase.se/summary/Chromis-xanthura.html","source"
+"Chromis yamakawai","rocky-reef","coral-reef","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Chromis-yamakawai.html","source"
+"Chrysiptera biocellata","lagoon","rubble","rocky-reef","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Chrysiptera-biocellata.html","source"
+"Chrysiptera brownriggii","rocky-reef","coral-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chrysiptera-brownriggii.html","source"
+"Chrysiptera burtjonesi","branching-coral","rocky-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chrysiptera-burtjonesi.html","source"
+"Chrysiptera caeruleolineata","rubble","rocky-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chrysiptera-caeruleolineata.html","source"
+"Chrysiptera caesifrons","rocky-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chrysiptera-caesifrons.html","source"
+"Chrysiptera chrysocephala","lagoon","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chrysiptera-chrysocephala.html","source"
+"Chrysiptera cyanea","rubble","lagoon","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chrysiptera-cyanea.html","source"
+"Chrysiptera flavipinnis","rubble","coral-reef","sandy-bottom","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chrysiptera-flavipinnis.html","source"
+"Chrysiptera galba","rocky-reef","coral-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chrysiptera-galba.html","source"
+"Chrysiptera giti","rocky-reef","branching-coral","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chrysiptera-giti.html","source"
+"Chrysiptera glauca","rubble","rocky-reef","sandy-bottom","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Chrysiptera-glauca.html","source"
+"Chrysiptera hemicyanea","branching-coral","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Chrysiptera-hemicyanea.html","source"
+"Chrysiptera oxycephala","branching-coral","lagoon","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Chrysiptera-oxycephala.html","source"
+"Chrysiptera parasema","branching-coral","lagoon","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Chrysiptera-parasema.html","source"
+"Dascyllus abudafur","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dascyllus-abudafur.html","source"
+"Dascyllus albisella","rocky-reef","coral-reef","sea anemone","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dascyllus-albisella.html","source"
+"Dascyllus aruanus","branching-coral","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Dascyllus-aruanus.html","source"
+"Dascyllus carneus","branching-coral","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dascyllus-carneus.html","source"
+"Dascyllus flavicaudus","branching-coral","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dascyllus-flavicaudus.html","source"
+"Dascyllus marginatus","branching-coral","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dascyllus-marginatus.html","source"
+"Dascyllus melanurus","branching-coral","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dascyllus-melanurus.html","source"
+"Dascyllus reticulatus","lagoon","branching-coral","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dascyllus-reticulatus.html","source"
+"Dascyllus strasburgi","rocky-reef","coral-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dascyllus-strasburgi.html","source"
+"Dascyllus trimaculatus","rocky-reef","coral-reef","sea anemone","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dascyllus-trimaculatus.html","source"
+"Dischistodus chrysopoecilus","lagoon","seagrass","sandy-bottom","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Dischistodus-chrysopoecilus.html","source"
+"Dischistodus melanotus","lagoon","sandy-bottom","rubble","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dischistodus-melanotus.html","source"
+"Dischistodus perspicillatus","seagrass","sandy-bottom","lagoon","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dischistodus-perspicillatus.html","source"
+"Dischistodus prosopotaenia","lagoon","sandy-bottom","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Dischistodus-prosopotaenia.html","source"
+"Dischistodus pseudochrysopoecilus","lagoon","rubble","sandy-bottom","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Dischistodus-pseudochrysopoecilus.html","source"
+"Hemiglyphidodon plagiometopon","lagoon","branching-coral","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Hemiglyphidodon-plagiometopon.html","source"
+"Hypsypops rubicundus","rocky-reef","crevice","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Hypsypops-rubicundus.html","source"
+"Lepidozygus tapeinosoma","lagoon","","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Lepidozygus-tapeinosoma.html","source"
+"Mecaenichthys immaculatus","seagrass","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Mecaenichthys-immaculatus.html","source"
+"Microspathodon bairdii","rocky-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Microspathodon-bairdii.html","source"
+"Microspathodon chrysurus","coral-reef","","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Microspathodon-chrysurus.html","source"
+"Microspathodon dorsalis","rocky-reef","","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Microspathodon-dorsalis.html","source"
+"Neopomacentrus aktites","rocky-reef","crevice","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neopomacentrus-aktites.html","source"
+"Neopomacentrus anabatoides","lagoon","rocky-reef","coral-reef","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neopomacentrus-anabatoides.html","source"
+"Neopomacentrus aquadulcis","freshwater","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neopomacentrus-aquadulcis.html","source"
+"Neopomacentrus azysron","coral-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Neopomacentrus-azysron.html","source"
+"Neopomacentrus bankieri","rocky-reef","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Neopomacentrus-bankieri.html","source"
+"Neopomacentrus cyanomos","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neopomacentrus-cyanomos.html","source"
+"Neopomacentrus filamentosus","lagoon","rubble","rocky-reef","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neopomacentrus-filamentosus.html","source"
+"Neoglyphidodon bonang","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neoglyphidodon-bonang.html","source"
+"Neoglyphidodon carlsoni","coral-reef","crevice","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neoglyphidodon-carlsoni.html","source"
+"Neoglyphidodon melas","lagoon","soft-coral","branching-coral","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neoglyphidodon-melas.html","source"
+"Neoglyphidodon nigroris","lagoon","coral-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neoglyphidodon-nigroris.html","source"
+"Neoglyphidodon oxyodon","lagoon","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Neoglyphidodon-oxyodon.html","source"
+"Neoglyphidodon polyacanthus","lagoon","coral-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neoglyphidodon-polyacanthus.html","source"
+"Neoglyphidodon thoracotaeniatus","lagoon","coral-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neoglyphidodon-thoracotaeniatus.html","source"
+"Neopomacentrus fuliginosus","rocky-reef","seagrass","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Neopomacentrus-fuliginosus.html","source"
+"Neopomacentrus metallicus","rocky-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Neopomacentrus-metallicus.html","source"
+"Neopomacentrus miryae","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neopomacentrus-miryae.html","source"
+"Neopomacentrus nemurus","coral-reef","sandy-bottom","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neopomacentrus-nemurus.html","source"
+"Neopomacentrus sindensis","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Neopomacentrus-sindensis.html","source"
+"Neopomacentrus sororius","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neopomacentrus-sororius.html","source"
+"Neopomacentrus taeniurus","mangrove","estuary","freshwater","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neopomacentrus-taeniurus.html","source"
+"Neopomacentrus violascens","lagoon","rocky-reef","sandy-bottom","rubble","site-attached","inshore-reef","","https://www.fishbase.se/summary/Neopomacentrus-violascens.html","source"
+"Neopomacentrus xanthurus","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Neopomacentrus-xanthurus.html","source"
+"Nexilosus latifrons","rocky-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Nexilosus-latifrons.html","source"
+"Parma victoriae","rocky-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Parma-victoriae.html","source"
+"Parma alboscapularis","rocky-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Parma-alboscapularis.html","source"
+"Parma mccullochi","rocky-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Parma-mccullochi.html","source"
+"Parma microlepis","rocky-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Parma-microlepis.html","source"
+"Parma occidentalis","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Parma-occidentalis.html","source"
+"Parma oligolepis","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Parma-oligolepis.html","source"
+"Plectroglyphidodon altus","rocky-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-altus.html","source"
+"Plectroglyphidodon apicalis","lagoon","rubble","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-apicalis.html","source"
+"Plectroglyphidodon aureus","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-aureus.html","source"
+"Plectroglyphidodon dickii","lagoon","coral-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-dickii.html","source"
+"Plectroglyphidodon emeryi","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Plectroglyphidodon-emeryi.html","source"
+"Plectroglyphidodon fasciolatus","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-fasciolatus.html","source"
+"Plectroglyphidodon gascoynei","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-gascoynei.html","source"
+"Plectroglyphidodon imparipennis","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-imparipennis.html","source"
+"Plectroglyphidodon insularis","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-insularis.html","source"
+"Plectroglyphidodon johnstonianus","coral-reef","rocky-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Plectroglyphidodon-johnstonianus.html","source"
+"Plectroglyphidodon leucozonus","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-leucozonus.html","source"
+"Plectroglyphidodon luteobrunneus","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-luteobrunneus.html","source"
+"Plectroglyphidodon marginatus","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-marginatus.html","source"
+"Plectroglyphidodon obreptus","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-obreptus.html","source"
+"Plectroglyphidodon phoenixensis","branching-coral","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Plectroglyphidodon-phoenixensis.html","source"
+"Plectroglyphidodon randalli","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Plectroglyphidodon-randalli.html","source"
+"Plectroglyphidodon sagmarius","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Plectroglyphidodon-sagmarius.html","source"
+"Pomacentrus adelus","rubble","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-adelus.html","source"
+"Pomacentrus albiaxillaris","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-albiaxillaris.html","source"
+"Pomacentrus albicaudatus","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-albicaudatus.html","source"
+"Pomacentrus alexanderae","lagoon","","","","site-attached","inshore-reef","offshore-reef","https://www.fishbase.se/summary/Pomacentrus-alexanderae.html","source"
+"Pomacentrus alleni","rubble","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-alleni.html","source"
+"Pomacentrus amboinensis","lagoon","","","","site-attached","inshore-reef","offshore-reef","https://www.fishbase.se/summary/Pomacentrus-amboinensis.html","source"
+"Pomacentrus aquilus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-aquilus.html","source"
+"Pomacentrus arabicus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-arabicus.html","source"
+"Pomacentrus armillatus","sandy-bottom","coral-reef","soft-coral","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-armillatus.html","source"
+"Pomacentrus aurifrons","coral-reef","","","","free-swimming","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-aurifrons.html","source"
+"Pomacentrus auriventris","rubble","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-auriventris.html","source"
+"Pomacentrus australis","lagoon","sandy-bottom","rubble","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-australis.html","source"
+"Pomacentrus baenschi","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-baenschi.html","source"
+"Pomacentrus bankanensis","lagoon","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-bankanensis.html","source"
+"Pomacentrus brachialis","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-brachialis.html","source"
+"Pomacentrus burroughi","rubble","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-burroughi.html","source"
+"Pomacentrus caeruleopunctatus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-caeruleopunctatus.html","source"
+"Pomacentrus caeruleus","rubble","coral-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Pomacentrus-caeruleus.html","source"
+"Pomacentrus callainus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-callainus.html","source"
+"Pomacentrus chrysurus","sandy-bottom","lagoon","coral-reef","rocky-reef","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-chrysurus.html","source"
+"Pomacentrus coelestis","lagoon","rubble","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-coelestis.html","source"
+"Pomacentrus flavioculus","lagoon","coral-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-flavioculus.html","source"
+"Pomacentrus flavoaxillaris","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-flavoaxillaris.html","source"
+"Pomacentrus geminospilus","sandy-bottom","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-geminospilus.html","source"
+"Pomacentrus grammorhynchus","lagoon","branching-coral","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-grammorhynchus.html","source"
+"Pomacentrus imitator","coral-reef","rocky-reef","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Pomacentrus-imitator.html","source"
+"Pomacentrus lepidogenys","lagoon","branching-coral","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-lepidogenys.html","source"
+"Pomacentrus leptus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-leptus.html","source"
+"Pomacentrus littoralis","coral-reef","rocky-reef","rubble","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-littoralis.html","source"
+"Pomacentrus magniseptus","coral-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Pomacentrus-magniseptus.html","source"
+"Pomacentrus melanochir","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-melanochir.html","source"
+"Pomacentrus micronesicus","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-micronesicus.html","source"
+"Pomacentrus microspilus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-microspilus.html","source"
+"Pomacentrus milleri","coral-reef","rubble","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-milleri.html","source"
+"Pomacentrus moluccensis","lagoon","branching-coral","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-moluccensis.html","source"
+"Pomacentrus nagasakiensis","sandy-bottom","lagoon","soft-coral","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-nagasakiensis.html","source"
+"Pomacentrus nigriradiatus","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-nigriradiatus.html","source"
+"Pomacentrus nigromanus","lagoon","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-nigromanus.html","source"
+"Pomacentrus nigromarginatus","coral-reef","rocky-reef","sandy-bottom","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-nigromarginatus.html","source"
+"Pomacentrus pavo","sandy-bottom","lagoon","coral-reef","rubble","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-pavo.html","source"
+"Pomacentrus philippinus","lagoon","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-philippinus.html","source"
+"Pomacentrus reidi","lagoon","rubble","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-reidi.html","source"
+"Pomacentrus similis","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-similis.html","source"
+"Pomacentrus smithi","coral-reef","sandy-bottom","lagoon","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-smithi.html","source"
+"Pomacentrus spilotoceps","coral-reef","","","","site-attached","inshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-spilotoceps.html","source"
+"Pomacentrus stigma","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-stigma.html","source"
+"Pomacentrus sulfureus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-sulfureus.html","source"
+"Pomacentrus taeniometopon","lagoon","branching-coral","","","site-attached","inshore-reef","offshore-reef","https://www.fishbase.se/summary/Pomacentrus-taeniometopon.html","source"
+"Pomacentrus trichrourus","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-trichrourus.html","source"
+"Pomacentrus trilineatus","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-trilineatus.html","source"
+"Pomacentrus tripunctatus","rocky-reef","sandy-bottom","rubble","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-tripunctatus.html","source"
+"Pomacentrus vaiuli","lagoon","coral-reef","rubble","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-vaiuli.html","source"
+"Pomacentrus vatosoa","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-vatosoa.html","source"
+"Pomacentrus wardi","coral-reef","lagoon","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pomacentrus-wardi.html","source"
+"Pomacentrus xanthosternus","coral-reef","lagoon","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pomacentrus-xanthosternus.html","source"
+"Pomachromis fuscidorsalis","coral-reef","","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Pomachromis-fuscidorsalis.html","source"
+"Pomachromis richardsoni","coral-reef","rocky-reef","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Pomachromis-richardsoni.html","source"
+"Pristotis obtusirostris","lagoon","sandy-bottom","rubble","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Pristotis-obtusirostris.html","source"
+"Pycnochromis abruptus","rocky-reef","","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Pycnochromis-abruptus.html","source"
+"Pycnochromis acares","coral-reef","rocky-reef","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Pycnochromis-acares.html","source"
+"Pycnochromis alleni","coral-reef","rocky-reef","","","free-swimming","offshore-reef","","https://www.fishbase.se/summary/Pycnochromis-alleni.html","source"
+"Pycnochromis amboinensis","lagoon","crevice","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pycnochromis-amboinensis.html","source"
+"Pycnochromis atripes","coral-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Pycnochromis-atripes.html","source"
+"Pycnochromis caudalis","coral-reef","crevice","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Pycnochromis-caudalis.html","source"
+"Pycnochromis delta","coral-reef","crevice","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Pycnochromis-delta.html","source"
+"Pycnochromis dimidiatus","lagoon","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pycnochromis-dimidiatus.html","source"
+"Pycnochromis fatuhivae","rocky-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pycnochromis-fatuhivae.html","source"
+"Pycnochromis fieldi","coral-reef","lagoon","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pycnochromis-fieldi.html","source"
+"Pycnochromis hanui","coral-reef","","","","site-attached","inshore-reef","offshore-reef","https://www.fishbase.se/summary/Pycnochromis-hanui.html","source"
+"Pycnochromis howsoni","crevice","lagoon","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pycnochromis-howsoni.html","source"
+"Pycnochromis iomelas","coral-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Pycnochromis-iomelas.html","source"
+"Pycnochromis leucurus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pycnochromis-leucurus.html","source"
+"Pycnochromis lineatus","coral-reef","crevice","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Pycnochromis-lineatus.html","source"
+"Pycnochromis margaritifer","coral-reef","rocky-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pycnochromis-margaritifer.html","source"
+"Pycnochromis nigrurus","coral-reef","","","","site-attached","offshore-reef","","https://www.fishbase.se/summary/Pycnochromis-nigrurus.html","source"
+"Pycnochromis ovatiformis","coral-reef","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pycnochromis-ovatiformis.html","source"
+"Pycnochromis pacifica","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pycnochromis-pacifica.html","source"
+"Pycnochromis retrofasciatus","lagoon","branching-coral","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Pycnochromis-retrofasciatus.html","source"
+"Pycnochromis vanderbilti","rocky-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Pycnochromis-vanderbilti.html","source"
+"Similiparma hermani","rocky-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Similiparma-hermani.html","source"
+"Similiparma lurida","rocky-reef","sandy-bottom","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Similiparma-lurida.html","source"
+"Stegastes acapulcoensis","rocky-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-acapulcoensis.html","source"
+"Stegastes adustus","rocky-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-adustus.html","source"
+"Stegastes albifasciatus","rocky-reef","lagoon","rubble","coral-reef","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-albifasciatus.html","source"
+"Stegastes arcifrons","rocky-reef","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-arcifrons.html","source"
+"Stegastes baldwini","rocky-reef","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-baldwini.html","source"
+"Stegastes beebei","rocky-reef","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-beebei.html","source"
+"Stegastes diencaeus","rocky-reef","coral-reef","lagoon","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-diencaeus.html","source"
+"Stegastes flavilatus","rocky-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-flavilatus.html","source"
+"Stegastes fuscus","rocky-reef","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-fuscus.html","source"
+"Stegastes imbricatus","rocky-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-imbricatus.html","source"
+"Stegastes lacrymatus","lagoon","rocky-reef","rubble","coral-reef","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-lacrymatus.html","source"
+"Stegastes leucostictus","seagrass","rocky-reef","coral-reef","sandy-bottom","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-leucostictus.html","source"
+"Stegastes limbatus","rocky-reef","coral-reef","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-limbatus.html","source"
+"Stegastes lividus","rocky-reef","tide-pool","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-lividus.html","source"
+"Stegastes nigricans","","lagoon","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-nigricans.html","source"
+"Stegastes otophorus","freshwater","estuary","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-otophorus.html","source"
+"Stegastes partitus","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Stegastes-partitus.html","source"
+"Stegastes pelicieri","rocky-reef","crevice","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-pelicieri.html","source"
+"Stegastes pictus","rocky-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-pictus.html","source"
+"Stegastes planifrons","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Stegastes-planifrons.html","source"
+"Stegastes punctatus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-punctatus.html","source"
+"Stegastes rectifraenum","rocky-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-rectifraenum.html","source"
+"Stegastes rocasensis","lagoon","rocky-reef","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Stegastes-rocasensis.html","source"
+"Stegastes variabilis","coral-reef","","","","site-attached","offshore-reef","inshore-reef","https://www.fishbase.se/summary/Stegastes-variabilis.html","source"
+"Stegastes xanthurus","coral-reef","","","","site-attached","inshore-reef","","https://www.fishbase.se/summary/Stegastes-xanthurus.html","source"
+"Teixeirichthys jordani","seagrass","sandy-bottom","","","free-swimming","inshore-reef","","https://www.fishbase.se/summary/Teixeirichthys-jordani.html","source"
+Abudefduf abdominalis	rocky-bottom	offshore-reefs	inshore-reefs	surge-pool
+Abudefduf bengalensis	inshore-reef	lagoon
+Abudefduf concolor	inshore-reefs	rocky-reefs
+Abudefduf conformis
+Abudefduf declivifrons	rocky-reefs
+Abudefduf hoefleri	rocky-reefs
+Abudefduf lorenzi	coastal-area
+Abudefduf margariteus	coral-reef	coastal-reef
+Abudefduf natalensis	rocky-inshore	offshore-reef
+Abudefduf nigrimargo
+Abudefduf notatus
+Abudefduf saxatilis	tide-pool	shallow-reef
+Abudefduf septemfasciatus	outer-reef	shallow-area
+Abudefduf sexfasciatus	rocky-reefs	coral-reefs	offshore-reefs	inshore-reefs
+Abudefduf sordidus	rocky	lagoon	flat-shoreline	tide-pool
+Abudefduf sparoides	rocky-reef	coral-reef	shallow-water	lagoon	bottom-area	flat-area
+Abudefduf taurus	inshore-reef	rocky-reef
+Abudefduf troschelii	coral-reef	rocky-reef
+Abudefduf vaigiensis	outer-reef	rocky-reef	inshore-reef
+Abudefduf whitleyi	shallow-water	outer-periphery	individual-reef
+Acanthochromis polyacanthus	coral-reefs	offshore-reefs	inshore-reefs
+Altrichthys alelia	coral
+Altrichthys azurelineatus	shore	shallow-depth
+Altrichthys curatus	shelter	shore
+Amblyglyphidodon aureus	outer-reef	steep-reef	deep-lagoon	habitat	coral
+Amblyglyphidodon batunaorum	silty-lagoon	coral-colony
+Amblyglyphidodon curacao	lagoon	coastal-embayment	reef	outer-reef
+Amblyglyphidodon flavilatus	coral-reefs	outer-slope
+Amblyglyphidodon flavopurpureus	outer-reef	black-coral
+Amblyglyphidodon indicus
+Amblyglyphidodon leucogaster	lagoon	reef	outer-reef
+Amblyglyphidodon melanopterus
+Amblyglyphidodon orbicularis
+Amblyglyphidodon silolona	coral
+Amblyglyphidodon ternatensis	-rich-area	coral-area	coastal	reef	coral	rock
+Amblypomacentrus annulatus	sand-flat
+Amblypomacentrus breviceps	coastal-area
+Amblypomacentrus clarus
+Amblypomacentrus kuiteri	coral-outcrop	rubble
+Amblypomacentrus tricinctus	inshore-reef	coral	rock	sandy-area
+Amphiprion akallopisos	inshore-reef	shallow-reef	habitat
+Amphiprion akindynos	lagoon	outer-reefs
+Amphiprion allardi	lagoon	outer-reef
+Amphiprion barberi	coral-reef	anemone
+Amphiprion biaculeatus	reef	coastal-water	lagoon
+Amphiprion bicinctus	lagoon	outer-reef
+Amphiprion chagosensis	seaward	reef	lagoon	reef	reef-top
+Amphiprion chrysogaster	lagoon	outer-reefs
+Amphiprion chrysopterus	outer-reef
+Amphiprion clarkii	lagoon	outer-reef
+Amphiprion ephippium	coastal-water	silty-water
+Amphiprion frenatus	lagoon	reef
+Amphiprion latezonatus	coral-reef	rocky-reef
+Amphiprion latifasciatus	lagoon	outer-reefs	area
+Amphiprion leucokranos	lagoon	outer-reef
+Amphiprion mccullochi	lagoon	rocky-reefs
+Amphiprion melanopus	outer-reef
+Amphiprion nigripes	reef
+Amphiprion ocellaris	coral-reef	anemone
+Amphiprion omanensis	inshore-reefs
+Amphiprion pacificus	anemone	Heteractis
+Amphiprion percula	reef
+Amphiprion perideraion	reef
+Amphiprion polymnus	silty-lagoon
+Amphiprion rubrocinctus	coastal	lagoon	reef
+Amphiprion sandaracinos	lagoon	outer-reefs
+Amphiprion sebae	coastal-water	lagoon
+Amphiprion tricinctus	lagoon	outer-reef
+Azurina atrilobata	rocky-reefs	coral-reefs
+Azurina brevirostris
+Azurina cyanea	outer-reef	deep-reef
+Azurina elerae	crevice	outer-reef	steep-reef
+Azurina hirundo	inshore-reefs	rocky-reefs
+Azurina lepidolepis	rich-area	lagoon	seaward	reef
+Azurina multilineata	patch	reef
+Cheiloprion labiatus	coral	shallow-lagoon	reef
+Chromis abyssicola	offshore-trawl	deep-trawl
+Chromis abyssus	sand	rubble	rock
+Chromis albicauda	area	western-shore	northern-shore
+Chromis albomaculata	rocky-bottom	offshore-reef
+Chromis alpha	clear-lagoon	seaward	reef
+Chromis alta	rocky-reef	coral-reef
+Chromis anadema
+Chromis analis	outer-reef	steep-reef	rocky-bottom
+Chromis atripectoralis	clear-lagoon	reef
+Chromis bowesi
+Chromis cadenati	rocky-reefs	offshore-trawl	deeper-trawl
+Chromis chromis	rocky-reef	seagrass
+Chromis chrysura	rocky-reefs	coral-reefs	outer-reefs
+Chromis cinerascens	coral-reef
+Chromis circumaurea	rock
+Chromis crusma	rocky-reef
+Chromis degruyi	reef	rock
+Chromis dispila
+Chromis earina	outer-reef	steep-reef	rocky-outcrop
+Chromis flavapicis	rocky
+Chromis flavaxilla	reef
+Chromis fumea	rocky-reef	coral-reef
+Chromis gunting
+Chromis hangganan
+Chromis hypsilepis	rocky-reef
+Chromis insolata	seaward-reefs	outer-reefs
+Chromis kennensis
+Chromis klunzingeri	coral-reefs	offshore-reefs	inshore-reefs
+Chromis limbata	rocky-reef	sand	area
+Chromis limbaughi	rocky-reef
+Chromis lubbocki	inshore-reef	rocky-reef
+Chromis mamatapara	rocky-patch	reef	sandy-area	large-area	rocky-patch	reef	sandy-area	coral	rock	sandy	area	dead-reefs
+Chromis mirationis	rocky-bottom	offshore-trawling	deep-trawling
+Chromis nitida	outer-edge	certain-reefs	coralliferous-area	rich-area
+Chromis notata	rocky-reefs	coral-reefs	offshore-reefs	inshore-reefs
+Chromis okamurai
+Chromis opercularis	outer-reef	deep-lagoon
+Chromis ovalis
+Chromis pamae
+Chromis pelloura	outer-reef	steep-reef
+Chromis pembae	outer-reef	steep-reef
+Chromis punctipinnis	rock
+Chromis randalli	rocky-reefs	offshore-reefs	inshore-reefs
+Chromis sanctaehelenae	rocky	rubble	reef
+Chromis scotochiloptera	seaward-reef	large-crevice
+Chromis scotti	outer-slope	deeper-patch	reef
+Chromis ternatensis	coral	clear-lagoon	outer-reef
+Chromis tingting	deep-reefs	coral-cover	shallower
+Chromis vanbebberae	reef	habitats	rocky-reef	coral-outcropping
+Chromis verater	rocky-area
+Chromis viridis	branching	coral	area	subtidal-reef	lagoon
+Chromis weberi	outer-reef
+Chromis woodsi	offshore-trawl	deep-trawl
+Chromis xanthochira	outer-reef	deep-reef
+Chromis xanthopterygia	rocky-reefs	coral-reefs
+Chromis xanthura	outer-reef	steep-reef	coastal-reef	shallow-reef
+Chromis yamakawai
+Chrysiptera biocellata	inner-reef	shallow-lagoon	rubble	rocky-outcrop
+Chrysiptera brownriggii	rubble	outermost-reach	reef
+Chrysiptera burtjonesi
+Chrysiptera caeruleolineata	rubble	rocky-outcrop	sand	outer-reef	steep-reef	rich-coral	rubble	deep-slope
+Chrysiptera caesifrons	rocky-substrate
+Chrysiptera chrysocephala	area	lagoon	reef
+Chrysiptera cyanea	rubble	coral	lagoon	subtidal-reef
+Chrysiptera ellenae
+Chrysiptera flavipinnis	rubble	coral-outcrop	sandy-area
+Chrysiptera galba	outer-reef
+Chrysiptera giti	reefs
+Chrysiptera glauca	rubble	reef	rock	intertidal-reef	sandy-beach
+Chrysiptera hemicyanea	shore	reef	branching	coral
+Chrysiptera maurineae
+Chrysiptera oxycephala	live-coral	lagoon	inshore-reefs
+Chrysiptera papuensis
+Chrysiptera parasema	rich-area	lagoon	coral-reefs	inshore-reefs
+Chrysiptera rapanui
+Chrysiptera rex	coastal	outer-reef
+Chrysiptera rollandi	lagoon	outer-reef
+Chrysiptera sinclairi	coral-reefs
+Chrysiptera springeri	rich-area	lagoon	coral-reefs	inshore-reefs
+Chrysiptera starcki	rocky-outcrop	crevice	outer-reef
+Chrysiptera talboti	rich-area	seaward	reef	deep-lagoon
+Chrysiptera taupou	coral-reef	offshore-reef
+Chrysiptera traceyi	reef
+Chrysiptera unimaculata	algal-reefs	coastal-reefs	rubble	rock	reef-flat
+Chrysiptera uswanasi	typical-habitat	lagoonal-reefs	open-branching	large-branching	coral-colony
+Dascyllus abudafur
+Dascyllus albisella	rocky-bottom	coral-bottom
+Dascyllus aruanus	shallow-lagoon	subtidal-reef
+Dascyllus carneus	branch	coral	offshore-reefs	inshore-reefs
+Dascyllus flavicaudus	rocky-reef	coral-reef
+Dascyllus marginatus	coral
+Dascyllus melanurus	lagoon	inlet
+Dascyllus reticulatus	outer-lagoon	seaward	reef
+Dascyllus strasburgi	rocky-reef	coral-reef
+Dascyllus trimaculatus	rocky-reef	coral-reef	anemone	coral-head
+Dischistodus chrysopoecilus	coral-outcrop	seagrass	silty-area	lagoon	coastal-reef
+Dischistodus melanotus	lagoon	reef	small-patch	sand	rubble
+Dischistodus perspicillatus	small-patch	reef	shallow-lagoon	seagrass	habitat
+Dischistodus prosopotaenia	lagoon	coastal-reef	silty-area
+Dischistodus pseudochrysopoecilus	lagoon	reef	area	coral-thicket	open-area	sand
+Hemiglyphidodon plagiometopon	lagoon	coastal-reef	branch	coral	coral-basis
+Hypsypops rubicundus	rocky-bottom	crevice
+Lepidozygus tapeinosoma	seaward	reef	lagoon	patch	reef
+Mecaenichthys immaculatus	inshore-reef	weedy-reef	rocky-reef
+Microspathodon bairdii	inshore-reefs	rocky-reefs
+Microspathodon chrysurus	coral-reefs	branch	coral
+Microspathodon dorsalis	rocky-reef
+Neoglyphidodon bonang	coral-reef
+Neoglyphidodon carlsoni	reefs
+Neoglyphidodon melas	rich-area	lagoon	reef	soft-coral
+Neoglyphidodon nigroris
+Neoglyphidodon oxyodon	reef	lagoon	inshore-reefs
+Neoglyphidodon polyacanthus	lagoon	deeper-surge	reefs
+Neoglyphidodon thoracotaeniatus	rich-area	outer-reef
+Neopomacentrus aktites	rocky	crevice	coral-formation	shelter
+Neopomacentrus anabatoides	coral	rock
+Neopomacentrus aquadulcis	freshwater
+Neopomacentrus azysron	outer-reef	deeper-surge
+Neopomacentrus bankieri	coastal-reef	coral	rock
+Neopomacentrus cyanomos	coral-reefs	offshore-reefs	inshore-reefs	outer-reef	habitat
+Neopomacentrus filamentosus
+Neopomacentrus fuliginosus	inshore-area	rock
+Neopomacentrus metallicus	outer-reef
+Neopomacentrus miryae	coral-reefs
+Neopomacentrus nemurus	coral-reef	area	silting
+Neopomacentrus sindensis	inshore-reef	coral-outcrop	rock
+Neopomacentrus sororius	coral-reefs	rocky-bottom
+Neopomacentrus taeniurus	mangrove	estuary	freshwater	freshwater
+Neopomacentrus violascens	lagoon	coastal-reefs	shallow-habitat	deep-sand	coral-rubble	rocky-substrate
+Neopomacentrus xanthurus	coral-reef
+Nexilosus latifrons	rocky-coast
+Parma alboscapularis	rocky-reef
+Parma mccullochi	rocky-reef
+Parma microlepis	rocky-reef
+Parma occidentalis	rocky-reefs	coral-reefs
+Parma oligolepis	non-coral-reef	coastal
+Parma victoriae	rocky-reefs
+Plectroglyphidodon altus	rocky-reefs
+Plectroglyphidodon apicalis	coral-outcrop	rubble	area	lagoon	outer-edge	reefs
+Plectroglyphidodon aureus	coral-reefs	offshore-reefs	inshore-reefs
+Plectroglyphidodon dickii	surge-area	rich-area	clear-lagoon	seaward	reef
+Plectroglyphidodon emeryi	outer-rocky	coral-reefs
+Plectroglyphidodon fasciolatus	coral-reef	rocky-reef
+Plectroglyphidodon gascoynei	rocky-reef	coral-reef
+Plectroglyphidodon imparipennis	seaward	reef
+Plectroglyphidodon insularis	shallow-rock	coral-reefs
+Plectroglyphidodon johnstonianus	outer-reef	coral-habitat	rich-habitat
+Plectroglyphidodon leucozonus	shoreline	seaward	reef
+Plectroglyphidodon luteobrunneus
+Plectroglyphidodon marginatus
+Plectroglyphidodon obreptus	rocky	reef-area	dead-area	silt
+Plectroglyphidodon phoenixensis	reef
+Plectroglyphidodon randalli	inshore-reefs	rocky-reefs
+Plectroglyphidodon sagmarius
+Pomacentrus adelus	seaward-reef	coastal-reef	open-rubble	patch
+Pomacentrus albiaxillaris
+Pomacentrus albicaudatus	coral-reefs	offshore-reefs	inshore-reefs
+Pomacentrus alexanderae	lagoon	inshore	offshore-reefs
+Pomacentrus alleni	rubble	dead-reef	outer-slope	inshore-area
+Pomacentrus amboinensis	lagoon	coastal-reef	outer-reef
+Pomacentrus aquilus	coral-reefs
+Pomacentrus arabicus
+Pomacentrus armillatus	silty-reef	hard-coral	soft-coral
+Pomacentrus aurifrons	coastal	reef	offshore-platform	reef
+Pomacentrus auriventris	inner-reef	rubble	coral
+Pomacentrus australis	outer-reef
+Pomacentrus baenschi	coral-reefs	offshore-reefs	inshore-reefs
+Pomacentrus bankanensis	lagoon	reef	outer-reef
+Pomacentrus brachialis	outer-reef	reef
+Pomacentrus burroughi	coastal-reef	open-rubble	patch
+Pomacentrus caeruleopunctatus
+Pomacentrus caeruleus	outer-reef	rubble	reef
+Pomacentrus callainus	shallow-reef	coral	shelter
+Pomacentrus chrysurus	sandy-area	lagoon	inshore-reef	rock	coral-outcrop
+Pomacentrus coelestis	reef	rubble
+Pomacentrus flavioculus	outer-reef	lagoon	coral-formation
+Pomacentrus flavoaxillaris
+Pomacentrus geminospilus	coastal-region	silty-region
+Pomacentrus grammorhynchus	lagoon	branching	coral
+Pomacentrus imitator	outer-reef
+Pomacentrus lepidogenys	lagoon	outer-reef
+Pomacentrus leptus	coral-reefs
+Pomacentrus littoralis	rock	rubble	coral-reef
+Pomacentrus magniseptus	usual-habitat	outer-reef	cliff
+Pomacentrus melanochir	coral-reefs
+Pomacentrus micronesicus
+Pomacentrus microspilus	coral-reef	silt-affected-reef	reef
+Pomacentrus milleri	reef	areas	dead-coral
+Pomacentrus moluccensis	clear-lagoon	seaward	reef	branching	coral
+Pomacentrus nagasakiensis	sandy-area	lagoon	reef
+Pomacentrus nigriradiatus
+Pomacentrus nigromanus	reef	shelter-water	reef
+Pomacentrus nigromarginatus	outer-reef	coral-reefs	rocky-outcrop	sandy-area
+Pomacentrus pavo	sandy-area	lagoon	reef	patch	reef	coral-head	rubble
+Pomacentrus philippinus	lagoon	reef
+Pomacentrus reidi	outer-reef	steep-reef	deep-lagoon
+Pomacentrus similis	coral-reef
+Pomacentrus smithi	coral-patch	live-patch	silty-area	lagoon	inshore-reef
+Pomacentrus spilotoceps	coral-reeg	shallow-reeg	calm-area
+Pomacentrus stigma	inshore-reefs
+Pomacentrus sulfureus	coral-reefs	area	coral-growth
+Pomacentrus taeniometopon	lagoon	coastal-reef	outer-reef
+Pomacentrus trichrourus	coral-reefs	offshore-reefs	inshore-reefs
+Pomacentrus trilineatus	coral-reef	inshore-area	rocky-area
+Pomacentrus tripunctatus	shallow-water	small-rock	sandy-bottom	coral-rubbles
+Pomacentrus vaiuli
+Pomacentrus vatosoa	reefs
+Pomacentrus wardi	lagoon	outer-reef
+Pomacentrus xanthosternus	coral-reef	lagoon	offshore-area
+Pomachromis fuscidorsalis	area	seaward	outer-channel	reef
+Pomachromis richardsoni	rocky-reefs	coral-reefs	area
+Pristotis obtusirostris
+Pycnochromis abruptus	shallow-water
+Pycnochromis acares	seaward	reef
+Pycnochromis alleni	outer-reefs	rocky-reefs	coral-reefs
+Pycnochromis amboinensis	rich-area	clear-lagoon	seaward	reef
+Pycnochromis atripes	rich-area	coral-area	outer-reef
+Pycnochromis caudalis	outer-reef	steep-reef
+Pycnochromis delta	outer-reef	steep-reef	coral-growth
+Pycnochromis dimidiatus	reef
+Pycnochromis fatuhivae	rocky
+Pycnochromis fieldi	coral-reef	lagoon	outer-reef	area
+Pycnochromis hanui	coral-reefs	offshore-reefs	inshore-reefs
+Pycnochromis howsoni	rich-area	lagoon	outer-reef	steep-reef	crevice
+Pycnochromis iomelas	outer-reef
+Pycnochromis leucurus	deep-patch	reef
+Pycnochromis lineatus	outer-reef	coral-growth
+Pycnochromis margaritifer	coastal-reef	coral-reef	rocky	reef
+Pycnochromis nigrurus	seaward	reef	outer-reef	rich-reef
+Pycnochromis ovatiformis	rocky-reefs	coral-reefs	outer-reefs	shallow-water
+Pycnochromis pacifica
+Pycnochromis retrofasciatus	rich-area	clear-lagoon	seaward	reef
+Pycnochromis vanderbilti	outer-reef	inshore-reefs	rocky-reefs
+Similiparma hermani	rocky-inshore	area
+Similiparma lurida	inshore-area	rocky-area	sand	tide-pool
+Stegastes acapulcoensis	rocky-reef
+Stegastes adustus	rocky-shore
+Stegastes albifasciatus
+Stegastes arcifrons	rocky-reef	coral-reef
+Stegastes baldwini	rocky-reef	coral-reef
+Stegastes beebei	rocky-reef	coral-reef
+Stegastes diencaeus	rocky-reef	coral-reef	lagoon	inshore-area
+Stegastes flavilatus	inshore-reef	rocky-reef
+Stegastes fuscus	rocky-bottom	coral-bottom	shore	area
+Stegastes imbricatus	rocky-area
+Stegastes lacrymatus	clear-lagoon	seaward	reef	area	mixed-coral	rubble	coral-rock	dead-rock
+Stegastes leucostictus	seagrass	rocky-reefs	coral-reefs	sandy-area
+Stegastes limbatus	inshore-boulder	area
+Stegastes lividus	shallow-water
+Stegastes nigricans	reef-flats	lagoon	reef
+Stegastes otophorus	freshwater	estuary	freshwater-stream
+Stegastes partitus	coral-reef	shallow-reef	patch	reef	deeper-water
+Stegastes pelicieri	rocky-reef	crevice
+Stegastes pictus	rocky-reef	shallow-reef
+Stegastes planifrons	coral-reefs	offshore-reefs	inshore-reefs
+Stegastes punctatus	coral-reef	area	coral
+Stegastes rectifraenum	inshore-reef	rocky-reef
+Stegastes rocasensis	outer-reef	shallow-reef	lagoon	rock	pool
+Stegastes variabilis	coral-reefs	offshore-reefs	inshore-reefs
+Stegastes xanthurus
+Teixeirichthys jordani	seagrass	sandy-bottom

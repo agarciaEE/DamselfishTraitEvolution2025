@@ -1,0 +1,261 @@
+version
+####################
+##### COLOR ANALYSES USING Damselfishes webdata pictures
+###
+# make sure these dependencies are installed:
+###
+library(patternize)
+library(factoextra)
+library(rasterVis)
+library(vegan)
+library(reshape)
+library(rasterVis)
+library(raster)
+library(devtools)
+library(Morpho)
+library(sp)
+library(spatialEco)
+###
+# The viridis package provides colour blind friendly colour schemes
+###
+library(viridis)
+library(colorspace)
+## Additional and handy packages
+library(plyr)
+library(stringr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+## comparative phylogenetic methods packages
+library(ape)
+library(phytools)
+library(geiger)
+library(phangorn)
+library(OUwie)
+library(nlme)
+library(BAMMtools)
+library(picante)
+library(coda)
+library(caper)
+require(mvtnorm)
+library(rfishbase)
+library(tidyverse)
+library(taxize)
+#load ColorAR package
+#devtools::install_github("agarciaEE/ColorAR", auth_token = "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")
+#install.packages("~/Unil/Research/Rpackages/ColAR", type = "source", repos = NULL)
+library(ColorAR)
+library(geomorph)
+
+## set workfolder
+path = "~/Unil/Research/5_Damselfish_evo/DamselTraitEvol2025/"
+setwd(path) ###########
+
+source("./scripts/custom_functions.R")
+
+damsel_tree_subset <- read.tree("./data/damsel_subset.tre")
+
+imgs_path <- "./data/images/TransIntImgPNGColorCorrectedMasked/"
+img_filenames <- list.files(imgs_path, full.names = TRUE)
+img_names <- sub("\\.[a-z]*$", "", basename(img_filenames))
+
+# number of images
+length(img_names)
+
+# mask background
+Rmask <- raster::stack("./data/mask.png")[[4]]
+Rmask[Rmask == 0] = NA
+Rmask[Rmask > 0] = 1
+Rmask <- raster::flip(Rmask, "y")
+
+imgTransInt.list_res300 <- makeList(img_names, 'image', prepath = imgs_path, extension = ".png",
+                                    layers = 1:3, flip = "y", mask = Rmask)
+
+# load("./rdata/img1183_PCA1-8_whole.RData")
+
+# Get species names from image ID
+species_names <- sapply(img_names, function(i) {
+  # Extract species name from the first part of the string (before the first underscore)
+  name <- strsplit(i, "_")[[1]][1]
+  
+  # Capitalize the first letter and replace any hyphen with an underscore
+  name <- paste0(toupper(substr(name, 1, 1)), substr(name, 2, nchar(name)))
+  name <- sub("-", "_", name)
+  
+  return(name)
+})
+
+# get unique species
+species <- unique(species_names)
+
+# get species in tree
+tree_species <- damsel_tree_subset$tip.label
+
+# check names in case misspeling or mismatch between image and tree species
+check.names <- as.data.frame(t(sapply(species[!species %in% tree_species], function(i) check_spelling(i, tree_species))))
+mispelled_tree <- check.names[check.names$score != 1,]
+mispelled_tree
+
+# Correct misspelled species names
+species_names[species_names == "Chrysiptera_maurinae"] = "Chrysiptera_maurineae"
+species_names[species_names == "Plectroglyphidodon_leucozona"] = "Plectroglyphidodon_leucozonus"
+species_names[species_names == "Pomacentrus_caeruleopuncatus"] = "Pomacentrus_caeruleopunctatus"
+species_names[species_names == "Pycnochromis_lineata"] = "Pycnochromis_lineatus"
+species_names[species_names == "Stegastes_flaviatus"] = "Stegastes_flavilatus"
+
+# Correct image name IDs
+img_names <- paste0(species_names, "-", sapply(strsplit(img_names, "_"), function(i) i[[2]]))
+names(imgTransInt.list_res300) <- img_names
+names(species_names) <- img_names
+
+# obtain again unique species
+species <- unique(species_names)
+
+# check missing species 
+species[!species %in% tree_species] # 12 missing species in the tree
+tree_species[!tree_species %in% species] # 0 missing species from image data
+
+
+# Reorder species based on the tree 
+species <- intersect(tree_species, species)
+n_sp <- length(species)
+
+# Assign color to species
+genus <- sapply(species, function(i) strsplit(i, "_")[[1]][1])
+names(genus) <- species
+genus_cols_legend <- setNames(colorRampPalette(viridis::viridis(9))(n=length(unique(genus))),
+                              unique(genus))
+genus_cols <- setNames(rep(genus_cols_legend)[as.factor(genus)], names(genus))
+
+saveRDS(imgTransInt.list_res300, "./rdata/imgTransInt.list_res300.rds")
+
+######################################################################
+#############                 Run image PCA             ##############
+######################################################################
+imgPCA_1183damsel <- imagePCA(imgTransInt.list_res300, tree = NULL, pcs = 1:8, impute.NA = TRUE, 
+                              res = NULL, interpolate = FALSE, scale = TRUE, plot = FALSE) 
+
+saveRDS(imgPCA_1183damsel, "./rdata/imgPCA_1183damsel_scaled.RDS")
+
+imgPCA_1183damsel <- readRDS("./rdata/imgPCA_1183damsel_scaled.RDS")
+imgTransInt.list_res300 <- readRDS("./rdata/imgTransInt.list_res300.rds")
+
+###################################
+##### species mean images
+###################################
+sp.mean_imgList <- list()
+for (i in species){
+  
+  idx <- which(species_names == as.character(i))
+  imgs <- imgTransInt.list_res300[idx]
+  RR <- mean(stack(sapply(imgs, function(x) x[[1]]), na.rm =  T))
+  GG <- mean(stack(sapply(imgs, function(x) x[[2]]), na.rm =  T))
+  BB <- mean(stack(sapply(imgs, function(x) x[[3]]), na.rm =  T))
+  sp.mean_imgList[[i]] <- stack(RR, GG, BB)
+  names(sp.mean_imgList[[i]]) <- c("R", "G", "B")
+}
+
+###################################
+##### plot image PCA
+###################################
+for (pc in c(1, 3, 5, 7)) {
+  
+  pdf(paste0("./figures/1183imgs_PC", pc, pc +1, ".pdf"), width = 14, height = 11)
+  plot.imgPCA(imgPCA_1183damsel, pcs = pc:(pc+1), group_vector = species_names[names(imgPCA_1183damsel$images)], group_imgList = sp.mean_imgList,
+              show.sd = FALSE, display =  "images", pixel.contributions = TRUE,
+              color.contributions = NULL, img.size = 0.1)
+  dev.off()
+}
+
+
+colpc_legend_images(imgPCA = imgPCA_1183damsel, pcs = 1:8, col = "grey40", cex_main = 0, cex_text = 4.5,
+                    out_dir="./figures/pca_legends")
+
+###################################
+##### Run image PCA on species mean images
+###################################
+
+imgPCA_1183damsel_spmean <- imagePCA(sp.mean_imgList, tree = NULL, pcs = 1:8, impute.NA = TRUE, 
+                                     res = NULL, interpolate = FALSE, scale = TRUE, plot = FALSE) 
+
+#############################################################nulldefault()#########
+##### plot image PCA
+###################################
+for (pc in c(1, 3, 5, 7)) {
+  
+  pdf(paste0("./figures/1183imgs_PC", pc, pc +1, "_spmean.pdf"), width = 14, height = 11)
+  plot.imgPCA(imgPCA_1183damsel_spmean, pcs = pc:(pc+1), 
+              show.sd = FALSE, display =  "images", pixel.contributions = TRUE,
+              color.contributions = c("#F4A6A6", "#A6C8F4"), img.size = 0.1)
+  dev.off()
+}
+
+###################################
+##### Average PC scores by species
+###################################
+
+pcdata = as.data.frame(imgPCA_1183damsel$pca$x[,1:8])
+pcdata$species <- species_names[names(imgPCA_1183damsel$images)]
+
+# remove species not in tree
+pcdata <- pcdata[pcdata$species %in% species,]
+
+species_pcdata <- pcdata %>%
+  group_by(species) %>%
+  summarise(across(where(is.numeric), list(mean = mean, sd = sd), .names = "{.col}_{.fn}"))
+
+write.csv(species_pcdata, "./data/1188img_colorPCA_spmean.csv", row.names = F)
+
+######################################################################
+############                 Run morpho PCA             ##############
+######################################################################
+
+imglist_nobg <- readRDS("./rdata/imglist_nobg.rds")
+
+# load traits
+eco_traits_subset <- read.csv("./data/eco_traits_subset_final.csv", row.names = 1)
+morpho_gpa <- readRDS("./rdata/1166morho_gpagen.RDS")
+morpho_data <- read.csv("./data/1166damsel_morpho.csv", row.names = 1)
+
+sp_names <- setNames(morpho_data$species, rownames(morpho_data))
+
+# Extract continuous trait columns
+is_continuous <- sapply(morpho_data, is.numeric)
+morpho_traits <- colnames(morpho_data)[is_continuous]
+
+# Remove depth-related traits from morphology analysis
+sp_morpho <- eco_traits_subset[tree_species,morpho_traits]
+
+colSums(apply(sp_morpho, 2, is.na))
+
+# Run phylogenetic PCA
+morphoPCA <- phytools::phyl.pca(damsel_tree_subset, sp_morpho, method = "lambda", mode = "corr")
+
+# Convert to prcomp-like object (optional, if you need consistency with other workflows)
+morphoPCA <- phytools::as.prcomp(morphoPCA)
+
+saveRDS(morphoPCA, "./rdata/morpho_phyPCA.rds")
+
+# Extract PC scores
+morphoPCs <- morphoPCA$x
+
+for (pc in c(1, 3, 5, 7)) {
+  pcx <- pc
+  pcy <- pc+1
+  
+  pdf(paste0("./figures/morphoPCA_", pcx, pcy, ".pdf"), width = 14, height = 11)
+  plot_morphoPCA(morphoPCA, morpho_gpa, sp_names, genus_cols, imglist_nobg,
+                 pcx = pcx, pcy = pcy, display = "images", cex.labels = 1.5, r = 0.5) 
+  dev.off()
+  
+}
+
+
+morphopc_legend_images(morphoPCA$x, morpho_gpa$coords, sp_names,
+                       show.grid = FALSE, cex_text = 2.5,
+                       show.outline = TRUE, show.points = FALSE, 
+                       col_body = "grey20", col_eye = "white",
+                       fill_body = "grey20", fill_eye = "white", lwd_body = 5,
+                       lwd_bone=1, col_preop="grey80", col_opercle="grey80",
+                       pcs = 1:8, out_dir="./figures/pca_legends")

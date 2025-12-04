@@ -1,0 +1,17 @@
+
+# Ignore folders
+rdata/
+raw_data/
+data/images/
+figures/
+
+# Ignore system files (macOS / Windows)
+.DS_Store
+Thumbs.db
+
+# Ignore presentations
+*.pptx
+
+# Ignore compressed files
+*.zip
+*.tar

@@ -2,7 +2,7 @@ lib <- c("ape", "picante", "sp", "geiger", "wesanderson",
          "hypervolume", "car", "bayou", "nlme", "l1ou", 
          "parallel", "genlasso", "mvMORPH", "phyloTop",
          "lme4", "mgcv", "phytools", "corHMM", "ggpmisc",
-         "lmtest", "ColorAR", "castor", "tibble",
+         "lmtest", "ColorAR", "castor", "tibble", "phyloTop",
          "ggplot2", "ggpubr", "gridExtra")
 sapply(lib, library, character.only = T)
 
@@ -10,23 +10,22 @@ sapply(lib, library, character.only = T)
 #   Settings
 #=============================#
 # set working directory
-setwd("~/Unil/Research/5_Damselfish_evo/")
+setwd("~/Unil/Research/5_Damselfish_evo/DamselTraitEvol2025/")
 
-# load custom functions
-source("./Rscripts/custom_functions.R")
-
-res_folder <- "new_results"
+res_folder <- "results"
 dir.create(res_folder)
-dir.create("new_figures/univariate/")
+dir.create("figures/univariate/", recursive = TRUE)
+dir.create("results/univariate/", recursive = TRUE)
 
 col.palette <- sample(unique(as.character(sapply(c("Zissou1", "Darjeeling1", "Darjeeling2", "FantasticFox1"), function(x) wes_palette(x, 5)))))
 ncores <- 5
 geo_model = FALSE
 
 # load input data and custom functions
-source("./Rscripts/A0.Input_data.R")
+source("./scripts/A1.Input_data.R")
 
-pomacentridae_regs <- BioGeoBEARS::getranges_from_LagrangePHYLIP("./BioGeo/input/CB2021_pomacentridae_geodata_input.txt")@df
+pomacentridae_regs <- BioGeoBEARS::getranges_from_LagrangePHYLIP("./data/CB2013_pomacentridae_geodata_input.txt")@df
+region_names <- setNames(area_names <- c("IO", "IAA", "CPO", "EPO", "AO", "TS"), LETTERS[1:6])
 
 #=============================#
 # Trait Evolution Models
@@ -37,7 +36,7 @@ trait_evo_res <- list()
 trait_evo_fits <- list()
 
 for (v in 1:ncol(colorPCs)) {
-  trait_vector <- setNames(scale(colorPCs[tree$tip.label, v]), tree$tip.label)
+  trait_vector <- setNames(scale(colorPCs[tree$tip.label, v])[,1], tree$tip.label)
   
   # Fit BM, WN, OU
   cat("BM...\n")
@@ -81,17 +80,25 @@ DD_evo_results <- list()
 DD_evo_fits <- list()
 
 for (v in 1:ncol(colorPCs)) {
-  trait_vector <- setNames(scale(colorPCs[tree$tip.label, v]), tree$tip.label)
+  cat(sprintf("Working on color PC%s...\n", v))
+  
+  trait_vector <- setNames(scale(colorPCs[tree$tip.label, v])[,1], tree$tip.label)
   
   # Fit models with error handling
+  cat("Running Matching Competition model....\n")
   fit_MC <- tryCatch({ fit_t_comp(tree, trait_vector, model = "MC") }, error = function(e) NULL)
+  cat("Running Linear Diversity Dependent model....\n")
   fit_DDlin <- tryCatch({ fit_t_comp(tree, trait_vector, model = "DDlin") }, error = function(e) NULL)
+  cat("Running Exponential Diversity Dependent model....\n")
   fit_DDexp <- tryCatch({ fit_t_comp(tree, trait_vector, model = "DDexp") }, error = function(e) NULL)
   
   if (geo_model) {
     # Fit models with error handling
+    cat("Running Matching Competition geo model....\n")
     fit_MC_geo <- tryCatch({ fit_t_comp(tree, trait_vector, model = "MC", geography.object=geo_obj) }, error = function(e) NULL)
+    cat("Running Linear Diversity Dependent geo model....\n")
     fit_DDlin_geo <- tryCatch({ fit_t_comp(tree, trait_vector, model = "DDlin", geography.object=geo_obj) }, error = function(e) NULL)
+    cat("Running Exponential Diversity Dependent geo model....\n")
     fit_DDexp_geo <- tryCatch({ fit_t_comp(tree, trait_vector, model = "DDexp", geography.object=geo_obj) }, error = function(e) NULL)
   } else {
     fit_MC_geo <- NULL
@@ -196,7 +203,6 @@ for (v in 1:8) {
   saveRDS(DD_evo_fits, "./rdata/uni_morphoPC_DD_models.rds")
 }
 
-### Regional models
 color_DD_evo_results <- readRDS("./rdata/uni_colorPC_DD_res.rds")
 color_evo_results <- readRDS("./rdata/uni_colorPC_res.rds")
 
@@ -215,15 +221,16 @@ sapply(1:length(morpho_evo_results), function(i) {
   res[idx]
 }) 
 
-pomacentridae_regs <- BioGeoBEARS::getranges_from_LagrangePHYLIP("./BioGeo/input/CB2021_pomacentridae_geodata_input.txt")@df
-region_names <- setNames(area_names <- c("IO", "IAA", "CPO", "EPO", "AO", "TS"), LETTERS[1:6])
+rm(DD_evo_results, DD_evo_fits, trait_evo_res, trait_evo_fits)
+gc()
 
+### Regional models
 # control for tree transformation getting tree depth, PD and other metrics to evaluate tree differences...
 DD_evo_reg_results <- list()
 DD_evo_reg_fits <- list()
 region_stats <- list()
 for (v in 1:ncol(colorPCs)) {
-  trait_vector <- setNames(scale(colorPCs[tree$tip.label, v]), tree$tip.label)
+  trait_vector <- setNames(scale(colorPCs[tree$tip.label, v])[,1], tree$tip.label)
 
   region_stats_df <- data.frame()
   fit_reg_List <- list()
@@ -245,7 +252,7 @@ for (v in 1:ncol(colorPCs)) {
       dist_mat <- cophenetic(tree_reg)
       reg_mpd <- mean(dist_mat[upper.tri(dist_mat)])
       reg_mntd <- mean(apply(dist_mat + diag(Inf, nrow(dist_mat)), 1, min))
-      reg_TI <- colless.phylo(tree_reg, normalise = TRUE)
+      reg_TI <- phyloTop::colless.phylo(tree_reg, normalise = TRUE)
     
       # Trait-based metrics
       trait_mean <- mean(trait_vector_reg) 
@@ -335,7 +342,7 @@ DD_evo_reg_results <- list()
 DD_evo_reg_fits <- list()
 region_stats <- list()
 for (v in 1:8) {
-  trait_vector <- setNames(scale(morphoPCs[tree$tip.label, v]), tree$tip.label)
+  trait_vector <- setNames(scale(morphoPCs[tree$tip.label, v])[,1], tree$tip.label)
   
   region_stats_df <- data.frame()
   fit_reg_List <- list()
@@ -357,7 +364,7 @@ for (v in 1:8) {
       dist_mat <- cophenetic(tree_reg)
       reg_mpd <- mean(dist_mat[upper.tri(dist_mat)])
       reg_mntd <- mean(apply(dist_mat + diag(Inf, nrow(dist_mat)), 1, min))
-      reg_TI <- colless.phylo(tree_reg, normalise = TRUE)
+      reg_TI <- phyloTop::colless.phylo(tree_reg, normalise = TRUE)
       
       # Trait-based metrics
       trait_mean <- mean(trait_vector_reg) 
@@ -444,276 +451,3 @@ saveRDS(region_stats_df, "./rdata/uni_morphoPC_tree_region_stats.rds")
 saveRDS(DD_evo_reg_results, "./rdata/uni_morphoPC_DD_reg_res.rds")
 saveRDS(DD_evo_reg_fits, "./rdata/uni_morphoPC_DD_reg_models.rds")
 
-### ================================= ### 
-###           Review results          ###
-### ================================= ### 
-region_names <- setNames(area_names <- c("IO", "IAA", "CPO", "EPO", "AO", "TS"), LETTERS[1:6])
-
-col_region_stats_df <- readRDS("./rdata/uni_colorPC_tree_region_stats.rds")
-for (i in 1:nrow(col_region_stats_df)) {
-  trait <- col_region_stats_df$trait[i]
-  region <- col_region_stats_df$region[i]
-  best_model <- col_region_stats_df$best_model[i]
-  reg_df <- color_res_global[[sub("color", "", trait)]][[2]]
-  col_region_stats_df[i, "model_support"] <- reg_df$Weight[reg_df$region == as.character(region) & reg_df$DeltaAIC == 0]
-}
-
-col_region_stats_long <- tidyr::gather(col_region_stats_df, metric, value, 3:13)
-
-
-# Custom labels for facets
-metric_labels <- c(
-  #"depth" = "Tree depth",
-  "imbalance" = "Tree imbalance",
-  "K" = "Phylogenetic signal (Blomberg's K)",
-  "MNTD" = "Mean Nearest Taxon Distance (MNTD)",
-  "MPD" = "Mean Pairwise Distance (MPD)",
-  "PD" = "Phylogenetic Diversity (PD)",
-  "trait_var" = "Trait variance"
-)
-
-ggplot(col_region_stats_long[col_region_stats_long$metric %in% names(metric_labels), ],
-       aes(x = value, y = model_support)) +
-  geom_point(alpha = 0.7, size = 2) +
-  geom_smooth(method = "lm", color = "skyblue", fill = "lightblue", se = TRUE) +
-  scale_y_continuous(breaks = seq(0,1, 0.2)) +
-  coord_cartesian(ylim = c(0,1.1)) +
-  stat_poly_eq(aes(label = paste(after_stat(eq.label), ..p.value.label.., sep = "~~~")),
-               formula = y ~ x,
-               parse = TRUE,
-               size = 3.5, color = "black") +
-  facet_wrap(. ~ metric, scales = "free", labeller = labeller(metric = metric_labels)) +
-  theme_light(base_size = 14) +
-  labs(x = "Metric value", y = "Best Model Support (Akaike weight)") +
-  theme(strip.background = element_rect(fill = "grey95", color = "grey80"),
-        strip.text = element_text(size = 13, face = "bold", color = "grey20"),
-        plot.margin = margin(35, 20, 25, 20),
-        panel.grid.major = element_line(color = "gray90", linewidth = 0.3),
-        axis.text = element_text(size = 18),
-        axis.title = element_text(size = 20, vjust = 0, hjust = 0.5),
-        legend.position = "right",
-        legend.title = element_text(face = "bold"),
-        legend.key.size = unit(0.8, "lines"),
-        panel.spacing = unit(1, "lines"),
-  )
-ggsave("./new_figures/Struct_bias_regional_model_support.pdf", width = 15, height = 10)
-
-
-## Color
-
-col_evo_results <- readRDS("./rdata/uni_colorPC_res.rds")
-col_DD_evo_results <- readRDS("./rdata/uni_colorPC_DD_res.rds")
-col_DD_evo_reg_results <- readRDS("./rdata/uni_colorPC_DD_reg_res.rds")
-
-col_evo_models <- readRDS("./rdata/uni_colorPC_evo_models.rds")
-col_DD_evo_models <- readRDS("./rdata/uni_colorPC_DD_models.rds")
-col_DD_evo_reg_models <- readRDS("./rdata/uni_colorPC_DD_reg_models.rds")
-
-col_region_stats_df <- readRDS("./rdata/uni_colorPC_tree_region_stats.rds")
-for (i in 1:nrow(col_region_stats_df)) {
-  trait <- col_region_stats_df$trait[i]
-  region <- names(region_names)[region_names == col_region_stats_df$region[i]]
-  best_model <- col_DD_evo_reg_results[[trait]]$best_models[[region]]$model
-  AICc <- col_DD_evo_reg_results[[trait]]$best_models[[region]]$AICc
-  if (best_model %in% c("WN", "OU")) {AICc <- col_DD_evo_reg_results[[trait]]$best_models[[region]]$opt$aicc}
-  else{ 
-    if (is.null(AICc)) {AICc <- col_DD_evo_reg_results[[trait]]$best_models[[region]]$aicc}
-  }
-  col_region_stats_df[i, "best_model"] = best_model
-  col_region_stats_df[i, "AICc"] = AICc
-}
-
-col_region_stats_df$best_model[grep("OU", col_region_stats_df$best_model)] = "OU-type"
-col_region_stats_df$best_model <- relevel(as.factor(col_region_stats_df$best_model), ref = "WN")
-col_region_stats_df$region <- relevel(as.factor(col_region_stats_df$region), ref = "CPO")
-
-mm_colPC <- nnet::multinom(best_model ~ region + scale(PD) + scale(K) + scale(trait_var), data = col_region_stats_df)
-summary(mm_colPC)
-
-unique(col_region_stats_df$best_model)
-cor(col_region_stats_df[c("PD", "K", "trait_var", "depth", "n_species")])
-
-color_res_global <- list()
-for (pc in colnames(colorPCs)) {
-  
-  ## global models
-  m_global <- c(col_evo_results[[paste0("color", pc)]]$AIC, col_DD_evo_results[[paste0("col", pc)]]$AIC)
-  m_global_df <- data.frame(model = names(m_global), AIC = m_global)
-  
-  # rename some models for clarity
-  m_global_df$model[m_global_df$model == "OUM_DietEcotype"] = "OUM_Diet"
-  m_global_df$model[m_global_df$model == "OUM_Farming"] = "OUM_Symbiosis"
-  m_global_df$model[m_global_df$model == "OUM_habitat1"] = "OUM_Habitat"
-  
-  # Compute delta AIC (ΔAIC)
-  m_global_df$DeltaAIC <- m_global_df$AIC - min(m_global_df$AIC)
-  
-  # Compute Akaike weights
-  m_global_df$Weight <- exp(-0.5 * m_global_df$DeltaAIC)
-  m_global_df$Weight <- m_global_df$Weight / sum(m_global_df$Weight)
-  
-  # Sort by support
-  m_global_df <- m_global_df[order(m_global_df$Weight, decreasing = TRUE), ]
-  
-  ggplot(m_global_df, aes(x = reorder(model, Weight), y = Weight)) +
-    geom_bar(stat = "identity", fill = "skyblue") +
-    labs(title = sprintf("Color %s Model Support", pc), x = "Model", y = "Akaike Weight") +
-    scale_y_continuous(limits = c(0,1)) +
-    theme_minimal(base_size = 14) +
-    theme(plot.margin = unit(c(1,1,1,1), "cm"),
-          plot.title = element_text(size = 12, hjust = 0.5),
-          axis.title.x = element_text(margin = margin(t = 20)),  
-          axis.title.y = element_text(margin = margin(r = 20))) +
-    coord_flip()
-  ggsave(sprintf("./global_color%s_univariate_model_support.pdf", pc), width = 7, height = 7)
-  
-  ## regional models
-  m_reg <- col_DD_evo_reg_results[[paste0("color", pc)]]$AIC
-  m_reg_df <- data.frame()
-  for (r in 1:length(m_reg)) {
-    m_reg_r <- m_reg[[r]]
-    m_reg_rdf <- data.frame(model = names(m_reg_r), AIC = m_reg_r, region = region_names[names(m_reg)[r]])
-    
-    # rename some models for clarity
-    m_reg_rdf$model[m_reg_rdf$model == "OUM_DietEcotype"] = "OUM_Diet"
-    m_reg_rdf$model[m_reg_rdf$model == "OUM_Farming"] = "OUM_Symbiosis"
-    m_reg_rdf$model[m_reg_rdf$model == "OUM_habitat1"] = "OUM_Habitat"
-    
-    # Compute delta AIC (ΔAIC)
-    m_reg_rdf$DeltaAIC <- m_reg_rdf$AIC - min(m_reg_rdf$AIC)
-    
-    # Compute Akaike weights
-    m_reg_rdf$Weight <- exp(-0.5 * m_reg_rdf$DeltaAIC)
-    m_reg_rdf$Weight <- m_reg_rdf$Weight / sum(m_reg_rdf$Weight)
-    
-    # Sort by support
-    m_reg_rdf <- m_reg_rdf[order(m_reg_rdf$Weight, decreasing = TRUE), ]
-    m_reg_df <- rbind(m_reg_df, m_reg_rdf)
-  }
-  
-  ggplot(m_reg_df, aes(x = reorder(model, Weight), y = Weight)) +
-    geom_bar(stat = "identity", fill = "skyblue") +
-    labs(title = sprintf("Color %s Model Support", pc), x = "Model", y = "Akaike Weight") +
-    scale_y_continuous(limits = c(0,1)) +
-    theme_minimal(base_size = 14) +
-    theme(plot.margin = unit(c(1,1,1,1), "cm"),
-          plot.title = element_text(size = 12, hjust = 0.5),
-          axis.title.x = element_text(margin = margin(t = 20)),  
-          axis.title.y = element_text(margin = margin(r = 20))) +
-    coord_flip() +
-    facet_wrap(.~region)
-  ggsave(sprintf("./regional_color%s_univariate_model_support.pdf", pc), width = 7, height = 7)
-  
-  color_res_global[[pc]] <- list(m_global_df, m_reg_df)
-  
-}
-
-
-## morpho
-
-morpho_evo_results <- readRDS("./rdata/uni_morphoPC_res.rds")
-morpho_DD_evo_results <- readRDS("./rdata/uni_morphoPC_DD_res.rds")
-morpho_DD_evo_reg_results <- readRDS("./rdata/uni_morphoPC_DD_reg_res.rds")
-
-morpho_evo_models <- readRDS("./rdata/uni_morphoPC_evo_models.rds")
-morpho_DD_evo_models <- readRDS("./rdata/uni_morphoPC_DD_models.rds")
-morpho_DD_evo_reg_models <- readRDS("./rdata/uni_morphoPC_DD_reg_models.rds")
-
-morpho_region_stats_df <- readRDS("./rdata/uni_morphoPC_tree_region_stats.rds")
-for (i in 1:nrow(morpho_region_stats_df)) {
-  trait <- morpho_region_stats_df$trait[i]
-  region <- names(region_names)[region_names == morpho_region_stats_df$region[i]]
-  best_model <- morpho_DD_evo_reg_results[[trait]]$best_models[[region]]$model
-  AICc <- morpho_DD_evo_reg_results[[trait]]$best_models[[region]]$AICc
-  if (best_model %in% c("WN", "OU")) {AICc <- morpho_DD_evo_reg_results[[trait]]$best_models[[region]]$opt$aicc}
-  else{ 
-    if (is.null(AICc)) {AICc <- morpho_DD_evo_reg_results[[trait]]$best_models[[region]]$aicc}
-  }
-  morpho_region_stats_df[i, "best_model"] = best_model
-  morpho_region_stats_df[i, "AICc"] = AICc
-}
-
-morpho_region_stats_df$best_model[grep("OU", morpho_region_stats_df$best_model)] = "OU-type"
-morpho_region_stats_df$best_model <- relevel(as.factor(morpho_region_stats_df$best_model), ref = "WN")
-morpho_region_stats_df$region <- relevel(as.factor(morpho_region_stats_df$region), ref = "CPO")
-
-mm_colPC <- nnet::multinom(best_model ~ region + scale(PD) + scale(K) + scale(trait_var), data = morpho_region_stats_df)
-summary(mm_colPC)
-
-unique(morpho_region_stats_df$best_model)
-cor(morpho_region_stats_df[c("PD", "K", "trait_var", "depth", "n_species")])
-
-morpho_res_global <- list()
-for (pc in colnames(morphoPCs)[1:8]) {
-  
-  ## global models
-  m_global <- c(morpho_evo_results[[paste0("morpho", pc)]]$AIC, morpho_DD_evo_results[[paste0("col", pc)]]$AIC)
-  m_global_df <- data.frame(model = names(m_global), AIC = m_global)
-  
-  # rename some models for clarity
-  m_global_df$model[m_global_df$model == "OUM_DietEcotype"] = "OUM_Diet"
-  m_global_df$model[m_global_df$model == "OUM_Farming"] = "OUM_Symbiosis"
-  m_global_df$model[m_global_df$model == "OUM_habitat1"] = "OUM_Habitat"
-  
-  # Compute delta AIC (ΔAIC)
-  m_global_df$DeltaAIC <- m_global_df$AIC - min(m_global_df$AIC)
-  
-  # Compute Akaike weights
-  m_global_df$Weight <- exp(-0.5 * m_global_df$DeltaAIC)
-  m_global_df$Weight <- m_global_df$Weight / sum(m_global_df$Weight)
-  
-  # Sort by support
-  m_global_df <- m_global_df[order(m_global_df$Weight, decreasing = TRUE), ]
-  
-  ggplot(m_global_df, aes(x = reorder(model, Weight), y = Weight)) +
-    geom_bar(stat = "identity", fill = "skyblue") +
-    labs(title = sprintf("morpho %s Model Support", pc), x = "Model", y = "Akaike Weight") +
-    scale_y_continuous(limits = c(0,1)) +
-    theme_minimal(base_size = 14) +
-    theme(plot.margin = unit(c(1,1,1,1), "cm"),
-          plot.title = element_text(size = 12, hjust = 0.5),
-          axis.title.x = element_text(margin = margin(t = 20)),  
-          axis.title.y = element_text(margin = margin(r = 20))) +
-    coord_flip()
-  ggsave(sprintf("./global_morpho%s_univariate_model_support.pdf", pc), width = 7, height = 7)
-  
-  ## regional models
-  m_reg <- morpho_DD_evo_reg_results[[paste0("morpho", pc)]]$AIC
-  m_reg_df <- data.frame()
-  for (r in 1:length(m_reg)) {
-    m_reg_r <- m_reg[[r]]
-    m_reg_rdf <- data.frame(model = names(m_reg_r), AIC = m_reg_r, region = region_names[names(m_reg)[r]])
-    
-    # rename some models for clarity
-    m_reg_rdf$model[m_reg_rdf$model == "OUM_DietEcotype"] = "OUM_Diet"
-    m_reg_rdf$model[m_reg_rdf$model == "OUM_Farming"] = "OUM_Symbiosis"
-    m_reg_rdf$model[m_reg_rdf$model == "OUM_habitat1"] = "OUM_Habitat"
-    
-    # Compute delta AIC (ΔAIC)
-    m_reg_rdf$DeltaAIC <- m_reg_rdf$AIC - min(m_reg_rdf$AIC)
-    
-    # Compute Akaike weights
-    m_reg_rdf$Weight <- exp(-0.5 * m_reg_rdf$DeltaAIC)
-    m_reg_rdf$Weight <- m_reg_rdf$Weight / sum(m_reg_rdf$Weight)
-    
-    # Sort by support
-    m_reg_rdf <- m_reg_rdf[order(m_reg_rdf$Weight, decreasing = TRUE), ]
-    m_reg_df <- rbind(m_reg_df, m_reg_rdf)
-  }
-  
-  ggplot(m_reg_df, aes(x = reorder(model, Weight), y = Weight)) +
-    geom_bar(stat = "identity", fill = "skyblue") +
-    labs(title = sprintf("morpho %s Model Support", pc), x = "Model", y = "Akaike Weight") +
-    scale_y_continuous(limits = c(0,1)) +
-    theme_minimal(base_size = 14) +
-    theme(plot.margin = unit(c(1,1,1,1), "cm"),
-          plot.title = element_text(size = 12, hjust = 0.5),
-          axis.title.x = element_text(margin = margin(t = 20)),  
-          axis.title.y = element_text(margin = margin(r = 20))) +
-    coord_flip() +
-    facet_wrap(.~region)
-  ggsave(sprintf("./regional_morpho%s_univariate_model_support.pdf", pc), width = 7, height = 7)
-  
-  morpho_res_global[[pc]] <- list(m_global_df, m_reg_df)
-  
-}

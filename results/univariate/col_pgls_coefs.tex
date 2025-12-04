@@ -1,0 +1,27 @@
+\begin{table}[!h]
+\centering
+\caption{}
+\centering
+\begin{tabular}[t]{lllllllll}
+\toprule
+PC & Model & Term & Estimate & SE & $95\%$ CI & t & p & p(FDR)\\
+\midrule
+PC1 & NULL | Pagel ($\lambda$=0.185) & (Intercept) & -0.064 & 0.169 & {}[-0.396, 0.269] & -0.38 & 0.706 & ---\\
+PC2 & NULL | Pagel ($\lambda$=0.266) & (Intercept) & -0.115 & 0.196 & {}[-0.500, 0.271] & -0.59 & 0.558 & ---\\
+PC3 & NULL | Pagel ($\lambda$=0.079) & (Intercept) & -0.059 & 0.118 & {}[-0.291, 0.174] & -0.49 & 0.621 & ---\\
+PC4 & Habitat+Diet | Pagel ($\lambda$=-0.080) & (Intercept) & -0.178 & 0.125 & {}[-0.425, 0.068] & -1.42 & 0.155 & ---\\
+PC4 & Habitat+Diet | Pagel ($\lambda$=-0.080) & coral-reef & 0.170 & 0.155 & {}[-0.134, 0.474] & 1.10 & 0.272 & 0.544\\
+\addlinespace
+PC4 & Habitat+Diet | Pagel ($\lambda$=-0.080) & rocky-reef & -0.072 & 0.148 & {}[-0.363, 0.219] & -0.49 & 0.626 & 0.751\\
+PC4 & Habitat+Diet | Pagel ($\lambda$=-0.080) & sea anemone & 0.550 & 0.179 & {}[0.197, 0.903] & 3.07 & 0.002* & 0.007*\\
+PC4 & Habitat+Diet | Pagel ($\lambda$=-0.080) & freshwater & -0.315 & 0.554 & {}[-1.405, 0.774] & -0.57 & 0.569 & 0.751\\
+PC4 & Habitat+Diet | Pagel ($\lambda$=-0.080) & Benthic & 0.475 & 0.070 & {}[0.337, 0.613] & 6.77 & \textless{}0.001* & \textless{}0.001*\\
+PC4 & Habitat+Diet | Pagel ($\lambda$=-0.080) & Pelagic & -0.002 & 0.050 & {}[-0.099, 0.096] & -0.03 & 0.974 & 0.974\\
+\addlinespace
+PC5 & NULL | OU ($\alpha$=1.044) & (Intercept) & -0.004 & 0.056 & {}[-0.114, 0.105] & -0.07 & 0.942 & ---\\
+PC6 & NULL | Pagel ($\lambda$=0.236) & (Intercept) & 0.042 & 0.184 & {}[-0.320, 0.405] & 0.23 & 0.819 & ---\\
+PC7 & NULL | Pagel ($\lambda$=0.368) & (Intercept) & 0.033 & 0.236 & {}[-0.430, 0.497] & 0.14 & 0.887 & ---\\
+PC8 & NULL | Pagel ($\lambda$=0.179) & (Intercept) & 0.005 & 0.168 & {}[-0.325, 0.335] & 0.03 & 0.977 & ---\\
+\bottomrule
+\end{tabular}
+\end{table}

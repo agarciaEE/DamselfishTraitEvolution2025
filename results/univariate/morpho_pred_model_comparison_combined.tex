@@ -1,0 +1,106 @@
+\begin{table}[!h]
+\centering
+\caption{\label{tab:tab:color_pred_model_comparison_combined}Univariate PGLS predictor model comparison across morphology PCs (best correlation structure per predictor). Param is $\lambda$ for Pagel and $\alpha$ for OU; BM has no parameter. Bold indicates the best (lowest AICc) model within each PC.}
+\centering
+\begin{tabular}[t]{lllccrrr}
+\toprule
+PC & Predictor & Correlation & Param & df & AICc & $\Delta$AICc & Weight\\
+\midrule
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.065} & 3 & \textbf{974.344} & \textbf{0.000} & \textbf{0.797}\\
+
+ & DietEcotype & Pagel ($\lambda$) & 0.063 & 5 & 978.172 & 3.827 & 0.118\\
+
+ & Symbiosis & Pagel ($\lambda$) & 0.074 & 5 & 980.160 & 5.816 & 0.044\\
+
+ & Symbiosis+Diet & Pagel ($\lambda$) & -0.084 & 7 & 980.887 & 6.543 & 0.030\\
+
+ & Habitat+Diet & Pagel ($\lambda$) & -0.083 & 9 & 983.416 & 9.072 & 0.009\\
+
+\multirow{-6}{*}{\raggedright\arraybackslash PC1} & Habitat & Pagel ($\lambda$) & 0.062 & 7 & 985.462 & 11.117 & 0.003\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.316} & 3 & \textbf{949.682} & \textbf{0.000} & \textbf{0.655}\\
+
+ & Habitat & Pagel ($\lambda$) & 0.291 & 7 & 951.456 & 1.774 & 0.270\\
+
+ & Symbiosis & Pagel ($\lambda$) & 0.315 & 5 & 954.913 & 5.230 & 0.048\\
+
+ & DietEcotype & Pagel ($\lambda$) & 0.324 & 5 & 957.045 & 7.363 & 0.017\\
+
+ & Habitat+Diet & Pagel ($\lambda$) & 0.298 & 9 & 958.260 & 8.578 & 0.009\\
+
+\multirow{-6}{*}{\raggedright\arraybackslash PC2} & Symbiosis+Diet & Pagel ($\lambda$) & 0.322 & 7 & 961.805 & 12.122 & 0.002\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.310} & 3 & \textbf{948.829} & \textbf{0.000} & \textbf{0.818}\\
+
+ & DietEcotype & Pagel ($\lambda$) & 0.281 & 5 & 953.147 & 4.317 & 0.095\\
+
+ & Symbiosis & Pagel ($\lambda$) & 0.319 & 5 & 954.274 & 5.444 & 0.054\\
+
+ & Habitat & Pagel ($\lambda$) & 0.315 & 7 & 956.303 & 7.473 & 0.020\\
+
+ & Symbiosis+Diet & Pagel ($\lambda$) & 0.275 & 7 & 957.233 & 8.403 & 0.012\\
+
+\multirow{-6}{*}{\raggedright\arraybackslash PC3} & Habitat+Diet & Pagel ($\lambda$) & 0.291 & 9 & 961.527 & 12.698 & 0.001\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.392} & 3 & \textbf{951.027} & \textbf{0.000} & \textbf{0.898}\\
+
+ & Symbiosis & Pagel ($\lambda$) & 0.400 & 5 & 956.748 & 5.721 & 0.051\\
+
+ & DietEcotype & Pagel ($\lambda$) & 0.404 & 5 & 957.256 & 6.229 & 0.040\\
+
+ & Habitat & Pagel ($\lambda$) & 0.402 & 7 & 960.537 & 9.509 & 0.008\\
+
+ & Symbiosis+Diet & Pagel ($\lambda$) & 0.410 & 7 & 962.377 & 11.350 & 0.003\\
+
+\multirow{-6}{*}{\raggedright\arraybackslash PC4} & Habitat+Diet & Pagel ($\lambda$) & 0.413 & 9 & 966.438 & 15.410 & 0.000\\
+\cmidrule{1-8}
+ & \textbf{DietEcotype} & \textbf{Pagel ($\lambda$)} & \textbf{0.115} & 5 & \textbf{964.191} & \textbf{0.000} & \textbf{0.555}\\
+
+ & NULL & Pagel ($\lambda$) & 0.139 & 3 & 966.006 & 1.815 & 0.224\\
+
+ & Habitat & Pagel ($\lambda$) & 0.115 & 7 & 967.465 & 3.274 & 0.108\\
+
+ & Habitat+Diet & Pagel ($\lambda$) & 0.097 & 9 & 968.320 & 4.129 & 0.070\\
+
+ & Symbiosis+Diet & Pagel ($\lambda$) & 0.121 & 7 & 969.883 & 5.691 & 0.032\\
+
+\multirow{-6}{*}{\raggedright\arraybackslash PC5} & Symbiosis & Pagel ($\lambda$) & 0.147 & 5 & 972.180 & 7.989 & 0.010\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.628} & 3 & \textbf{818.603} & \textbf{0.000} & \textbf{0.808}\\
+
+ & Symbiosis & Pagel ($\lambda$) & 0.618 & 5 & 822.194 & 3.591 & 0.134\\
+
+ & Habitat & Pagel ($\lambda$) & 0.633 & 7 & 824.820 & 6.217 & 0.036\\
+
+ & DietEcotype & Pagel ($\lambda$) & 0.625 & 5 & 826.192 & 7.589 & 0.018\\
+
+ & Symbiosis+Diet & Pagel ($\lambda$) & 0.616 & 7 & 829.650 & 11.048 & 0.003\\
+
+\multirow{-6}{*}{\raggedright\arraybackslash PC6} & Habitat+Diet & Pagel ($\lambda$) & 0.630 & 9 & 832.739 & 14.136 & 0.001\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.266} & 3 & \textbf{950.733} & \textbf{0.000} & \textbf{0.842}\\
+
+ & Symbiosis & Pagel ($\lambda$) & 0.267 & 5 & 954.548 & 3.815 & 0.125\\
+
+ & DietEcotype & Pagel ($\lambda$) & 0.257 & 5 & 958.043 & 7.310 & 0.022\\
+
+ & Habitat & Pagel ($\lambda$) & 0.263 & 7 & 960.267 & 9.535 & 0.007\\
+
+ & Symbiosis+Diet & Pagel ($\lambda$) & 0.264 & 7 & 961.198 & 10.465 & 0.004\\
+
+\multirow{-6}{*}{\raggedright\arraybackslash PC7} & Habitat+Diet & Pagel ($\lambda$) & 0.257 & 9 & 967.601 & 16.869 & 0.000\\
+\cmidrule{1-8}
+ & \textbf{NULL} & \textbf{Pagel ($\lambda$)} & \textbf{0.139} & 3 & \textbf{970.545} & \textbf{0.000} & \textbf{0.605}\\
+
+ & Symbiosis & Pagel ($\lambda$) & 0.133 & 5 & 972.464 & 1.918 & 0.232\\
+
+ & Symbiosis+Diet & Pagel ($\lambda$) & 0.117 & 7 & 974.347 & 3.802 & 0.090\\
+
+ & DietEcotype & Pagel ($\lambda$) & 0.137 & 5 & 975.764 & 5.218 & 0.045\\
+
+ & Habitat & Pagel ($\lambda$) & 0.123 & 7 & 976.927 & 6.381 & 0.025\\
+
+\multirow{-6}{*}{\raggedright\arraybackslash PC8} & Habitat+Diet & Pagel ($\lambda$) & 0.101 & 9 & 980.681 & 10.135 & 0.004\\
+\bottomrule
+\end{tabular}
+\end{table}

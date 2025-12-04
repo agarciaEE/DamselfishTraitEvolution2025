@@ -13,17 +13,19 @@ sapply(lib, library, character.only = T)
 # Settings
 #=============================#
 # set working directory
-setwd("~/Unil/Research/5_Damselfish_evo/")
+setwd("~/Unil/Research/5_Damselfish_evo/DamselTraitEvol2025/")
 
-res_folder <- "new_results"
+res_folder <- "results"
 dir.create(res_folder)
-dir.create("new_figures/multivariate")
+dir.create("results/multivariate", recursive = TRUE)
+dir.create("figures/multivariate", recursive = TRUE)
 
 col.palette <- sample(unique(as.character(sapply(c("Zissou1", "Darjeeling1", "Darjeeling2", "FantasticFox1"), function(x) wes_palette(x, 5)))))
 ncores <- 5
+scale = FALSE
 
 # load input data and custom functions
-source("./Rscripts/A0.Input_data.R")
+source("./scripts/A1.Input_data.R")
 
 star_tree <- tree
 ntips <- length(star_tree$tip.label)
@@ -34,7 +36,6 @@ star_tree$Nnode <- 1
 ## Fitting the models
 # Multivariate with color patterns
 ###################################
-scale = FALSE
 if(scale) { trait_data <- scale(colorPCs[tree$tip.label,]) } else { trait_data <- colorPCs[tree$tip.label,] }
 cat("BM...\n")
 fitMBM_cov <- mvBM(tree, trait_data, model = "BM1")
