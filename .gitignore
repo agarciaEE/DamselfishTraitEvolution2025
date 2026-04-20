@@ -1,9 +1,11 @@
 
 # Ignore folders
+ai/
 rdata/
 raw_data/
 data/images/
 figures/
+analysis/
 
 # Ignore system files (macOS / Windows)
 .DS_Store
@@ -15,3 +17,16 @@ Thumbs.db
 # Ignore compressed files
 *.zip
 *.tar
+
+# Ignore data files
+*.csv
+*.tsv
+*.rds
+*.rdata
+
+# Ignore images
+*.jpg
+*.pdf
+*.tiff
+*.png
+*.jpeg
